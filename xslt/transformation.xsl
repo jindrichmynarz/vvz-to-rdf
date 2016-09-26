@@ -780,11 +780,17 @@
         <xsl:param name="cpvSchemeYear" tunnel="yes"/>
         <skos:Concept>
             <!-- Test if the object is a CPV code -->
-            <xsl:if test="matches(text(), '^\d{8}-[\dA-Z]$')">
-                <xsl:attribute name="rdf:about" select="concat(if ($cpvSchemeYear = '2008') then $cpv2008Ns else $cpv2003Ns, f:clearCpv(text()))"/>
-                <skos:inScheme rdf:resource="{concat('http://linked.opendata.cz/resource/concept-scheme/cpv-', $cpvSchemeYear)}"/>
-            </xsl:if>
-            <skos:notation><xsl:value-of select="text()"/></skos:notation>
+            <xsl:choose>
+                <xsl:when test="matches(text(), '^\d{8}-[\dA-Z]$')">
+                    <xsl:variable name="code" select="f:clearCpv(text())"/>
+                    <xsl:attribute name="rdf:about" select="concat(if ($cpvSchemeYear = '2008') then $cpv2008Ns else $cpv2003Ns, $code)"/>
+                    <skos:inScheme rdf:resource="{concat('http://linked.opendata.cz/resource/concept-scheme/cpv-', $cpvSchemeYear)}"/>
+                    <skos:notation><xsl:value-of select="$code"/></skos:notation>
+                </xsl:when>
+                <xsl:otherwise>
+                    <skos:notation><xsl:value-of select="text()"/></skos:notation>
+                </xsl:otherwise>
+            </xsl:choose>
         </skos:Concept>    
     </xsl:template>
     
