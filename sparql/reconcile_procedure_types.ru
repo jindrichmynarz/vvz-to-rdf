@@ -3,11 +3,11 @@ PREFIX pc:        <http://purl.org/procurement/public-contracts#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 
 DELETE {
-  ?contractingAuthority pc:procedureType ?_procedureType .
+  ?contract pc:procedureType ?_procedureType .
   ?_procedureType ?p ?o .
 }
 INSERT {
-  ?contractingAuthority pc:procedureType ?procedureType .
+  ?contract pc:procedureType ?procedureType .
 }
 WHERE {
   ?contract pc:procedureType ?_procedureType .
