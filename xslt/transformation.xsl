@@ -580,11 +580,13 @@
     
     <xsl:template match="KategorieSluzeb" mode="contract">
         <!-- Číslo kategorie služby podle přílohy II směrnice č. 2004/18/ES. -->
-        <pc:serviceCategory>
-            <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
-            </skos:Concept>
-        </pc:serviceCategory>
+        <xsl:for-each select="tokenize(text(), ';')">
+            <pc:serviceCategory>
+                <skos:Concept>
+                    <skos:prefLabel xml:lang="cs"><xsl:value-of select="f:trim(.)"/></skos:prefLabel>
+                </skos:Concept>
+            </pc:serviceCategory>
+        </xsl:for-each>
     </xsl:template>
     
     <xsl:template match="HlavniMistoPlneni" mode="contract">
