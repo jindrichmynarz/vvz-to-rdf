@@ -1,0 +1,171 @@
+@prefix :        <http://linked.opendata.cz/resource/concept-scheme/eur-lex.europa.eu/service-categories/concept/> .
+@prefix cpc:     <http://data.openbudgets.eu/resource/codelist/cpc/> .
+@prefix cpv:     <http://linked.opendata.cz/resource/cpv-2008/concept/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scheme:  <http://linked.opendata.cz/resource/concept-scheme/eur-lex.europa.eu/service-categories> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+<http://linked.opendata.cz/resource/concept-scheme/eur-lex.europa.eu/service-categories> a skos:ConceptScheme ;
+  rdfs:label "Service categories"@cs ;
+  dcterms:source <http://eur-lex.europa.eu/legal-content/CS/TXT/HTML/?uri=CELEX:32004L0018&from=EN> .
+
+:1 a skos:Concept ;
+  skos:prefLabel "Údržbářské a opravářské služby"@cs ;
+  skos:notation "1" ;
+  skos:relatedMatch cpc:6112, cpc:6122, cpc:633, cpc:886, cpv:50222100, cpv:50323100, cpv:50750000, cpv:50211310, cpv:50334130, cpv:50430000, cpv:50118100, cpv:50343000, cpv:50411000, cpv:50211212, cpv:50240000, cpv:50111000, cpv:50113100, cpv:50311000, cpv:50413000, cpv:50112000, cpv:50312310, cpv:50114000, cpv:50117000, cpv:50513000, cpv:50711000, cpv:50333000, cpv:50530000, cpv:50630000, cpv:50870000, cpv:50222000, cpv:50110000, cpv:50115100, cpv:50511000, cpv:50232100, cpv:50531000, cpv:50312120, cpv:50740000, cpv:50312610, cpv:50821000, cpv:50411100, cpv:50116000, cpv:50100000, cpv:50810000, cpv:50114200, cpv:50113200, cpv:50211210, cpv:50312420, cpv:50500000, cpv:50241200, cpv:50118400, cpv:50116600, cpv:50514200, cpv:50411400, cpv:50114100, cpv:50720000, cpv:50342000, cpv:50324100, cpv:50510000, cpv:50334000, cpv:50332000, cpv:50331000, cpv:50531500, cpv:50420000, cpv:50246300, cpv:50312320, cpv:50245000, cpv:50334400, cpv:50884000, cpv:50241000, cpv:50411300, cpv:50116200, cpv:50431000, cpv:50224000, cpv:50312300, cpv:50118000, cpv:50880000, cpv:50315000, cpv:50860000, cpv:50211000, cpv:50232110, cpv:50800000, cpv:50322000, cpv:50312620, cpv:50341100, cpv:50411500, cpv:50200000, cpv:50112111, cpv:50512000, cpv:50334100, cpv:50840000, cpv:50850000, cpv:50344000, cpv:50330000, cpv:50210000, cpv:50532100, cpv:50712000, cpv:50212000, cpv:50413100, cpv:50421000, cpv:50220000, cpv:50610000, cpv:50323200, cpv:50842000, cpv:50311400, cpv:50320000, cpv:50531100, cpv:50232200, cpv:50344200, cpv:50421200, cpv:50223000, cpv:50334200, cpv:50514100, cpv:50640000, cpv:50116100, cpv:50410000, cpv:50111100, cpv:50313200, cpv:50312600, cpv:50312200, cpv:50531400, cpv:50400000, cpv:50433000, cpv:50760000, cpv:50341000, cpv:50115200, cpv:50118500, cpv:50511100, cpv:50116400, cpv:50421100, cpv:50224200, cpv:50830000, cpv:50312000, cpv:50334110, cpv:50113000, cpv:50532200, cpv:50211211, cpv:50118200, cpv:50242000, cpv:50841000, cpv:50117200, cpv:50700000, cpv:50334140, cpv:50246400, cpv:50432000, cpv:50116300, cpv:50323000, cpv:50224100, cpv:50118110, cpv:50232000, cpv:50112300, cpv:50246100, cpv:50241100, cpv:50511200, cpv:50721000, cpv:50116500, cpv:50221300, cpv:50333200, cpv:50312100, cpv:50660000, cpv:50111110, cpv:50246000, cpv:50312210, cpv:50531200, cpv:50422000, cpv:50221000, cpv:50112100, cpv:50620000, cpv:50118300, cpv:50313000, cpv:50340000, cpv:50221100, cpv:50413200, cpv:50882000, cpv:50115000, cpv:50230000, cpv:50317000, cpv:50312400, cpv:50412000, cpv:50211300, cpv:50334120, cpv:50600000, cpv:50820000, cpv:50117100, cpv:50246200, cpv:50334300, cpv:50341200, cpv:50225000, cpv:50221400, cpv:50532400, cpv:50881000, cpv:50211100, cpv:50316000, cpv:50531300, cpv:50321000, cpv:50112200, cpv:50514300, cpv:50313100, cpv:50531510, cpv:50324000, cpv:50314000, cpv:50221200, cpv:50532000, cpv:50333100, cpv:50710000, cpv:50883000, cpv:50312110, cpv:50730000, cpv:50532300, cpv:50822000, cpv:50312220, cpv:50650000, cpv:50300000, cpv:50112120, cpv:50112110, cpv:50117300, cpv:50411200, cpv:50344100, cpv:50244000, cpv:50514000, cpv:50211200, cpv:50312410 ;
+  skos:inScheme :scheme .
+
+:2 a skos:Concept ;
+  skos:prefLabel "Pozemní přeprava, včetně přepravy pancéřovými vozy a kurýrních služeb, s výjimkou přepravy pošty"@cs ;
+  skos:notation "2" ;
+  skos:relatedMatch cpc:712, cpc:7512, cpc:87304, cpv:60120000, cpv:64120000, cpv:60112000, cpv:64121200, cpv:64121000, cpv:64121100 ;
+  skos:inScheme :scheme .
+
+:3 a skos:Concept ;
+  skos:prefLabel "Letecká přeprava cestujících i nákladu, s výjimkou přepravy pošty"@cs ;
+  skos:notation "3" ;
+  skos:relatedMatch cpc:73 ;
+  skos:inScheme :scheme .
+
+:4 a skos:Concept ;
+  skos:prefLabel "Pozemní přeprava pošty a letecká přeprava pošty"@cs ;
+  skos:notation "4" ;
+  skos:relatedMatch cpc:71235, cpc:7321, cpv:60122200, cpv:60122230, cpv:62121000, cpv:62221000 ;
+  skos:inScheme :scheme .
+
+:5 a skos:Concept ;
+  skos:prefLabel "Telekomunikační služby"@cs ;
+  skos:notation "5" ;
+  skos:relatedMatch cpc:752, cpv:64216110, cpv:64212400, cpv:64221000, cpv:64213000, cpv:64216130, cpv:64200000, cpv:64216100, cpv:64216210, cpv:64224000, cpv:64216200, cpv:64211000, cpv:64216140, cpv:64214400, cpv:64226000, cpv:64227000, cpv:64212200, cpv:64214200, cpv:64228000, cpv:64212700, cpv:64212600, cpv:64220000, cpv:64222000, cpv:64212100, cpv:64214000, cpv:64212800, cpv:64214100, cpv:64211100, cpv:64211200, cpv:64216000, cpv:64223000, cpv:64212900, cpv:64216300, cpv:64228100, cpv:64228200, cpv:64210000, cpv:64212500, cpv:64212300, cpv:64225000, cpv:64216120, cpv:64215000, cpv:64212000 ;
+  skos:inScheme :scheme .
+
+:6 a skos:Concept ;
+  skos:prefLabel "Finanční služby a) Pojišťovací služby b) Bankovnictví a investiční služby"@cs ;
+  skos:notation "6" ;
+  skos:relatedMatch cpc:81, cpc:812, cpc:814, cpv:66120000, cpv:66115000, cpv:66112000, cpv:66122000, cpv:66131000, cpv:66152000, cpv:66162000, cpv:66114000, cpv:66113000, cpv:66113100, cpv:66132000, cpv:66170000, cpv:66141000, cpv:66151000, cpv:66161000, cpv:66100000, cpv:66111000, cpv:66130000, cpv:66133000, cpv:66110000, cpv:66171000, cpv:66140000, cpv:66151100, cpv:66150000, cpv:66160000, cpv:66131100, cpv:66190000, cpv:66121000, cpv:66172000, cpv:66180000 ;
+  skos:inScheme :scheme .
+
+:7 a skos:Concept ;
+  skos:prefLabel "Počítačové a s tím spojené služby"@cs ;
+  skos:notation "7" ;
+  skos:relatedMatch cpc:84, cpv:72241000, cpv:72212312, cpv:72330000, cpv:72212441, cpv:72212180, cpv:72212120, cpv:72513000, cpv:72212210, cpv:50310000, cpv:72212771, cpv:50313200, cpv:72315000, cpv:72212430, cpv:72514100, cpv:72311300, cpv:72110000, cpv:72212650, cpv:72150000, cpv:72212150, cpv:72421000, cpv:72200000, cpv:72319000, cpv:72315100, cpv:72230000, cpv:72590000, cpv:72211000, cpv:72253000, cpv:72212213, cpv:72317000, cpv:50324000, cpv:72212731, cpv:72212620, cpv:72313000, cpv:72212422, cpv:72540000, cpv:72262000, cpv:72416000, cpv:72511000, cpv:72314000, cpv:72212770, cpv:72212610, cpv:72311100, cpv:50323200, cpv:50312320, cpv:72212300, cpv:50312410, cpv:72212412, cpv:72417000, cpv:72222000, cpv:72422000, cpv:72212325, cpv:72212740, cpv:72263000, cpv:72212932, cpv:72212981, cpv:50322000, cpv:72254100, cpv:72212462, cpv:72315200, cpv:72212328, cpv:72251000, cpv:72212160, cpv:72212421, cpv:72212100, cpv:50312210, cpv:72312200, cpv:50312000, cpv:72510000, cpv:72212317, cpv:72225000, cpv:72312100, cpv:72212410, cpv:72130000, cpv:50311400, cpv:72212490, cpv:72212324, cpv:72212323, cpv:72212131, cpv:72246000, cpv:72265000, cpv:72321000, cpv:72244000, cpv:72267100, cpv:72212313, cpv:72212980, cpv:72267000, cpv:72512000, cpv:50312620, cpv:72212461, cpv:72212920, cpv:72212218, cpv:72322000, cpv:72227000, cpv:50312120, cpv:72212224, cpv:72212513, cpv:72212450, cpv:72212316, cpv:72212445, cpv:72212214, cpv:72224100, cpv:72212322, cpv:72212130, cpv:72266000, cpv:72212972, cpv:72212781, cpv:72212516, cpv:50316000, cpv:72212311, cpv:72212440, cpv:72514000, cpv:72514200, cpv:72212710, cpv:72591000, cpv:72212660, cpv:72212518, cpv:72212217, cpv:72500000, cpv:72212790, cpv:72212333, cpv:72212512, cpv:72212223, cpv:72223000, cpv:72232000, cpv:72242000, cpv:72250000, cpv:72254000, cpv:72212443, cpv:72228000, cpv:72212630, cpv:72212212, cpv:72541000, cpv:72220000, cpv:50323100, cpv:72226000, cpv:72316000, cpv:72212780, cpv:50317000, cpv:72252000, cpv:72311200, cpv:72212310, cpv:50312420, cpv:72212221, cpv:72212960, cpv:50324200, cpv:50321000, cpv:72212750, cpv:72231000, cpv:72212940, cpv:50312100, cpv:72212332, cpv:72222300, cpv:72212900, cpv:72268000, cpv:72415000, cpv:72541100, cpv:72100000, cpv:72212985, cpv:72212510, cpv:50311000, cpv:72212942, cpv:72210000, cpv:72212991, cpv:72245000, cpv:72212211, cpv:72212700, cpv:72410000, cpv:72212772, cpv:72264000, cpv:50313000, cpv:72267200, cpv:72212931, cpv:72212170, cpv:72212110, cpv:50312220, cpv:72212200, cpv:72312000, cpv:72411000, cpv:72212327, cpv:72243000, cpv:72212420, cpv:72260000, cpv:72212640, cpv:72221000, cpv:72212984, cpv:72212983, cpv:72212732, cpv:50323000, cpv:72253200, cpv:72212990, cpv:72140000, cpv:72212930, cpv:50315000, cpv:72420000, cpv:72320000, cpv:72212519, cpv:72212460, cpv:72212600, cpv:72224200, cpv:72120000, cpv:50312310, cpv:72212326, cpv:50312400, cpv:72310000, cpv:72222100, cpv:72413000, cpv:72224000, cpv:72212140, cpv:72212482, cpv:72212315, cpv:72212982, cpv:72212730, cpv:50300000, cpv:72212321, cpv:72212463, cpv:72212500, cpv:72212971, cpv:50312300, cpv:72212720, cpv:72212670, cpv:72212515, cpv:72311000, cpv:72212190, cpv:72212911, cpv:72412000, cpv:72212521, cpv:72212761, cpv:72212318, cpv:72212522, cpv:72212330, cpv:72212411, cpv:72240000, cpv:50312200, cpv:72212517, cpv:72212216, cpv:72300000, cpv:72212132, cpv:72212222, cpv:72212511, cpv:72212400, cpv:72212783, cpv:72212481, cpv:72212314, cpv:72212480, cpv:72261000, cpv:72400000, cpv:72212442, cpv:72212121, cpv:72253100, cpv:72212320, cpv:50313100, cpv:72212219, cpv:72414000, cpv:50324100, cpv:72212470, cpv:72212970, cpv:50314000, cpv:72212000, cpv:72212514, cpv:50312610, cpv:72212451, cpv:72514300, cpv:72212910, cpv:72212220, cpv:72212760, cpv:50312110, cpv:72212520, cpv:72222200, cpv:72212215, cpv:50312600, cpv:50320000, cpv:72212331, cpv:72212782, cpv:72212941 ;
+  skos:inScheme :scheme .
+
+:8 a skos:Concept ;
+  skos:prefLabel "Služby ve výzkumu a vývoji"@cs ;
+  skos:notation "8" ;
+  skos:relatedMatch cpc:85, cpv:73100000, cpv:73110000, cpv:73120000, cpv:73112000, cpv:73111000, cpv:73000000, cpv:73300000 ;
+  skos:inScheme :scheme .
+
+:9 a skos:Concept ;
+  skos:prefLabel "Účetnické a auditorské služby a služby při vedení účetnictví"@cs ;
+  skos:notation "9" ;
+  skos:relatedMatch cpc:862 ; 
+  skos:inScheme :scheme .
+
+:10 a skos:Concept ;
+  skos:prefLabel "Průzkum trhu a veřejného mínění"@cs ;
+  skos:notation "10" ;
+  skos:relatedMatch cpc:864 ; 
+  skos:inScheme :scheme .
+
+:11 a skos:Concept ;
+  skos:prefLabel "Poradenství a s tím spojené služby"@cs ;
+  skos:notation "11" ;
+  skos:relatedMatch cpc:865, cpc:866, cpv:73200000, cpv:73210000, cpv:73220000 ;
+  skos:inScheme :scheme .
+
+:12 a skos:Concept ;
+  skos:prefLabel "Služby architektů, inženýrské služby a integrované inženýrské služby, územní plánování, služby krajinného inženýrství; související služby vědecko-technického poradenství, služby technického testování a provádění analýz"@cs ;
+  skos:notation "12" ;
+  skos:relatedMatch cpc:867 ; 
+  skos:inScheme :scheme .
+
+:13 a skos:Concept ;
+  skos:prefLabel "Reklamní služby"@cs ;
+  skos:notation "13" ;
+  skos:relatedMatch cpc:871 ;
+  skos:inScheme :scheme .
+
+:14 a skos:Concept ;
+  skos:prefLabel "Úklidové služby a služby správy majetku"@cs ;
+  skos:notation "14" ;
+  skos:relatedMatch cpv:70310000, cpv:70331000, cpv:70320000, cpv:70332300, cpv:70311000, cpv:70300000, cpv:70330000, cpv:70321000, cpv:70333000, cpv:70332000, cpv:70332100, cpv:70332200, cpv:70331100, cpv:70340000, cpv:70322000 ;
+  skos:inScheme :scheme .
+
+:15 a skos:Concept ;
+  skos:prefLabel "Vydavatelské a tiskařské služby za poplatek nebo na smluvním základě"@cs ;
+  skos:notation "15" ;
+  skos:inScheme :scheme .
+
+:16 a skos:Concept ;
+  skos:prefLabel "Služby týkající se kanalizací a likvidace odpadu, sanitární a podobné služby"@cs ;
+  skos:notation "16" ;
+  skos:relatedMatch cpc:94, cpv:50190000, cpv:50229000, cpv:50243000 ;
+  skos:inScheme :scheme .
+
+:17 a skos:Concept ;
+  skos:prefLabel "Hotelové a restaurační služby"@cs ;
+  skos:notation "17" ;
+  skos:relatedMatch cpc:64, cpv:55320000, cpv:55500000, cpv:55410000, cpv:55524000, cpv:55312000, cpv:55321000, cpv:55243000, cpv:55270000, cpv:55523100, cpv:55110000, cpv:55511000, cpv:55241000, cpv:55310000, cpv:55242000, cpv:55000000, cpv:55210000, cpv:55221000, cpv:55100000, cpv:55240000, cpv:55521100, cpv:55510000, cpv:55512000, cpv:55330000, cpv:55520000, cpv:55120000, cpv:55220000, cpv:55523000, cpv:55311000, cpv:55522000, cpv:55260000, cpv:55300000, cpv:55250000, cpv:55521200, cpv:55521000, cpv:55400000, cpv:55130000, cpv:55322000, cpv:55200000 ;
+  skos:inScheme :scheme .
+
+:18 a skos:Concept ;
+  skos:prefLabel "Služby železniční dopravy"@cs ;
+  skos:notation "18" ;
+  skos:relatedMatch cpc:711 ;
+  skos:inScheme :scheme .
+
+:19 a skos:Concept ;
+  skos:prefLabel "Služby vodní dopravy"@cs ;
+  skos:notation "19" ;
+  skos:relatedMatch cpc:72 ;
+  skos:inScheme :scheme .
+
+:20 a skos:Concept ;
+  skos:prefLabel "Doprovodné a vedlejší dopravní služby"@cs ;
+  skos:notation "20" ;
+  skos:relatedMatch cpv:63111000, cpv:63121100, cpv:63523000, cpv:63515000, cpv:63112100, cpv:63512000, cpv:63521000, cpv:63121000, cpv:63000000, cpv:63122000, cpv:63516000, cpv:63520000, cpv:63121110, cpv:63100000, cpv:63522000, cpv:63112110, cpv:63110000, cpv:63511000, cpv:63112000, cpv:63500000, cpv:63510000, cpv:63524000, cpv:63513000, cpv:63514000, cpv:63120000 ;
+  skos:inScheme :scheme .
+
+:21 a skos:Concept ;
+  skos:prefLabel "Právní služby"@cs ;
+  skos:notation "21" ;
+  skos:relatedMatch cpc:861 ; 
+  skos:inScheme :scheme .
+
+:22 a skos:Concept ;
+  skos:prefLabel "Služby personálních agentur a poskytování servisu"@cs ;
+  skos:notation "22" ;
+  skos:relatedMatch cpc:872 ;
+  skos:inScheme :scheme .
+
+:23 a skos:Concept ;
+  skos:prefLabel "Pátrací a bezpečnostní služby s výjimkou služeb přepravy pancéřovými vozy"@cs ;
+  skos:notation "23" ;
+  skos:relatedMatch cpc:873 ;
+  skos:inScheme :scheme .
+
+:24 a skos:Concept ;
+  skos:prefLabel "Vzdělávání a služby odborného vzdělávání"@cs ;
+  skos:notation "24" ;
+  skos:relatedMatch cpc:92, cpv:80310000, cpv:80415000, cpv:80210000, cpv:80412000, cpv:80430000, cpv:80420000, cpv:80400000, cpv:80330000, cpv:80300000, cpv:80212000, cpv:80414000, cpv:80411100, cpv:80100000, cpv:80410000, cpv:80200000, cpv:80411000, cpv:80320000, cpv:80413000, cpv:80411200, cpv:80340000, cpv:80211000, cpv:80110000 ;
+  skos:inScheme :scheme .
+
+:25 a skos:Concept ;
+  skos:prefLabel "Zdravotnické a sociální služby"@cs ;
+  skos:notation "25" ;
+  skos:relatedMatch cpc:93, cpv:85170000, cpv:85171000, cpv:85131100, cpv:85320000, cpv:85121100, cpv:85141211, cpv:85121290, cpv:85121281, cpv:85112000, cpv:85312300, cpv:85147000, cpv:85121240, cpv:85111300, cpv:85121300, cpv:85121252, cpv:85111200, cpv:85110000, cpv:85143000, cpv:85146200, cpv:85112100, cpv:85121231, cpv:85121200, cpv:85172000, cpv:85121230, cpv:85311300, cpv:85142000, cpv:85312120, cpv:85000000, cpv:85141000, cpv:85311000, cpv:85312110, cpv:85142400, cpv:85141210, cpv:85312510, cpv:85200000, cpv:85312100, cpv:85312000, cpv:85121282, cpv:85121291, cpv:85141100, cpv:85311100, cpv:85121250, cpv:85100000, cpv:85142300, cpv:85142100, cpv:85111820, cpv:85144000, cpv:85140000, cpv:85300000, cpv:85150000, cpv:85146000, cpv:85121220, cpv:85311200, cpv:85210000, cpv:85149000, cpv:85145000, cpv:85146100, cpv:85121210, cpv:85111500, cpv:85312310, cpv:85121232, cpv:85111310, cpv:85111600, cpv:85312200, cpv:85131000, cpv:85121271, cpv:85121000, cpv:85144100, cpv:85130000, cpv:85160000, cpv:85141220, cpv:85121280, cpv:85111810, cpv:85111400, cpv:85120000, cpv:85111700, cpv:85312330, cpv:85111800, cpv:85121283, cpv:85131110, cpv:85121292, cpv:85312400, cpv:85121251, cpv:85323000, cpv:85111000, cpv:85141200, cpv:85121270, cpv:85310000, cpv:85312320, cpv:85148000, cpv:85312500, cpv:85111100, cpv:85111320, cpv:85112200, cpv:85111900, cpv:85142200 ;
+  skos:inScheme :scheme .
+
+:26 a skos:Concept ;
+  skos:prefLabel "Rekreační, kulturní a sportovní služby"@cs ;
+  skos:notation "26" ;
+  skos:relatedMatch cpc:96, cpv:92112000, cpv:92342000, cpv:92312130, cpv:92215000, cpv:92121000, cpv:92351100, cpv:92312200, cpv:92110000, cpv:92340000, cpv:92312212, cpv:92122000, cpv:92352200, cpv:92510000, cpv:92331100, cpv:92521210, cpv:92111250, cpv:92531000, cpv:92222000, cpv:92521100, cpv:92111200, cpv:92534000, cpv:92225100, cpv:92512000, cpv:92100000, cpv:92300000, cpv:92521000, cpv:92211000, cpv:92232000, cpv:92620000, cpv:92522100, cpv:92610000, cpv:92310000, cpv:92312250, cpv:92512100, cpv:92213000, cpv:92530000, cpv:92225000, cpv:92342200, cpv:92312220, cpv:92520000, cpv:92111230, cpv:92352100, cpv:92312140, cpv:92111310, cpv:92600000, cpv:92621000, cpv:92312210, cpv:92331200, cpv:92111300, cpv:92226000, cpv:92511000, cpv:92221000, cpv:92350000, cpv:92231000, cpv:92521200, cpv:92532000, cpv:92120000, cpv:92312230, cpv:92500000, cpv:92111260, cpv:92216000, cpv:92220000, cpv:92320000, cpv:92000000, cpv:92111210, cpv:92351200, cpv:92312120, cpv:92111100, cpv:92217000, cpv:92111000, cpv:92111220, cpv:92312251, cpv:92521220, cpv:92522000, cpv:92224000, cpv:92622000, cpv:92111320, cpv:92342100, cpv:92214000, cpv:92312211, cpv:92331210, cpv:92400000, cpv:92330000, cpv:92140000, cpv:92331000, cpv:92312213, cpv:92111240, cpv:92312110, cpv:92311000, cpv:92332000, cpv:92312000, cpv:92200000, cpv:92351000, cpv:92130000, cpv:92360000, cpv:92533000, cpv:92341000, cpv:92522200, cpv:92352000, cpv:92210000, cpv:92312240, cpv:92370000, cpv:92312100 ;
+  skos:inScheme :scheme .
+
+:27 a skos:Concept ;
+  skos:prefLabel "Jiné služby"@cs ;
+  skos:notation "27" ;
+  skos:inScheme :scheme .
