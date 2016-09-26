@@ -44,6 +44,12 @@
         <xsl:value-of select="concat($ns, f:kebabCase($class), '/', f:slugify($key))"/>
     </xsl:function>
     
+    <!-- Tests if date is valid xsd:date. -->
+    <xsl:function name="f:isValidDate" as="xsd:boolean">
+        <xsl:param name="date" as="xsd:string"/>
+        <xsl:value-of select="$date castable as xsd:date"/>
+    </xsl:function>
+    
     <!-- Converts camelCase $text into kebab-case. -->
     <xsl:function name="f:kebabCase" as="xsd:string">
         <xsl:param name="text" as="xsd:string"/>
@@ -78,10 +84,10 @@
         </xsl:analyze-string>
     </xsl:function>
     
-    <!-- Tests if date is valid xsd:date. -->
-    <xsl:function name="f:isValidDate" as="xsd:boolean">
-        <xsl:param name="date" as="xsd:string"/>
-        <xsl:value-of select="$date castable as xsd:date"/>
+    <!-- Trims leading and trailing whitespace -->
+    <xsl:function name="f:trim" as="xsd:string">
+        <xsl:param name="text" as="xsd:string"/>
+        <xsl:value-of select="replace($text, '^\s+|\s+$', '')"/>
     </xsl:function>
     
     <!-- Tests if IČO is valid.
@@ -541,11 +547,13 @@
     <xsl:template match="ZadavatelHlavniPredmetCinnosti" mode="contracting-authority">
         <!-- Hlavní předmět činnosti veřejného zadavatele, který nejlépe odpovídá oblasti působnosti veřejného zadavatele.
              Položka nabývá jednu z 11 hodnot. -->
-        <pc:mainActivity>
-            <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
-            </skos:Concept>
-        </pc:mainActivity>
+        <xsl:for-each select="tokenize(text(), ';')">
+            <pc:mainActivity>
+                <skos:Concept>
+                    <skos:prefLabel xml:lang="cs"><xsl:value-of select="f:trim(.)"/></skos:prefLabel>
+                </skos:Concept>
+            </pc:mainActivity>
+        </xsl:for-each>
     </xsl:template>
     
     <xsl:template match="ZadavatelZadavaJmenemJinych" mode="contracting-authority">
