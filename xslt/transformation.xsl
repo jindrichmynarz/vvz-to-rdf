@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xsl:stylesheet [
+    <!ENTITY pc      "http://purl.org/procurement/public-contracts#">
     <!ENTITY pccz    "http://purl.org/procurement/public-contracts-czech#">
     <!ENTITY pcdt    "http://purl.org/procurement/public-contracts-datatypes#">
     <!ENTITY pproc   "http://contsem.unizar.es/def/sector-publico/pproc#">
@@ -158,6 +159,8 @@
     <xsl:output encoding="UTF-8" indent="yes" method="xml" normalization-form="NFC" />
     <xsl:strip-space elements="*"/>
     
+    <xsl:key name="contracts" match="/PrehledZakazekZVestnikuVZ/VerejnaZakazka" use="EvidencniCisloVZnaVVZ/text()"/>
+    
     <!-- Templates -->
     
     <xsl:template match="/PrehledZakazekZVestnikuVZ">
@@ -167,34 +170,52 @@
     </xsl:template>
     
     <xsl:template match="CastiVerejneZakazky">
-        <pproc:Lot>
+        <rdf:Description>
             <xsl:choose>
-                <xsl:when test="CisloFormulareNaVVZ and CisloCastiZadaniVZ">
-                    <!-- Newer way of identifying lots -->
+                <xsl:when test="CisloCastiZadaniVZ">
+                    <!-- This is a lot -->
                     <xsl:variable name="key">
                         <xsl:choose>
-                            <xsl:when test="CisloCastiZadaniVZ">
+                            <xsl:when test="CisloFormulareNaVVZ">
+                                <!-- Newer way of identifying lots -->
                                 <xsl:value-of select="concat(CisloFormulareNaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of select="CisloFormulareNaVVZ/text()"/>
+                                <!-- Older way of identifying lots -->
+                                <xsl:value-of select="concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
                     <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', $key)"/>
+                    <rdf:type rdf:resource="&pproc;Lot"/>
+                    
+                    <!-- Evid. číslo na VVZ -->
+                    <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
                 </xsl:when>
-                <xsl:when test="CisloCastiZadaniVZ">
-                    <!-- Older way of identifying lots -->
-                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text()))"/>
-                </xsl:when>
+                <xsl:otherwise>
+                    <!-- This is a contract -->
+                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())"/>
+                    <rdf:type rdf:resource="&pc;Contract"/>
+                </xsl:otherwise>
             </xsl:choose>
+            
             <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
                 <pc:awardedTender>
                     <pc:Tender>
                         <pc:bidder>
                             <schema:Organization>
+                                <xsl:variable name="icos" select="key('contracts', EvidencniCisloVZnaVVZ/text())/DodavatelICO/text()"/>
+                                <xsl:if test="not(empty($icos))">
+                                    <xsl:variable name="ico" select="$icos[1]"/>
+                                    <xsl:attribute name="rdf:about" select="concat('http://linked.opendata.cz/resource/business-entity/CZ', f:slugify($ico))"/>
+                                    <xsl:call-template name="ico">
+                                        <xsl:with-param name="ico" select="$ico"/>
+                                    </xsl:call-template>
+                                </xsl:if>
+                                
                                 <xsl:apply-templates mode="supplier"/>
+                                
                                 <xsl:if test="DodavatelPostovniAdresa">
                                     <schema:address>
                                         <schema:PostalAddress>
@@ -207,12 +228,7 @@
                     </pc:Tender>
                 </pc:awardedTender>
             </xsl:if>
-        </pproc:Lot>
-    </xsl:template>
-    
-    <xsl:template match="EvidencniCisloVZnaVVZ" mode="lot">
-        <!-- Evid. číslo na VVZ -->
-        <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', text())}"/>
+        </rdf:Description>
     </xsl:template>
     
     <xsl:template match="CisloFormulareNaVVZ" mode="lot">
@@ -782,14 +798,18 @@
     
     <xsl:template name="ico">
         <xsl:param name="ico" as="xsd:string"/>
-        <xsl:variable name="tidyIco" select="f:removeWhitespace(text())"/>
+        <xsl:variable name="tidyIco" select="f:removeWhitespace($ico)"/>
         <rov:registration>
             <adms:Identifier rdf:about="{f:getInstanceUri('Identifier', $tidyIco)}">
                 <skos:notation><xsl:value-of select="$tidyIco"/></skos:notation>
-                <skos:inScheme rdf:resource="{f:getInstanceUri('ConceptScheme', 'cz-ico')}"/>
-                <xsl:if test="not(f:isValidIco($tidyIco))">
-                    <dcterms:valid rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></dcterms:valid>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="not(f:isValidIco($tidyIco))">
+                        <dcterms:valid rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></dcterms:valid>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <skos:inScheme rdf:resource="http://linked.opendata.cz/resource/concept-scheme/CZ-ICO"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </adms:Identifier>
         </rov:registration>
     </xsl:template>
