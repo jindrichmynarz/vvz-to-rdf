@@ -252,7 +252,7 @@
     </xsl:template>
     
     <xsl:template match="NazevCastiVZ" mode="lot">
-        <dcterms:title xml:lang="cs"><xsl:value-of select="text()"/></dcterms:title>
+        <dcterms:title xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></dcterms:title>
     </xsl:template>
    
     <xsl:template match="DatumZadaniVZ" mode="lot">
@@ -267,17 +267,17 @@
     
     <xsl:template match="DodavatelNazev" mode="supplier">
         <!-- Název dodavatele, kterému byla zakázka zadána -->
-        <schema:name><xsl:value-of select="text()"/></schema:name>
+        <schema:name><xsl:value-of select="normalize-space(text())"/></schema:name>
     </xsl:template>
     
     <xsl:template match="DodavatelPostovniAdresa" mode="supplier-address">
         <!-- Poštovní adresa dodavatele, kterému byla zakázka zadána. -->
-        <schema:streetAddress><xsl:value-of select="text()"/></schema:streetAddress>
+        <schema:streetAddress><xsl:value-of select="normalize-space(text())"/></schema:streetAddress>
     </xsl:template>
     
     <xsl:template match="DodavatelObec" mode="supplier-address">
         <!-- pc:awardedTender/pc:bidder/schema:address -->
-        <schema:addressLocality><xsl:value-of select="text()"/></schema:addressLocality>
+        <schema:addressLocality><xsl:value-of select="normalize-space(text())"/></schema:addressLocality>
     </xsl:template>
     
     <xsl:template match="DodavatelPSC" mode="supplier-address">
@@ -488,7 +488,7 @@
     <xsl:template match="DruhFormulare" mode="lot">
         <!-- Druh formuláře (řádný/opravný) -->
         <xsl:choose>
-            <xsl:when test="text() = 'Řádný'"></xsl:when>
+            <!-- <xsl:when test="text() = 'Řádný'"></xsl:when> -->
             <xsl:when test="text() = 'Opravný'">
                 <rdf:type rdf:resource="&pproc;CorrectionNotice"/>
             </xsl:when>
@@ -526,13 +526,6 @@
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="DodavatelICO" mode="supplier">
-        <!-- IČO dodavatele -->
-        <xsl:call-template name="ico">
-            <xsl:with-param name="ico" select="text()"/>
-        </xsl:call-template>
-    </xsl:template>
-    
     <xsl:template match="LimitVZ" mode="contract">
         <!-- Limit VZ (nadlimitní/podlimitní) -->
         <pccz:limit>
@@ -562,14 +555,14 @@
     <xsl:template match="ZadavatelUredniNazev" mode="contracting-authority">
         <!-- Úřední název zadavatele. U obchodních společností položka obsahuje název obchodní firmy
              zapsané v obchodním rejstříku, u fyzických osob obsahuje jméno a příjmení fyzické osoby. -->
-        <schema:legalName><xsl:value-of select="text()"/></schema:legalName>
+        <schema:legalName><xsl:value-of select="normalize-space(text())"/></schema:legalName>
     </xsl:template>
     
     <xsl:template match="ZadavatelDruh" mode="contracting-authority">
         <!-- Druh veřejného zadavatele. Položka nabývá jednu ze 7 nabízených možností podle § 2 ZVZ. -->
         <pc:authorityKind>
             <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
+                <skos:prefLabel xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></skos:prefLabel>
             </skos:Concept>
         </pc:authorityKind>
     </xsl:template>
@@ -596,14 +589,14 @@
     
     <xsl:template match="NazevVZ" mode="contract">
         <!-- Název přidělený veřejné zakázce -->
-        <dcterms:title xml:lang="cs"><xsl:value-of select="text()"/></dcterms:title>
+        <dcterms:title xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></dcterms:title>
     </xsl:template>
     
     <xsl:template match="DruhVZ" mode="contract">
         <!-- Druh zakázky (dodávky, služby, stavební práce) -->
         <pc:kind>
             <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
+                <skos:prefLabel xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></skos:prefLabel>
             </skos:Concept>
         </pc:kind>
     </xsl:template>
@@ -625,12 +618,13 @@
             <schema:Place>
                 <schema:address>
                     <schema:PostalAddress>
-                        <xsl:analyze-string select="text()" regex="^.*(\d{{3}}\s*\d{{2}}).*$">
+                        <xsl:variable name="text" select="normalize-space(text())"/>
+                        <xsl:analyze-string select="$text" regex="^.*(\d{{3}}\s*\d{{2}}).*$">
                             <xsl:matching-substring>
                                 <schema:postalCode><xsl:value-of select="replace(regex-group(1), '\s+', '')"/></schema:postalCode>
                             </xsl:matching-substring>
                         </xsl:analyze-string>
-                        <schema:description><xsl:value-of select="text()"/></schema:description>
+                        <schema:description><xsl:value-of select="$text"/></schema:description>
                     </schema:PostalAddress>
                 </schema:address>
             </schema:Place>
@@ -701,7 +695,7 @@
         <!-- Druh řízení dle ZVZ -->
         <pc:procedureType>
             <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
+                <skos:prefLabel xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></skos:prefLabel>
             </skos:Concept>
         </pc:procedureType>    
     </xsl:template>
@@ -710,7 +704,7 @@
         <!-- Základní hodnotící kritérium pro zadání zakázky (nejnižší nabídková cena nebo ekonomická výhodnost nabídky) -->
         <pc:mainCriterion>
             <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
+                <skos:prefLabel xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></skos:prefLabel>
             </skos:Concept>
         </pc:mainCriterion>
     </xsl:template>
@@ -747,7 +741,7 @@
         <!-- Název fondu/programu/projektu, ze kterého je veřejná zakázka financována. -->
         <pc:subsidy>
             <foaf:Project>
-                <foaf:name><xsl:value-of select="text()"/></foaf:name>
+                <foaf:name><xsl:value-of select="normalize-space(text())"/></foaf:name>
             </foaf:Project>
         </pc:subsidy>
     </xsl:template>
@@ -867,7 +861,7 @@
     <xsl:template name="weightedCriterion">
         <pc:weightedCriterion>
             <skos:Concept>
-                <skos:prefLabel xml:lang="cs"><xsl:value-of select="text()"/></skos:prefLabel>
+                <skos:prefLabel xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></skos:prefLabel>
             </skos:Concept>
         </pc:weightedCriterion>
     </xsl:template>
