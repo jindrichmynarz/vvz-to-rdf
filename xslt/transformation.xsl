@@ -208,7 +208,9 @@
                                 <xsl:variable name="icos" select="key('contracts', EvidencniCisloVZnaVVZ/text())/DodavatelICO/text()"/>
                                 <xsl:if test="not(empty($icos))">
                                     <xsl:variable name="ico" select="$icos[1]"/>
-                                    <xsl:attribute name="rdf:about" select="concat('http://linked.opendata.cz/resource/business-entity/CZ', f:slugify($ico))"/>
+                                    <xsl:if test="f:isValidIco($ico)">
+                                        <xsl:attribute name="rdf:about" select="concat('http://linked.opendata.cz/resource/business-entity/CZ', $ico)"/>
+                                    </xsl:if>
                                     <xsl:call-template name="ico">
                                         <xsl:with-param name="ico" select="$ico"/>
                                     </xsl:call-template>
