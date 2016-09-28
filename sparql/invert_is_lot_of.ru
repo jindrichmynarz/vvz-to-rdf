@@ -2,11 +2,11 @@ PREFIX pc:    <http://purl.org/procurement/public-contracts#>
 PREFIX pproc: <http://contsem.unizar.es/def/sector-publico/pproc#>
 
 DELETE {
-  ?notice pc:isNoticeOf ?contract .
+  ?lot pc:isLotOf ?contract .
 }
 INSERT {
-  ?contract pproc:notice ?notice .
+  ?contract pproc:lot ?lot .
 }
 WHERE {
-  ?notice pc:isNoticeOf ?contract .
+  ?lot pc:isLotOf ?contract .
 }

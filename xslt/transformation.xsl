@@ -167,18 +167,28 @@
     </xsl:template>
     
     <xsl:template match="CastiVerejneZakazky">
-        <pproc:Notice>
+        <pproc:Lot>
             <xsl:choose>
-                <xsl:when test="CisloFormulareNaVVZ">
-                    <!-- Newer way of identifying contract notices -->
-                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Notice', CisloFormulareNaVVZ/text())"/>
+                <xsl:when test="CisloFormulareNaVVZ and CisloCastiZadaniVZ">
+                    <!-- Newer way of identifying lots -->
+                    <xsl:variable name="key">
+                        <xsl:choose>
+                            <xsl:when test="CisloCastiZadaniVZ">
+                                <xsl:value-of select="concat(CisloFormulareNaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="CisloFormulareNaVVZ/text()"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', $key)"/>
                 </xsl:when>
                 <xsl:when test="CisloCastiZadaniVZ">
-                    <!-- Older way of identifying contract notices -->
-                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Notice', concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text()))"/>
+                    <!-- Older way of identifying lots -->
+                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text()))"/>
                 </xsl:when>
             </xsl:choose>
-            <xsl:apply-templates mode="notice"/>
+            <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
                 <pc:awardedTender>
                     <pc:Tender>
@@ -197,15 +207,15 @@
                     </pc:Tender>
                 </pc:awardedTender>
             </xsl:if>
-        </pproc:Notice>
+        </pproc:Lot>
     </xsl:template>
     
-    <xsl:template match="EvidencniCisloVZnaVVZ" mode="notice">
+    <xsl:template match="EvidencniCisloVZnaVVZ" mode="lot">
         <!-- Evid. číslo na VVZ -->
-        <pc:isNoticeOf rdf:resource="{f:getInstanceUri('Contract', text())}"/>
+        <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', text())}"/>
     </xsl:template>
     
-    <xsl:template match="CisloFormulareNaVVZ" mode="notice">
+    <xsl:template match="CisloFormulareNaVVZ" mode="lot">
         <!-- Evidenční číslo formuláře -->
         <adms:identifier>
             <adms:Identifier rdf:about="{f:getInstanceUri('Identifier', text())}">
@@ -215,7 +225,7 @@
         </adms:identifier>
     </xsl:template>
     
-    <xsl:template match="CisloCastiZadaniVZ" mode="notice">
+    <xsl:template match="CisloCastiZadaniVZ" mode="lot">
         <!-- Č. části oddílu zadání zakázky -->
         <adms:identifier>
             <adms:Identifier rdf:about="{f:getInstanceUri('Identifier', text())}">
@@ -225,17 +235,17 @@
         </adms:identifier>
     </xsl:template>
     
-    <xsl:template match="NazevCastiVZ" mode="notice">
+    <xsl:template match="NazevCastiVZ" mode="lot">
         <dcterms:title xml:lang="cs"><xsl:value-of select="text()"/></dcterms:title>
     </xsl:template>
    
-    <xsl:template match="DatumZadaniVZ" mode="notice">
+    <xsl:template match="DatumZadaniVZ" mode="lot">
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">pproc:awardDate</xsl:with-param>
         </xsl:call-template>    
     </xsl:template>
     
-    <xsl:template match="PocetObdrzenychNabidek" mode="notice">
+    <xsl:template match="PocetObdrzenychNabidek" mode="lot">
         <pc:numberOfTenders rdf:datatype="&xsd;nonNegativeInteger"><xsl:value-of select="text()"/></pc:numberOfTenders>    
     </xsl:template>
     
@@ -269,7 +279,7 @@
         <schema:url><xsl:value-of select="text()"/></schema:url>
     </xsl:template>
     
-    <xsl:template match="HodnotaNejnizsiNabidky" mode="notice">
+    <xsl:template match="HodnotaNejnizsiNabidky" mode="lot">
         <!-- Hodnota nejnižší nabídky -->
         <pc:lowestBidPrice>
             <schema:PriceSpecification>
@@ -311,7 +321,7 @@
         <xsl:call-template name="priceCurrency"/>
     </xsl:template>
     
-    <xsl:template match="PuvodniOdhadovanaCelkovaHodnotaVZ" mode="notice">
+    <xsl:template match="PuvodniOdhadovanaCelkovaHodnotaVZ" mode="lot">
         <!-- Původní odhadovaná celková hodnota části zakázky. -->
         <pc:estimatedTotalPrice>
             <schema:PriceSpecification>
@@ -356,7 +366,7 @@
         <xsl:call-template name="priceCurrency"/>
     </xsl:template>
     
-    <xsl:template match="CelkovaKonecnaHodnotaVZzaZadani" mode="notice">
+    <xsl:template match="CelkovaKonecnaHodnotaVZzaZadani" mode="lot">
         <!-- Celková konečná hodnota části zakázky -->
         <pc:actualPrice>
             <schema:PriceSpecification>
@@ -406,7 +416,7 @@
         <xsl:call-template name="valueAddedTaxRate"/>
     </xsl:template>
     
-    <xsl:template match="SubdodavkyHodnotaBezDPH" mode="notice">
+    <xsl:template match="SubdodavkyHodnotaBezDPH" mode="lot">
         <!-- Hodnota zakázky, která bude provedena subdodavatelsky třetími stranami - Hodnota bez DPH -->
         <pc:subcontractingPrice>
             <schema:PriceSpecification>
@@ -422,7 +432,7 @@
         <xsl:call-template name="priceCurrency"/>
     </xsl:template>
     
-    <xsl:template match="SubdodavkyPomer" mode="notice">
+    <xsl:template match="SubdodavkyPomer" mode="lot">
         <!-- Hodnota zakázky, která bude provedena subdodavatelsky třetími stranami - Poměr -->
         <pc:subcontractingRatio rdf:datatype="&pcdt;percentage"><xsl:value-of select="text()"/></pc:subcontractingRatio>
     </xsl:template>
@@ -459,7 +469,7 @@
         </pc:Contract>
     </xsl:template>
     
-    <xsl:template match="DruhFormulare" mode="notice">
+    <xsl:template match="DruhFormulare" mode="lot">
         <!-- Druh formuláře (řádný/opravný) -->
         <xsl:choose>
             <xsl:when test="text() = 'Řádný'"></xsl:when>
@@ -469,7 +479,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="TypFormulare" mode="notice">
+    <xsl:template match="TypFormulare" mode="lot">
         <!-- Type formuláře (F01, F02, F03…F55) -->
         <dcterms:type>
             <skos:Concept rdf:about="{f:getInstanceUri('Concept', concat('form-type-', text()))}">
@@ -519,14 +529,14 @@
         </pccz:limit>
     </xsl:template>
     
-    <xsl:template match="DatumOdeslaniFormulareNaVVZ" mode="notice">
+    <xsl:template match="DatumOdeslaniFormulareNaVVZ" mode="lot">
         <!-- Datum odeslání formuláře provozovateli Věstníku VZ k uveřejnění. -->
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">dcterms:dateSubmitted</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="DatumUverejneni" mode="notice">
+    <xsl:template match="DatumUverejneni" mode="lot">
         <!-- Datum zveřejnění na Věstníku VZ -->
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">dcterms:issued</xsl:with-param>
@@ -726,7 +736,7 @@
         </pc:subsidy>
     </xsl:template>
     
-    <xsl:template match="PlatnyFormular" mode="notice">
+    <xsl:template match="PlatnyFormular" mode="lot">
         <pc:isValid rdf:datatype="&xsd;boolean"><xsl:value-of select="text()"/></pc:isValid>    
     </xsl:template>
     
