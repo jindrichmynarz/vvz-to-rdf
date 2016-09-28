@@ -168,6 +168,16 @@
     
     <xsl:template match="CastiVerejneZakazky">
         <pproc:Notice>
+            <xsl:choose>
+                <xsl:when test="CisloFormulareNaVVZ">
+                    <!-- Newer way of identifying contract notices -->
+                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Notice', CisloFormulareNaVVZ/text())"/>
+                </xsl:when>
+                <xsl:when test="CisloCastiZadaniVZ">
+                    <!-- Older way of identifying contract notices -->
+                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Notice', concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text()))"/>
+                </xsl:when>
+            </xsl:choose>
             <xsl:apply-templates mode="notice"/>
             <xsl:if test="DodavatelNazev">
                 <pc:awardedTender>
@@ -193,12 +203,6 @@
     <xsl:template match="EvidencniCisloVZnaVVZ" mode="notice">
         <!-- Evid. číslo na VVZ -->
         <pc:isNoticeOf rdf:resource="{f:getInstanceUri('Contract', text())}"/>
-        <adms:identifier>
-            <adms:Identifier rdf:about="{f:getInstanceUri('Identifier', text())}">
-                <skos:notation><xsl:value-of select="text()"/></skos:notation>
-                <skos:inScheme rdf:resource="{f:getInstanceUri('ConceptScheme', 'evidencni-cisla-vz-na-vvz')}"/>
-            </adms:Identifier>
-        </adms:identifier>
     </xsl:template>
     
     <xsl:template match="CisloFormulareNaVVZ" mode="notice">
