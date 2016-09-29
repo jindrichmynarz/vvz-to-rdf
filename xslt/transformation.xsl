@@ -457,12 +457,12 @@
     
     <xsl:template match="RocniCiMesicniHodnotaPocetRoku" mode="lot">
         <!-- Roční či měsíční hodnota - počet roků -->
-        <pc:duration rdf:datatype="&xsd;gYear"><xsl:value-of select="text()"/></pc:duration>
+        <pc:duration rdf:datatype="&xsd;duration"><xsl:value-of select="concat('P', text(), 'Y')"/></pc:duration>
     </xsl:template>
     
     <xsl:template match="RocniCiMesicniHodnotaPocetMesicu" mode="lot">
         <!-- Roční či měsíční hodnota - počet měsíců -->
-        <pc:duration rdf:datatype="&xsd;gMonth"><xsl:value-of select="text()"/></pc:duration>
+        <pc:duration rdf:datatype="&xsd;duration"><xsl:value-of select="concat('P', text(), 'M')"/></pc:duration>
     </xsl:template>
     
     <xsl:template match="VerejnaZakazka">
