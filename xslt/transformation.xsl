@@ -259,7 +259,7 @@
    
     <xsl:template match="DatumZadaniVZ" mode="lot">
         <xsl:call-template name="dateProperty">
-            <xsl:with-param name="property">pproc:awardDate</xsl:with-param>
+            <xsl:with-param name="property">pc:awardDate</xsl:with-param>
         </xsl:call-template>    
     </xsl:template>
     
