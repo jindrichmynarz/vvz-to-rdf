@@ -455,12 +455,12 @@
         <pc:subcontractingRatio rdf:datatype="&pcdt;percentage"><xsl:value-of select="text()"/></pc:subcontractingRatio>
     </xsl:template>
     
-    <xsl:template match="RocniCiMesicniHodnotaPocetRoku">
+    <xsl:template match="RocniCiMesicniHodnotaPocetRoku" mode="lot">
         <!-- Roční či měsíční hodnota - počet roků -->
         <pc:duration rdf:datatype="&xsd;gYear"><xsl:value-of select="text()"/></pc:duration>
     </xsl:template>
     
-    <xsl:template match="RocniCiMesicniHodnotaPocetMesicu">
+    <xsl:template match="RocniCiMesicniHodnotaPocetMesicu" mode="lot">
         <!-- Roční či měsíční hodnota - počet měsíců -->
         <pc:duration rdf:datatype="&xsd;gMonth"><xsl:value-of select="text()"/></pc:duration>
     </xsl:template>
