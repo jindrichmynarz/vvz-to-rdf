@@ -1,8 +1,8 @@
 PREFIX pc: <http://purl.org/procurement/public-contracts#>
 
 DELETE {
-  ?s pc:bidder ?bidder2 .
-  ?bidder2 ?p ?o .
+  ?s pc:bidder ?bidder1 .
+  ?bidder1 ?p ?o .
 }
 WHERE {
   ?s pc:bidder ?bidder1, ?bidder2 .
@@ -13,5 +13,5 @@ WHERE {
       ?bidder2 ?p ?o .
     }
   }
-  ?bidder2 ?p ?o .
+  ?bidder1 ?p ?o .
 }

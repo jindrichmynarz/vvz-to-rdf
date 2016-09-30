@@ -2,8 +2,8 @@ PREFIX pc:     <http://purl.org/procurement/public-contracts#>
 PREFIX schema: <http://schema.org/>
 
 DELETE {
-  ?contractingAuthority pc:authorityKind ?o2 .
-  ?o2 ?p ?o .
+  ?contractingAuthority pc:authorityKind ?o1 .
+  ?o1 ?p ?o .
 }
 WHERE {
   ?contractingAuthority a schema:Organization ;
@@ -15,5 +15,5 @@ WHERE {
       ?o2 ?p ?o .
     }
   }
-  ?o2 ?p ?o .
+  ?o1 ?p ?o .
 }

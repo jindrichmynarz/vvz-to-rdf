@@ -1,8 +1,8 @@
 PREFIX pc: <http://purl.org/procurement/public-contracts#>
 
 DELETE {
-  ?contract pc:mainCriterion ?o2 .
-  ?o2 ?p ?o .
+  ?contract pc:mainCriterion ?o1 .
+  ?o1 ?p ?o .
 }
 WHERE {
   ?contract a pc:Contract ;
@@ -14,5 +14,5 @@ WHERE {
       ?o2 ?p ?o .
     }
   }
-  ?o2 ?p ?o .
+  ?o1 ?p ?o .
 }

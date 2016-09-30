@@ -1,11 +1,11 @@
 PREFIX pc: <http://purl.org/procurement/public-contracts#>
 
 DELETE {
-  ?contract pc:lowestConsideredBidPrice ?o1 .
+  ?contract pc:highestConsideredBidPrice ?o1 .
   ?o1 ?p ?o .
 }
 WHERE {
-  ?contract pc:lowestConsideredBidPrice ?o1, ?o2 .
+  ?contract pc:highestConsideredBidPrice ?o1, ?o2 .
   FILTER (!sameTerm(?o1, ?o2) && isBlank(?o1) && isBlank(?o2))
   FILTER NOT EXISTS {
     ?o1 ?p ?o .

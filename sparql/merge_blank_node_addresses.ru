@@ -1,8 +1,8 @@
 PREFIX schema: <http://schema.org/>
 
 DELETE {
-  ?s schema:address ?address2 .
-  ?address2 ?p ?o .
+  ?s schema:address ?address1 .
+  ?address1 ?p ?o .
 }
 WHERE {
   ?s schema:address ?address1, ?address2 .
@@ -13,5 +13,5 @@ WHERE {
       ?address2 ?p ?o .
     }
   }
-  ?address2 ?p ?o .
+  ?address1 ?p ?o .
 }
