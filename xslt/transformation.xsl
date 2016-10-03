@@ -749,7 +749,9 @@
     </xsl:template>
     
     <xsl:template match="PlatnyFormular" mode="lot">
-        <pc:isValid rdf:datatype="&xsd;boolean"><xsl:value-of select="text()"/></pc:isValid>    
+        <xsl:if test="text() = 'false'">
+            <pc:isValid rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></pc:isValid>
+        </xsl:if>
     </xsl:template>
     
     <!-- Catch-all empty template -->
