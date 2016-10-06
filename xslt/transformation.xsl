@@ -484,6 +484,13 @@
                     </schema:Organization>
                 </pc:contractingAuthority>
             </xsl:if>
+            <xsl:if test="*[starts-with(name(), 'Kriterium')]">
+                <pc:awardCriteriaCombination>
+                    <pc:AwardCriteriaCombination>
+                        <xsl:apply-templates mode="award-criteria-combination"/>
+                    </pc:AwardCriteriaCombination>
+                </pc:awardCriteriaCombination>
+            </xsl:if>
         </pc:Contract>
     </xsl:template>
     
@@ -711,7 +718,7 @@
         </pc:mainCriterion>
     </xsl:template>
     
-    <xsl:template match="*[starts-with(name(), 'Kriterium')]" mode="contract">
+    <xsl:template match="*[starts-with(name(), 'Kriterium')]" mode="award-criteria-combination">
         <xsl:variable name="number" select="replace(name(), 'Kriterium(\d+)', '$1')"/>
         <pc:awardCriterion>
             <pc:CriterionWeighting>
