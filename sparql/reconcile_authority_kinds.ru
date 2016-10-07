@@ -3,16 +3,17 @@ PREFIX pc:        <http://purl.org/procurement/public-contracts#>
 PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
 
 DELETE {
-  ?contractingAuthority pc:authorityKind ?_authorityKind .
-  ?_authorityKind ?p ?o .
+  ?_authorityKind ?outP ?outO .
+  ?inS ?inP ?_authorityKind .
 }
 INSERT {
-  ?contractingAuthority pc:authorityKind ?authorityKind .
+  ?inS ?inP ?authorityKind .
 }
 WHERE {
   ?contractingAuthority pc:authorityKind ?_authorityKind .
   ?_authorityKind skos:prefLabel ?label .
   ?authorityKind skos:inScheme authkinds: ;
     skos:prefLabel ?label .
-  ?_authorityKind ?p ?o .
+  ?_authorityKind ?outP ?outO .
+  ?inS ?inP ?_authorityKind .
 }
