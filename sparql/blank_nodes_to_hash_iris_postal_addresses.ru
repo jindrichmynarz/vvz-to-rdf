@@ -18,9 +18,8 @@ WHERE {
                             GROUP_CONCAT(STR(?o); separator = ""))) AS ?hash)
         WHERE {
           ?bnode a :PostalAddress ;
-            schema:streetAddress [] ;
-            schema:addressLocality [] ;
-            schema:postalCode [] .
+            :streetAddress [] ;
+            :addressLocality [] .
           FILTER isBlank(?bnode)
           ?bnode ?p ?o .
         }

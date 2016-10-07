@@ -18,8 +18,8 @@ WHERE {
                             GROUP_CONCAT(STR(?o); separator = ""))) AS ?hash)
         WHERE {
           ?bnode a :PriceSpecification ;
-            schema:price|schema:minPrice [] ;
-            schema:priceCurrency [] .
+            :price|:minPrice [] ;
+            :priceCurrency [] .
           FILTER isBlank(?bnode)
           ?bnode ?p ?o .
         }
