@@ -1,7 +1,6 @@
 PREFIX pc: <http://purl.org/procurement/public-contracts#>
 
 DELETE {
-  ?contract pc:awardCriterion ?o1 .
   ?o1 ?outP ?outO .
   ?inS ?inP ?o1 .
 }
@@ -9,7 +8,8 @@ INSERT {
   ?inS ?inP ?o2 .
 }
 WHERE {
-  ?contract pc:awardCriterion ?o1, ?o2 .
+  ?o1 a pc:CriterionWeighting .
+  ?o2 a pc:CriterionWeighting .
   FILTER (!sameTerm(?o1, ?o2))
   FILTER NOT EXISTS {
     ?o1 ?p ?o .

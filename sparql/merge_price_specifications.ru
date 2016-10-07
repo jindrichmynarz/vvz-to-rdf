@@ -1,7 +1,6 @@
-PREFIX pc: <http://purl.org/procurement/public-contracts#>
+PREFIX : <http://schema.org/>
 
 DELETE {
-  ?contract pc:lowestBidPrice ?o1 .
   ?o1 ?outP ?outO .
   ?inS ?inP ?o1 .
 }
@@ -9,8 +8,9 @@ INSERT {
   ?inS ?inP ?o2 .
 }
 WHERE {
-  ?contract pc:lowestBidPrice ?o1, ?o2 .
-  FILTER (!sameTerm(?o1, ?o2))
+  ?o1 a :PriceSpecification .
+  ?o2 a :PriceSpecification .
+  FILTER (!sameTerm(?o1, ?o2)) 
   FILTER NOT EXISTS {
     ?o1 ?p ?o .
     FILTER NOT EXISTS {

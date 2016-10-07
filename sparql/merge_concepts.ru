@@ -1,7 +1,6 @@
-PREFIX pc: <http://purl.org/procurement/public-contracts#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 DELETE {
-  ?contract pc:procedureType ?o1 .
   ?o1 ?outP ?outO .
   ?inS ?inP ?o1 .
 }
@@ -9,8 +8,8 @@ INSERT {
   ?inS ?inP ?o2 .
 }
 WHERE {
-  ?contract a pc:Contract ;
-    pc:procedureType ?o1, ?o2 .
+  ?o1 a skos:Concept .
+  ?o2 a skos:Concept .
   FILTER (!sameTerm(?o1, ?o2))
   FILTER NOT EXISTS {
     ?o1 ?p ?o .
@@ -18,7 +17,7 @@ WHERE {
       ?o2 ?p ?o .
     }
   }
-  ?o1 ?outP ?outO .
+  ?o1 ?inP ?inO .
   OPTIONAL {
     ?inS ?inP ?o1 .
   }

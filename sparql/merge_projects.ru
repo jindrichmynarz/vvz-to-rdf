@@ -1,7 +1,6 @@
-PREFIX pc: <http://purl.org/procurement/public-contracts#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 DELETE {
-  ?contract pc:kind ?o1 .
   ?o1 ?outP ?outO .
   ?inS ?inP ?o1 .
 }
@@ -9,8 +8,9 @@ INSERT {
   ?inS ?inP ?o2 .
 }
 WHERE {
-  ?contract pc:kind ?o1, ?o2 .
-  FILTER (!sameTerm(?o1, ?o2)) 
+  ?o1 a foaf:Project .
+  ?o2 a foaf:Project .
+  FILTER (!sameTerm(?o1, ?o2))
   FILTER NOT EXISTS {
     ?o1 ?p ?o .
     FILTER NOT EXISTS {
