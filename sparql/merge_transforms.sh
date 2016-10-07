@@ -35,17 +35,6 @@ declare -a UPDATES=(
   "merge_organizations.ru"
   "blank_nodes_to_hash_iris_tenders.ru"
   "merge_tenders.ru"
-
-  # Reconciliations
-  "reconcile_authority_kinds.ru"
-  "reconcile_contract_kinds.ru"
-  "reconcile_contracting_authority_activities.ru"
-  "reconcile_procedure_types.ru"
-  "reconcile_service_category.ru"
-
-  # Linking
-  "map_cpv_2003_to_cpv_2008.ru"
-  "link_eu_projects.ru"
 )
 
 for update in "${UPDATES[@]}"; do
