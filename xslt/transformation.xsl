@@ -588,7 +588,7 @@
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="ZadavatelZadavaJmenemJinych" mode="contracting-authority">
+    <xsl:template match="ZadavatelZadavaJmenemJinych" mode="contract">
         <!-- Veřejný zadavatel zadává veřejnou zakázku pro jiné zadavatele (veřejné nebo sektorové)
              např. na základě uzavření smlouvy o centralizovaném zadávání nebo jiné obdobné smlouvy. -->
         <xsl:if test="text() = 'Ano'">
