@@ -1,0 +1,15 @@
+PREFIX :     <http://localhost/>
+PREFIX csvw: <http://www.w3.org/ns/csvw#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+  ?cpv2003 skos:exactMatch ?cpv2008 .
+}
+WHERE {
+  [] :column_1 ?cpv2003Notation ;
+    :column_3 ?cpv2008Notation .
+  BIND ("http://linked.opendata.cz/resource/cpv-2003/concept/" AS ?cpv2003Ns)
+  BIND ("http://linked.opendata.cz/resource/cpv-2008/concept/" AS ?cpv2008Ns)
+  BIND (IRI(CONCAT(?cpv2003Ns, SUBSTR(?cpv2003Notation, 1, 8))) AS ?cpv2003)
+  BIND (IRI(CONCAT(?cpv2008Ns, SUBSTR(?cpv2008Notation, 1, 8))) AS ?cpv2008)
+}
