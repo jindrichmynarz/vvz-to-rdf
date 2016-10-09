@@ -11,6 +11,7 @@ declare -a UPDATES=(
   "unquote_literals.ru"
   "canonicalize_organization_names.ru"
   "trim_trailing_slash_from_urls.ru"
+  "prefer_https_urls.ru"
 
   # Move properties
   "invert_is_lot_of.ru"
