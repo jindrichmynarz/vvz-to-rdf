@@ -9,11 +9,11 @@ WHERE {
   ?contract pc:isValid false ;
     ?p1 ?o1 .
   OPTIONAL {
-    FILTER isBlank(?o1)
     ?o1 ?p2 ?o2 .
+    FILTER isBlank(?o1)
     OPTIONAL {
-      FILTER isBlank(?o2)
       ?o2 ?p3 ?o3 .
+      FILTER isBlank(?o2)
     }
   }
 }
