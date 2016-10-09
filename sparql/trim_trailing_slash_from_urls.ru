@@ -9,5 +9,5 @@ INSERT {
 WHERE {
   ?s schema:url ?_url .
   FILTER STRENDS(?_url, "/")
-  BIND (SUBSTR(?_url, 1, STRLEN(?_url) - 1) AS ?url)
+  BIND (REPLACE(?_url, "^(.*)\\/+$", "$1") AS ?url)
 }
