@@ -32,6 +32,7 @@ declare -a UPDATES=(
   "merge_criterion_weightings.ru"
   "blank_nodes_to_hash_iris_award_criteria_combinations.ru"
   "merge_award_criteria_combinations.ru"
+  "create_ico_based_iris.ru"
   "blank_nodes_to_hash_iris_organizations.ru"
   "merge_organizations.ru"
   "blank_nodes_to_hash_iris_tenders.ru"
