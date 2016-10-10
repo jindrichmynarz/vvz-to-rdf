@@ -170,34 +170,30 @@
     </xsl:template>
     
     <xsl:template match="CastiVerejneZakazky">
-        <rdf:Description>
-            <xsl:choose>
-                <xsl:when test="CisloCastiZadaniVZ">
-                    <!-- This is a lot -->
-                    <xsl:variable name="key">
+        <pproc:Lot>
+            <xsl:variable name="key">
+                <xsl:choose>
+                    <xsl:when test="CisloFormulareNaVVZ">
+                        <!-- Newer way of identifying lots -->
+                        <xsl:value-of select="CisloFormulareNaVVZ/text()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- Older way of identifying lots -->
                         <xsl:choose>
-                            <xsl:when test="CisloFormulareNaVVZ">
-                                <!-- Newer way of identifying lots -->
-                                <xsl:value-of select="concat(CisloFormulareNaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
+                            <xsl:when test="CisloCastiZadaniVZ">
+                                <xsl:value-of select="concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <!-- Older way of identifying lots -->
-                                <xsl:value-of select="concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
+                                <xsl:value-of select="concat(EvidencniCisloVZnaVVZ/text(), '-', generate-id())"/> 
                             </xsl:otherwise>
                         </xsl:choose>
-                    </xsl:variable>
-                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', $key)"/>
-                    <rdf:type rdf:resource="&pproc;Lot"/>
-                    
-                    <!-- Evid. číslo na VVZ -->
-                    <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- This is a contract -->
-                    <xsl:attribute name="rdf:about" select="f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())"/>
-                    <rdf:type rdf:resource="&pc;Contract"/>
-                </xsl:otherwise>
-            </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', $key)"/>
+            
+            <!-- Evid. číslo na VVZ -->
+            <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
             
             <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
@@ -230,7 +226,7 @@
                     </pc:Tender>
                 </pc:awardedTender>
             </xsl:if>
-        </rdf:Description>
+        </pproc:Lot>
     </xsl:template>
     
     <xsl:template match="CisloFormulareNaVVZ" mode="lot">
@@ -645,18 +641,38 @@
         <dcterms:description xml:lang="cs"><xsl:value-of select="text()"/></dcterms:description>
     </xsl:template>
     
-    <xsl:template match="CPVhlavni | DruhyPredmetCPVhlavni | TretiPredmetCPVhlavni | CtvrtyPredmetCPVhlavni | PatyPredmetCPVhlavni"
-                  mode="contract">
+    <xsl:template match="CPVhlavni" mode="contract">
         <!-- Charakteristika VZ pomocí Společného slovníku pro veřejné zakázky (CPV – Common Procurement Vocabulary),
              který nejlépe popisuje hlavní předmět veřejné zakázky. -->
-        <xsl:call-template name="mainObject"/>
+        <pc:mainObject>
+            <skos:Concept>
+                <skos:closeMatch>
+                    <xsl:call-template name="object"/>
+                </skos:closeMatch>
+                <xsl:apply-templates select="../CPVdoplnkovy1 | ../CPVdoplnkovy2"/>
+            </skos:Concept>
+        </pc:mainObject>
+    </xsl:template>
+    
+    <xsl:template match="DruhyPredmetCPVhlavni | TretiPredmetCPVhlavni | CtvrtyPredmetCPVhlavni | PatyPredmetCPVhlavni" mode="contract">
+        <xsl:variable name="qualifierElementPrefix" select="replace(name(), 'hlavni$', 'doplnkovy')"/>
+        <pc:additionalObject>
+            <skos:Concept>
+                <skos:closeMatch>
+                    <xsl:call-template name="object"/>
+                </skos:closeMatch>
+                <xsl:apply-templates select="../*[starts-with(name(), $qualifierElementPrefix)]"/>
+            </skos:Concept>
+        </pc:additionalObject>
     </xsl:template>
     
     <xsl:template match="CPVdoplnkovy1 | CPVdoplnkovy2 | DruhyPredmetCPVdoplnkovy1 | DruhyPredmetCPVdoplnkovy2 |
                          TretiPredmetCPVdoplnkovy1 | TretiPredmetCPVdoplnkovy2 | CtvrtyPredmetCPVdoplnkovy1 |
-                         CtvrtyPredmetCPVdoplnkovy2 | PatyPredmetCPVdoplnkovy1 | PatyPredmetCPVdoplnkovy2"
-                  mode="contract">
-        <xsl:call-template name="additionalObject"/>
+                         CtvrtyPredmetCPVdoplnkovy2 | PatyPredmetCPVdoplnkovy1 | PatyPredmetCPVdoplnkovy2">
+        <!-- CPV qualifier -->
+        <skos:related>
+            <xsl:call-template name="object"/>
+        </skos:related>
     </xsl:template>
     
     <xsl:template match="NaVZseVztahujeGPA" mode="contract">
@@ -766,12 +782,6 @@
     
     <!-- Named templates -->
     
-    <xsl:template name="additionalObject">
-        <pc:additionalObject>
-            <xsl:call-template name="object"/>
-        </pc:additionalObject>
-    </xsl:template>
-    
     <xsl:template name="booleanProperty">
         <xsl:param name="property" as="xsd:string"/>
         <xsl:element name="{$property}">
@@ -819,22 +829,24 @@
         </rov:registration>
     </xsl:template>
     
-    <xsl:template name="mainObject">
-        <pc:mainObject>
-            <xsl:call-template name="object"/>
-        </pc:mainObject>    
-    </xsl:template>
-    
     <xsl:template name="object">
         <xsl:param name="cpvSchemeYear" tunnel="yes"/>
+        <xsl:variable name="code" select="f:clearCpv(text())"/>
         <skos:Concept>
-            <!-- Test if the object is a CPV code -->
             <xsl:choose>
-                <xsl:when test="matches(text(), '^\d{8}-[\dA-Z]$')">
-                    <xsl:variable name="code" select="f:clearCpv(text())"/>
+                <!-- Test if the object is a CPV code -->
+                <xsl:when test="matches($code, '^\d{8}$') or matches($code, '^[A-Z]{2}\d{2}$')">
                     <xsl:attribute name="rdf:about" select="concat(if ($cpvSchemeYear = '2008') then $cpv2008Ns else $cpv2003Ns, $code)"/>
-                    <skos:inScheme rdf:resource="{concat('http://linked.opendata.cz/resource/concept-scheme/cpv-', $cpvSchemeYear)}"/>
                     <skos:notation><xsl:value-of select="$code"/></skos:notation>
+                    <xsl:choose>
+                        <xsl:when test="matches($code, '^\d{8}$')">
+                            <skos:inScheme rdf:resource="{concat('http://linked.opendata.cz/resource/concept-scheme/cpv-', $cpvSchemeYear)}"/>
+                        </xsl:when>
+                        <!-- Test if the object is a supplementary CPV code -->
+                        <xsl:when test="matches($code, '^[A-Z]{2}\d{2}$')">
+                            <skos:inScheme rdf:resource="{concat('http://linked.opendata.cz/resource/concept-scheme/cpv-', $cpvSchemeYear, '-supplement')}"/>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
                     <skos:notation><xsl:value-of select="text()"/></skos:notation>
