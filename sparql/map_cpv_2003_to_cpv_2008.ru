@@ -2,10 +2,11 @@ PREFIX pc:   <http://purl.org/procurement/public-contracts#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 DELETE {
-  ?contract ?cpvProperty ?cpv2003 .
+  ?contract ?cpvProperty ?qualifiedCpv2003 .
+  ?qualifiedCpv2003 ?p ?o .
 }
 INSERT {
-  ?contract ?cpvProperty ?cpv2008 .
+  ?contract ?cpvProperty ?qualifiedCpv2008 .
 }
 WHERE {
   VALUES ?cpvProperty {
@@ -13,7 +14,8 @@ WHERE {
     pc:mainObject
   }
   ?contract a pc:Contract ;
-    ?cpvProperty ?cpv2003 .
-  ?cpv2003 skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/cpv-2003> ;
-    skos:exactMatch ?cpv2008 .
+    ?cpvProperty ?qualifiedCpv2003 .
+  ?qualifiedCpv skos:closeMatch ?cpv2003 ;
+    ?p ?o .
+  ?cpv2003 skos:exactMatch ?qualifiedCpv2008 .
 }
