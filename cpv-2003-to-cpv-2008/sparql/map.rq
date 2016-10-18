@@ -3,13 +3,29 @@ PREFIX csvw: <http://www.w3.org/ns/csvw#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 CONSTRUCT {
-  ?cpv2003 skos:exactMatch ?cpv2008 .
+  ?cpv2003 skos:exactMatch ?mapping .
+  ?mapping a skos:Concept ;
+    skos:closeMatch ?cpv2008 ;
+    skos:related ?supplementaryConcept1 ; # Shortening to object list misses ?supplementaryConcept2.
+    skos:related ?supplementaryConcept2 .
 }
 WHERE {
-  [] :column_1 ?cpv2003Notation ;
+  ?row :column_1 ?cpv2003Notation ;
     :column_3 ?cpv2008Notation .
   BIND ("http://linked.opendata.cz/resource/cpv-2003/concept/" AS ?cpv2003Ns)
   BIND ("http://linked.opendata.cz/resource/cpv-2008/concept/" AS ?cpv2008Ns)
   BIND (IRI(CONCAT(?cpv2003Ns, SUBSTR(?cpv2003Notation, 1, 8))) AS ?cpv2003)
   BIND (IRI(CONCAT(?cpv2008Ns, SUBSTR(?cpv2008Notation, 1, 8))) AS ?cpv2008)
+  BIND (BNODE() AS ?mapping)
+  OPTIONAL {
+    ?row :column_6 ?supplementaryNotation1 .
+    # Outer BINDs aren't visible (for some reason), so we duplicate the ?cpv2008Ns)
+    BIND (IRI(CONCAT("http://linked.opendata.cz/resource/cpv-2008/concept/",
+                     SUBSTR(?supplementaryNotation1, 1, 4))) AS ?supplementaryConcept1)
+    OPTIONAL {
+      ?row :column_9 ?supplementaryNotation2 .
+      BIND (IRI(CONCAT("http://linked.opendata.cz/resource/cpv-2008/concept/",
+                       SUBSTR(?supplementaryNotation2, 1, 4))) AS ?supplementaryConcept2)
+    }
+  }
 }
