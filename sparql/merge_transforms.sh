@@ -19,6 +19,9 @@ declare -a UPDATES=(
 
   "reduce_on_behalf_of.ru"
 
+  # Add defaults
+  "default_on_czk_currency.ru"
+
   # Merging
   "blank_nodes_to_hash_iris_postal_addresses.ru"
   "merge_postal_addresses.ru"
