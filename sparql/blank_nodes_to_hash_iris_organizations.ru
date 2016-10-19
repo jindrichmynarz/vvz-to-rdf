@@ -18,7 +18,7 @@ WHERE {
                             GROUP_CONCAT(STR(?o); separator = ""))) AS ?hash)
         WHERE {
           ?bnode a :Organization ;
-            :name [] ;
+            :legalName [] ;
             :address [] .
           FILTER isBlank(?bnode)
           ?bnode ?p ?o .

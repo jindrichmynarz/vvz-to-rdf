@@ -248,7 +248,7 @@
     
     <xsl:template match="DodavatelNazev" mode="supplier">
         <!-- Název dodavatele, kterému byla zakázka zadána -->
-        <schema:name><xsl:value-of select="normalize-space(text())"/></schema:name>
+        <schema:legalName><xsl:value-of select="normalize-space(text())"/></schema:legalName>
     </xsl:template>
     
     <xsl:template match="DodavatelPostovniAdresa" mode="supplier-address">
