@@ -21,6 +21,7 @@ declare -a UPDATES=(
   "street_address_trim_leading_ul.ru"
   "street_address_remove_ul.ru"
   "street_address_lowercase_words.ru"
+  "street_address_extract_postal_code.ru"
 
   # Move properties
   "invert_is_lot_of.ru"
