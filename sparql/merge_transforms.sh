@@ -13,6 +13,15 @@ declare -a UPDATES=(
   "trim_trailing_slash_from_urls.ru"
   "prefer_https_urls.ru"
 
+  # Street address cleaning
+  "expand_street_address_abbreviations_trida.ru"
+  "expand_street_address_abbreviations_namesti.ru"
+  "expand_street_address_abbreviations_sidliste.ru"
+  "expand_street_address_abbreviations_bratri.ru"
+  "street_address_trim_leading_ul.ru"
+  "street_address_remove_ul.ru"
+  "street_address_lowercase_words.ru"
+
   # Move properties
   "invert_is_lot_of.ru"
   "move_award_date_to_awarded_tender.ru"
