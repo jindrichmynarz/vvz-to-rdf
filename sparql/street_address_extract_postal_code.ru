@@ -9,6 +9,6 @@ WHERE {
     ?address schema:postalCode [] .
   }
   ?address schema:streetAddress ?streetAddress .
-  FILTER REGEX(?streetAddress, "^.*\\d{3}\\s?\\d{2}.*$")
-  BIND (REPLACE(?streetAddress, "(\\d{3})\\s?(\\d{2})", "$1$2") AS ?postalCode)
+  FILTER REGEX(?streetAddress, "^.*\\s\\d{3}\\s?\\d{2}\\s.*$")
+  BIND (REPLACE(?streetAddress, "\\s(\\d{3})\\s?(\\d{2})\\s", "$1$2") AS ?postalCode)
 }
