@@ -17,6 +17,8 @@ declare -a UPDATES=(
   "invert_is_lot_of.ru"
   "move_award_date_to_awarded_tender.ru"
 
+  "reduce_on_behalf_of.ru"
+
   # Merging
   "blank_nodes_to_hash_iris_postal_addresses.ru"
   "merge_postal_addresses.ru"
