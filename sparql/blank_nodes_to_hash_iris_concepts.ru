@@ -18,7 +18,7 @@ WHERE {
                             GROUP_CONCAT(STR(?o); separator = ""))) AS ?hash)
         WHERE {
           ?bnode a skos:Concept ;
-            skos:prefLabel [] .
+            skos:prefLabel|skos:closeMatch [] .
           FILTER isBlank(?bnode)
           ?bnode ?p ?o .
         }
