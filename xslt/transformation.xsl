@@ -171,26 +171,9 @@
     
     <xsl:template match="CastiVerejneZakazky">
         <pproc:Lot>
-            <xsl:variable name="key">
-                <xsl:choose>
-                    <xsl:when test="CisloFormulareNaVVZ">
-                        <!-- Newer way of identifying lots -->
-                        <xsl:value-of select="CisloFormulareNaVVZ/text()"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- Older way of identifying lots -->
-                        <xsl:choose>
-                            <xsl:when test="CisloCastiZadaniVZ">
-                                <xsl:value-of select="concat(EvidencniCisloVZnaVVZ/text(), '-', CisloCastiZadaniVZ/text())"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="concat(EvidencniCisloVZnaVVZ/text(), '-', generate-id())"/> 
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', $key)"/>
+            <xsl:variable name="lotId" select="if (CisloCastiZadaniVZ) then CisloCastiZadaniVZ/text() else generate-id()"/>
+            <xsl:variable name="contractId" select="if (CisloFormulareNaVVZ) then CisloFormulareNaVVZ/text() else EvidencniCisloVZnaVVZ/text()"/>
+            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat($contractId, '-', $lotId))"/>
             
             <!-- Evid. číslo na VVZ -->
             <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
