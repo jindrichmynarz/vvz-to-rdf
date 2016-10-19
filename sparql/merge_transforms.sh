@@ -37,6 +37,8 @@ declare -a UPDATES=(
   "merge_organizations.ru"
   "blank_nodes_to_hash_iris_tenders.ru"
   "merge_tenders.ru"
+  "merge_contracts_without_lots_with_their_lot.ru"
+  "cast_single_lots_as_contracts.ru"
 )
 
 for update in "${UPDATES[@]}"; do
