@@ -176,7 +176,7 @@
             <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat($contractId, '-', $lotId))"/>
             
             <!-- Evid. číslo na VVZ -->
-            <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
+            <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', $contractId)}"/>
             
             <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
