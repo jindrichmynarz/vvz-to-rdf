@@ -49,12 +49,6 @@
         <xsl:value-of select="concat($ns, f:kebabCase($class), '/', f:slugify($key))"/>
     </xsl:function>
     
-    <!-- Tests if date is valid xsd:date. -->
-    <xsl:function name="f:isValidDate" as="xsd:boolean">
-        <xsl:param name="date" as="xsd:string"/>
-        <xsl:value-of select="$date castable as xsd:date"/>
-    </xsl:function>
-    
     <!-- Converts camelCase $text into kebab-case. -->
     <xsl:function name="f:kebabCase" as="xsd:string">
         <xsl:param name="text" as="xsd:string"/>
@@ -77,16 +71,6 @@
     <xsl:function name="f:slugify" as="xsd:anyURI">
         <xsl:param name="text" as="xsd:string"/>
         <xsl:value-of select="encode-for-uri(translate(replace(lower-case(normalize-unicode($text, 'NFKD')), '\P{IsBasicLatin}', ''), ' ', '-'))" />
-    </xsl:function>
-    
-    <!-- Transforms dd.mm.yyyy date to yyyy-mm-dd date. -->
-    <xsl:function name="f:transformDate">
-        <xsl:param name="date" as="xsd:string"/>
-        <xsl:analyze-string select="$date" regex="(\d{{2}})\.(\d{{2}})\.(\d{{4}})">
-            <xsl:matching-substring>
-                <xsl:value-of select="concat(regex-group(3), '-', regex-group(2), '-', regex-group(1))"/>
-            </xsl:matching-substring>
-        </xsl:analyze-string>
     </xsl:function>
     
     <!-- Trims leading and trailing whitespace -->
@@ -182,6 +166,7 @@
         <adms:identifier>
             <adms:Identifier>
                 <skos:notation><xsl:value-of select="text()"/></skos:notation>
+                <skos:inScheme rdf:resource="{f:getInstanceUri('ConceptScheme', 'cisla-casti-zadani-vz')}"/>
             </adms:Identifier>
         </adms:identifier>
     </xsl:template>
@@ -327,12 +312,14 @@
                 <schema:OfferItemCondition></schema:OfferItemCondition>
             </schema:itemCondition>
         </schema:Offer>
+        <!--
         <xsl:variable name="code" select="f:clearCpv(NIPEZkod/text())"/>
         <skos:Concept rdf:about="{concat('http://linked.opendata.cz/resource/cpv-2008/concept/', $code)}">
             <skos:inScheme rdf:resource="http://linked.opendata.cz/resource/concept-scheme/cpv-2008"/>
             <skos:notation><xsl:value-of select="$code"/></skos:notation>
             <xsl:apply-templates mode="item"/>
         </skos:Concept>
+        -->
     </xsl:template>
     
     <xsl:template match="NIPEZdatovyTypVlastnosti" mode="item">
@@ -641,15 +628,14 @@
     
     <xsl:template name="dateProperty">
         <xsl:param name="property" as="xsd:string"/>
-        <xsl:variable name="date" select="f:transformDate(text())"/>
         <xsl:element name="{$property}">
             <xsl:attribute name="rdf:datatype">
                 <xsl:choose>
-                    <xsl:when test="f:isValidDate($date)">&xsd;date</xsl:when>
+                    <xsl:when test="text() castable as xsd:dateTime">&xsd;dateTime</xsl:when>
                     <xsl:otherwise>&xsd;string</xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:value-of select="$date"/>
+            <xsl:value-of select="text()"/>
         </xsl:element>
     </xsl:template>
     
