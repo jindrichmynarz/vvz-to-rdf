@@ -476,7 +476,6 @@
     <xsl:template match="DruhFormulare" mode="lot">
         <!-- Druh formuláře (řádný/opravný) -->
         <xsl:choose>
-            <!-- <xsl:when test="text() = 'Řádný'"></xsl:when> -->
             <xsl:when test="text() = 'Opravný'">
                 <rdf:type rdf:resource="&pproc;CorrectionNotice"/>
             </xsl:when>
