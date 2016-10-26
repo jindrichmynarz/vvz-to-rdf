@@ -6,9 +6,15 @@ DELETE {
   ?lot ?p ?o .
 }
 WHERE {
-  ?lot a pproc:Lot .
-  FILTER NOT EXISTS {
-    ?lot !(rdf:type|pc:isLotOf|pc:isValid) [] .
+  {
+    SELECT DISTINCT ?lot
+    WHERE {
+      ?lot a pproc:Lot .
+      FILTER NOT EXISTS {
+        ?lot !(rdf:type|pc:isLotOf|pc:isValid) [] .
+      }
+    }
+    ORDER BY ?lot
   }
   ?lot ?p ?o .
 }
