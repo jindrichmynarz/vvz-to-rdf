@@ -50,10 +50,13 @@ declare -a UPDATES=(
   "create_ico_based_iris.ru"
   "blank_nodes_to_hash_iris_organizations.ru"
   "merge_organizations.ru"
+  "domains_to_ico.ru"
+  "group_organizations_by_name_and_postal_code.ru"
   "blank_nodes_to_hash_iris_tenders.ru"
   "merge_tenders.ru"
   "merge_contracts_without_lots_with_their_lot.ru"
   "cast_single_lots_as_contracts.ru"
+  "remove_organization_data_retrievable_from_ares.ru"
 )
 
 for update in "${UPDATES[@]}"; do
