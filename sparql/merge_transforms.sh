@@ -23,6 +23,13 @@ declare -a UPDATES=(
   "street_address_lowercase_words.ru"
   "street_address_extract_postal_code.ru"
 
+  # Postal code cleaning
+  "extract_postal_codes.ru"
+  "remove_non_numeric_characters_in_postal_codes.ru"
+  "replace_O_with_0_in_postal_codes.ru"
+  "postal_code_pad_zeroes.ru"
+  "remove_non_numeric_postal_codes.ru"
+
   # Move properties
   "invert_is_lot_of.ru"
   "move_award_date_to_awarded_tender.ru"
