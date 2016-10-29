@@ -19,7 +19,7 @@ WHERE {
         WHERE {
           ?bnode a :PriceSpecification ;
             :price|:minPrice [] ;
-            :priceCurrency|:maxPrice [] .
+            :priceCurrency [] .
           FILTER isBlank(?bnode)
           ?bnode ?p ?o .
         }
