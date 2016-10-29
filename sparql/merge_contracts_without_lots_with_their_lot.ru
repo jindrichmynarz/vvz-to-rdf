@@ -2,10 +2,11 @@ PREFIX pc:    <http://purl.org/procurement/public-contracts#>
 PREFIX pproc: <http://contsem.unizar.es/def/sector-publico/pproc#>
 
 DELETE {
-  ?contract ?p ?o .
+  ?contract pc:lot ?lot .
+  ?lot ?p ?o .
 }
 INSERT {
-  ?lot ?p ?o .
+  ?contract ?p ?o .
 }
 WHERE {
   {
@@ -15,8 +16,8 @@ WHERE {
         pc:lot ?lot .
     }
     GROUP BY ?contract
-    HAVING (COUNT(?lot) > 1)
+    HAVING (COUNT(?lot) = 1)
   }
-  ?contract pc:lot ?lot ;
-    ?p ?o .
+  ?contract pc:lot ?lot .
+  ?lot ?p ?o .
 }
