@@ -14,7 +14,8 @@ WHERE {
         rov:registration [
           skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> ;
           skos:notation []
-        ] .
+        ] ;
+        schema:address|schema:legalName [] .
     }
   }
   VALUES ?p {
