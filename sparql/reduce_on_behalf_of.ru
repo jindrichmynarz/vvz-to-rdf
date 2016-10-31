@@ -2,7 +2,6 @@ PREFIX pc: <http://purl.org/procurement/public-contracts#>
 
 DELETE {
   ?contract pc:onBehalfOf ?organization .
-  ?organization ?p ?o .
 }
 WHERE {
   {
@@ -16,5 +15,4 @@ WHERE {
   }
   ?contract pc:onBehalfOf ?organization .
   FILTER (!sameTerm(?organization, ?sampleOrganization))
-  ?organization ?p ?o .
 }
