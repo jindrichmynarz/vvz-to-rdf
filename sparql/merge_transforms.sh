@@ -30,6 +30,12 @@ declare -a UPDATES=(
   "postal_code_pad_zeroes.ru"
   "remove_non_numeric_postal_codes.ru"
 
+  # IČO cleaning
+  "invalid_ico_trim_non_numeric_characters.ru"
+  "invalid_ico_remove_empty.ru"
+  "invalid_ico_remove_zero.ru"
+  "invalid_ico_revalidate.ru"
+
   # Move properties
   "invert_is_lot_of.ru"
   "move_award_date_to_awarded_tender.ru"
