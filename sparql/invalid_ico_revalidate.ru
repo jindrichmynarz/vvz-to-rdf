@@ -6,10 +6,10 @@ PREFIX skos:    <http://www.w3.org/2004/02/skos/core#>
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
 
 DELETE {
-  ?identifier dcterms:valid ?valid .
+  ?identifier dcterms:valid false .
 }
 INSERT {
-  ?identifier dcterms:valid false .
+  ?identifier skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> .
 }
 WHERE {
   ?identifier a adms:Identifier ;
@@ -36,5 +36,5 @@ WHERE {
   BIND (IF(?modulo IN (0, 10), 1,
         IF(?modulo = 1, 0, 11 - ?modulo)
   ) AS ?checkDigit)
-  BIND (?eighthDigit = ?checkDigit AS ?valid)
+  FILTER (?eighthDigit = ?checkDigit) 
 }
