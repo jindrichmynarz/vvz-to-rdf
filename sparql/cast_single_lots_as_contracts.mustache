@@ -19,19 +19,12 @@ WHERE {
       {
         SELECT ?lot
         WHERE {
-          {
-            SELECT ?lot
-            WHERE {
-              ?lot a pproc:Lot .
-              FILTER NOT EXISTS {
-                [] pc:lot ?lot .
-              }
-            }
-            ORDER BY ?lot
+          ?lot a pproc:Lot .
+          FILTER NOT EXISTS {
+            [] pc:lot ?lot .
           }
         }
         LIMIT {{limit}}
-        OFFSET {{offset}}
       }
       ?lot adms:identifier [
         skos:inScheme <http://linked.opendata.cz/resource/isvz.cz/concept-scheme/cisla-formulare-na-vvz> ;

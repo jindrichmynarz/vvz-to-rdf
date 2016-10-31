@@ -9,16 +9,9 @@ WHERE {
   {
     SELECT ?contract
     WHERE {
-      {
-        SELECT ?contract
-        WHERE {
-          ?contract pc:isValid false .
-        }
-        ORDER BY ?contract
-      }
+      ?contract pc:isValid false .
     }
     LIMIT {{limit}}
-    OFFSET {{offset}}
   }
   ?contract ?p1 ?o1 .
   OPTIONAL {

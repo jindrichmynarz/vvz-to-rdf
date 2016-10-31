@@ -9,19 +9,12 @@ WHERE {
   {
     SELECT ?lot
     WHERE {
-      {
-        SELECT DISTINCT ?lot
-        WHERE {
-          ?lot a pproc:Lot .
-          FILTER NOT EXISTS {
-            ?lot !(rdf:type|pc:isLotOf|pc:isValid) [] .
-          }
-        }
-        ORDER BY ?lot
+      ?lot a pproc:Lot .
+      FILTER NOT EXISTS {
+        ?lot !(rdf:type|pc:isLotOf|pc:isValid) [] .
       }
     }
     LIMIT {{limit}}
-    OFFSET {{offset}}
   }
   ?lot ?p ?o .
 }

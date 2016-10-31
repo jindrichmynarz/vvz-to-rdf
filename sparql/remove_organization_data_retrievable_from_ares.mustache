@@ -10,21 +10,14 @@ WHERE {
   {
     SELECT ?organization
     WHERE {
-      {
-        SELECT DISTINCT ?organization
-        WHERE {
-          ?organization a schema:Organization ;
-            rov:registration [
-              skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> ;
-              skos:notation []
-            ] ;
-            schema:address|schema:legalName [] .
-        }
-        ORDER BY ?organization
-      }
+      ?organization a schema:Organization ;
+        rov:registration [
+          skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> ;
+          skos:notation []
+        ] ;
+        schema:address|schema:legalName [] .
     }
     LIMIT {{limit}}
-    OFFSET {{offset}}
   }
   VALUES ?p {
     schema:address

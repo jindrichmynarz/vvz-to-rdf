@@ -20,18 +20,11 @@ WHERE {
           {
             SELECT ?bnode
             WHERE {
-              {
-                SELECT ?bnode
-                WHERE {
-                  ?bnode a skos:Concept ;
-                    skos:prefLabel|skos:closeMatch [] .
-                  FILTER isBlank(?bnode)
-                }
-                ORDER BY ?bnode
-              }
+              ?bnode a skos:Concept ;
+                skos:prefLabel|skos:closeMatch [] .
+              FILTER isBlank(?bnode)
             }
             LIMIT {{limit}}
-            OFFSET {{offset}}
           }
           ?bnode ?p ?o .
         }

@@ -20,17 +20,10 @@ WHERE {
           {
             SELECT ?bnode
             WHERE {
-              {
-                SELECT ?bnode
-                WHERE {
-                  ?bnode a pc:Tender .
-                  FILTER isBlank(?bnode)
-                }
-                ORDER BY ?bnode
-              }
+              ?bnode a pc:Tender .
+              FILTER isBlank(?bnode)
             }
             LIMIT {{limit}}
-            OFFSET {{offset}}
           }
           ?bnode ?p ?o .
         }

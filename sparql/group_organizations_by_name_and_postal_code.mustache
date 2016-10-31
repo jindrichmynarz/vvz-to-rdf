@@ -12,25 +12,18 @@ INSERT {
 }
 WHERE {
   {
-    SELECT ?name ?postalCode ?sampleOrganization
+    SELECT ?name ?postalCode (SAMPLE(?organization) AS ?sampleOrganization)
     WHERE {
-      {
-        SELECT ?name ?postalCode (SAMPLE(?organization) AS ?sampleOrganization)
-        WHERE {
-          ?organization a schema:Organization ;
-            schema:address/schema:postalCode ?postalCode ;
-            schema:legalName ?name .
-          FILTER NOT EXISTS {
-            ?organization rov:registration/skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> .
-          }
-        }
-        GROUP BY ?name ?postalCode
-        HAVING (COUNT(DISTINCT ?organization) > 1)
-        ORDER BY ?name ?postalCode
+      ?organization a schema:Organization ;
+        schema:address/schema:postalCode ?postalCode ;
+        schema:legalName ?name .
+      FILTER NOT EXISTS {
+        ?organization rov:registration/skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> .
       }
     }
+    GROUP BY ?name ?postalCode
+    HAVING (COUNT(DISTINCT ?organization) > 1)
     LIMIT {{limit}}
-    OFFSET {{offset}}
   }
   ?organization a schema:Organization ;
     schema:address/schema:postalCode ?postalCode ;

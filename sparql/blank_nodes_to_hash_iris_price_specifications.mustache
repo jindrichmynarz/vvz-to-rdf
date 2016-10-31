@@ -20,19 +20,12 @@ WHERE {
           {
             SELECT ?bnode
             WHERE {
-              {
-                SELECT ?bnode
-                WHERE {
-                  ?bnode a :PriceSpecification ;
-                    :price|:minPrice [] ;
-                    :priceCurrency [] .
-                  FILTER isBlank(?bnode)
-                }
-                ORDER BY ?bnode
-              }
+              ?bnode a :PriceSpecification ;
+                :price|:minPrice [] ;
+                :priceCurrency [] .
+              FILTER isBlank(?bnode)
             }
             LIMIT {{limit}}
-            OFFSET {{offset}}
           }
           ?bnode ?p ?o .
         }

@@ -20,19 +20,12 @@ WHERE {
           {
             SELECT ?bnode
             WHERE {
-              {
-                SELECT ?bnode
-                WHERE {
-                  ?bnode a :Organization ;
-                    :legalName [] ;
-                    :address [] .
-                  FILTER isBlank(?bnode)
-                }
-                ORDER BY ?bnode
-              }
+              ?bnode a :Organization ;
+                :legalName [] ;
+                :address [] .
+              FILTER isBlank(?bnode)
             }
             LIMIT {{limit}}
-            OFFSET {{offset}}
           }
           ?bnode ?p ?o .
         }

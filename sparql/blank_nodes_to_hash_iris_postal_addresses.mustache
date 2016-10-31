@@ -20,19 +20,12 @@ WHERE {
           {
             SELECT ?bnode
             WHERE {
-              {
-                SELECT ?bnode
-                WHERE {
-                  ?bnode a :PostalAddress ;
-                    :streetAddress [] ;
-                    :addressLocality [] .
-                  FILTER isBlank(?bnode)
-                }
-                ORDER BY ?bnode
-              }
+              ?bnode a :PostalAddress ;
+                :streetAddress [] ;
+                :addressLocality [] .
+              FILTER isBlank(?bnode)
             }
             LIMIT {{limit}}
-            OFFSET {{offset}}
           }
           ?bnode ?p ?o .
         }
