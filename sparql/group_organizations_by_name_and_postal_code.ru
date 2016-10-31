@@ -16,7 +16,7 @@ WHERE {
     WHERE {
       ?organization a schema:Organization ;
         schema:address/schema:postalCode ?postalCode ;
-        schema:name|schema:legalName ?name .
+        schema:legalName ?name .
       FILTER NOT EXISTS {
         ?organization rov:registration/skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> .
       }
@@ -26,7 +26,7 @@ WHERE {
   }
   ?organization a schema:Organization ;
     schema:address/schema:postalCode ?postalCode ;
-    schema:name|schema:legalName ?name .
+    schema:legalName ?name .
   FILTER NOT EXISTS {
     ?organization rov:registration/skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> .
   }
