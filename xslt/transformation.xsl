@@ -535,14 +535,14 @@
         </pccz:limit>
     </xsl:template>
     
-    <xsl:template match="DatumOdeslaniFormulareNaVVZ" mode="lot">
+    <xsl:template match="DatumOdeslaniFormulareNaVVZ" mode="contract">
         <!-- Datum odeslání formuláře provozovateli Věstníku VZ k uveřejnění. -->
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">dcterms:dateSubmitted</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="DatumUverejneni" mode="lot">
+    <xsl:template match="DatumUverejneni" mode="contract">
         <!-- Datum zveřejnění na Věstníku VZ -->
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">dcterms:issued</xsl:with-param>
