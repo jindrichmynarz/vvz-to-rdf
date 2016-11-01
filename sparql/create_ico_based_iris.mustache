@@ -13,11 +13,10 @@ WHERE {
   {
     SELECT ?bnode ?iri
     WHERE {
-      ?bnode rov:registration [
-        skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> ;
-        skos:notation ?ico
-      ] .
+      ?bnode rov:registration ?registration .
       FILTER isBlank(?bnode)
+      ?registration skos:inScheme <http://linked.opendata.cz/resource/concept-scheme/CZ-ICO> ;
+        skos:notation ?ico .
       BIND (IRI(CONCAT("http://linked.opendata.cz/resource/business-entity/CZ", ?ico)) AS ?iri)
     }
     LIMIT {{limit}}
