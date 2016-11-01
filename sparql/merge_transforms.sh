@@ -60,7 +60,7 @@ declare -a UPDATES=(
   "merge_criterion_weightings.ru"
   "blank_nodes_to_hash_iris_award_criteria_combinations.ru"
   "merge_award_criteria_combinations.ru"
-  "create_ico_based_iris.ru"
+  "create_ico_based_iris.ru" # Needs a very small LIMIT, such as 20.
   "blank_nodes_to_hash_iris_organizations.ru"
   "merge_organizations.ru"
   "group_organizations_by_name_and_postal_code.ru"
