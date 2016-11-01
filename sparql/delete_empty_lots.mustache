@@ -7,7 +7,7 @@ DELETE {
 }
 WHERE {
   {
-    SELECT ?lot
+    SELECT DISTINCT ?lot
     WHERE {
       ?lot a pproc:Lot .
       FILTER NOT EXISTS {
