@@ -580,7 +580,7 @@
         <!-- Veřejný zadavatel zadává veřejnou zakázku pro jiné zadavatele (veřejné nebo sektorové)
              např. na základě uzavření smlouvy o centralizovaném zadávání nebo jiné obdobné smlouvy. -->
         <xsl:if test="text() = 'Ano'">
-            <pc:onBehalfOf><schema:Organization/></pc:onBehalfOf>
+            <pc:isOnBehalfOf rdf:datatype="&xsd;boolean"><xsl:value-of select="true()"/></pc:isOnBehalfOf>
         </xsl:if>
     </xsl:template>
     
