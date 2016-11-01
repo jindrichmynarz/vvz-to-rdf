@@ -171,12 +171,12 @@
     
     <xsl:template match="CastiVerejneZakazky">
         <pproc:Lot>
-            <xsl:variable name="lotId" select="if (CisloCastiZadaniVZ) then CisloCastiZadaniVZ/text() else generate-id()"/>
-            <xsl:variable name="contractId" select="if (CisloFormulareNaVVZ) then CisloFormulareNaVVZ/text() else EvidencniCisloVZnaVVZ/text()"/>
-            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat($contractId, '-', $lotId, '-', generate-id()))"/>
+            <xsl:variable name="partId" select="if (CisloCastiZadaniVZ) then CisloCastiZadaniVZ/text() else generate-id()"/>
+            <xsl:variable name="lotId" select="if (CisloFormulareNaVVZ) then CisloFormulareNaVVZ/text() else EvidencniCisloVZnaVVZ/text()"/>
+            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat($lotId, '-', $partId, '-', generate-id()))"/>
             
             <!-- Evid. číslo na VVZ -->
-            <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', $contractId)}"/>
+            <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
             
             <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
