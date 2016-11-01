@@ -212,6 +212,16 @@
         </pproc:Lot>
     </xsl:template>
     
+    <xsl:template match="EvidencniCisloVZnaVVZ" mode="lot">
+        <!-- Evid. číslo na VVZ -->
+        <adms:identifier>
+            <adms:Identifier rdf:about="{f:getInstanceUri('Identifier', text())}">
+                <skos:notation><xsl:value-of select="text()"/></skos:notation>
+                <skos:inScheme rdf:resource="{f:getInstanceUri('ConceptScheme', 'evidencni-cisla-vz-na-vvz')}"/>
+            </adms:Identifier>
+        </adms:identifier>
+    </xsl:template>
+
     <xsl:template match="CisloFormulareNaVVZ" mode="lot">
         <!-- Evidenční číslo formuláře -->
         <adms:identifier>
