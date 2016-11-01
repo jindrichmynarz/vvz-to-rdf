@@ -26,7 +26,7 @@ WHERE {
         }
       }
       ?lot adms:identifier [
-        skos:inScheme <http://linked.opendata.cz/resource/isvz.cz/concept-scheme/cisla-formulare-na-vvz> ;
+        skos:inScheme <http://linked.opendata.cz/resource/isvz.cz/concept-scheme/evidencni-cisla-vz-na-vvz> ;
         skos:notation ?id
       ] .
       BIND (IRI(CONCAT("http://linked.opendata.cz/resource/isvz.cz/contract/", ?id)) AS ?contract)
