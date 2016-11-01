@@ -42,8 +42,6 @@ declare -a UPDATES=(
   "invert_is_lot_of.ru"
   "move_award_date_to_awarded_tender.ru"
 
-  "reduce_on_behalf_of.ru"
-
   # Add defaults
   "default_on_czk_currency.ru"
 
