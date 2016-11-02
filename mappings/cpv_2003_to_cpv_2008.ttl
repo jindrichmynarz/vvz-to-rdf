@@ -50609,3 +50609,167 @@
         skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/98910000>
     ] .
 
+<http://linked.opendata.cz/resource/cpv-2003/concept/71354100>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74274100>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/71354300>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74274300>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/79710000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74610000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/90910000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74700000>
+    ], [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74720000>
+    ], [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74730000>
+    ], [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74740000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/09310000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/40100000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/71410000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74251000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/09332000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/40420000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/30199770>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/22867000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/33621300>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/24421300>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/44115800>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/28815800>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/66515200>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/66336200>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/66516000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/66337000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/66516100>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/66337100>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/66516300>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/66337300>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/66516500>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/66339400>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/71250000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74225000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/71321000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74232100>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/71322000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74232200>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/90400000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/90100000>
+    ], [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/90110000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/38433000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/33253300>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/44613700>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/28213700>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/79340000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/74400000>
+    ], [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/78000000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/09240000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/10000000>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/34928110>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/28821100>
+    ] .
+
+<http://linked.opendata.cz/resource/cpv-2003/concept/79800000>
+    skos:exactMatch [
+        a skos:Concept ;
+        skos:closeMatch <http://linked.opendata.cz/resource/cpv-2008/concept/78000000>
+    ] .
