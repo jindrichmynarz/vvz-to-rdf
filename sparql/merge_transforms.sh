@@ -69,9 +69,9 @@ declare -a UPDATES=(
   "merge_contracts_without_lots_with_their_lot.ru"
   "cast_single_lots_as_contracts.ru"
   "remove_organization_data_retrievable_from_ares.ru"
-  "blank_nodes_to_hash_iris_organizations_all.ru"
   "blank_nodes_to_hash_iris_postal_addresses_all.ru"
   "blank_nodes_to_hash_iris_concepts_all.ru"
+  "blank_nodes_to_hash_iris_organizations_all.ru"
 )
 
 for update in "${UPDATES[@]}"; do
