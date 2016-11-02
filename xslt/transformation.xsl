@@ -484,7 +484,7 @@
         </pc:Contract>
     </xsl:template>
     
-    <xsl:template match="DruhFormulare" mode="lot">
+    <xsl:template match="DruhFormulare" mode="contract">
         <!-- Druh formuláře (řádný/opravný) -->
         <xsl:choose>
             <xsl:when test="text() = 'Opravný'">
@@ -493,7 +493,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="TypFormulare" mode="lot">
+    <xsl:template match="TypFormulare" mode="contract">
         <!-- Type formuláře (F01, F02, F03…F55) -->
         <dcterms:type>
             <skos:Concept rdf:about="{f:getInstanceUri('Concept', concat('form-type-', text()))}">
