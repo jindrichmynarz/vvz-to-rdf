@@ -13,6 +13,7 @@ INSERT {
 WHERE {
   ?contract isvz:isFundedFromEUProject true ;
     pc:subsidy ?_project .
+  FILTER (!STRSTARTS(STR(?_project), "http://data.openbudgets.eu/resource/dataset/esf-czech-projects/"))
   ?_project foaf:name ?name .
   FILTER REGEX(?name, "^.*CZ\\.\\d+\\.\\d+\\/\\d+\\.\\d+\\.\\d+\\/\\d+\\.\\d+.*$")
 
