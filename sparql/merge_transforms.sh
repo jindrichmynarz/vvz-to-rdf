@@ -13,7 +13,7 @@ declare -a UPDATES=(
   "trim_trailing_slash_from_urls.ru"
   "prefer_https_urls.ru"
   "prefer_urls_with_protocol.ru"
-  "remove_empty_duration.ru"
+  "remove_empty_duration.ru" # Doesn't work in Virtuoso
 
   # Street address cleaning
   "expand_street_address_abbreviations_trida.ru"
