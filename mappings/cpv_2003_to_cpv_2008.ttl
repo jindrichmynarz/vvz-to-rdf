@@ -1,6 +1,5 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix csvw: <http://www.w3.org/ns/csvw#> .
 
 <http://linked.opendata.cz/resource/cpv-2003/concept/01000000>
     skos:exactMatch [
