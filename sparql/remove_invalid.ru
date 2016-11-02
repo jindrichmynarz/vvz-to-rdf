@@ -1,4 +1,4 @@
-PREFIX pc: <http://purl.org/procurement/public-contracts#>
+PREFIX isvz: <http://linked.opendata.cz/ontology/isvz.cz/>
 
 DELETE {
   ?contract ?p1 ?o1 .
@@ -6,7 +6,7 @@ DELETE {
   ?o2 ?p3 ?o3 .
 }
 WHERE {
-  ?contract pc:isValid false ;
+  ?contract isvz:isValid false ;
     ?p1 ?o1 .
   OPTIONAL {
     ?o1 ?p2 ?o2 .

@@ -1,4 +1,5 @@
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX isvz: <http://linked.opendata.cz/ontology/isvz.cz/>
 PREFIX pc:   <http://purl.org/procurement/public-contracts#>
 
 DELETE {
@@ -10,7 +11,7 @@ INSERT {
   ?project ?p ?o .
 }
 WHERE {
-  ?contract pc:isFundedFromEUProject true ;
+  ?contract isvz:isFundedFromEUProject true ;
     pc:subsidy ?_project .
   ?_project foaf:name ?name .
   FILTER REGEX(?name, "^.*CZ\\.\\d+\\.\\d+\\/\\d+\\.\\d+\\.\\d+\\/\\d+\\.\\d+.*$")

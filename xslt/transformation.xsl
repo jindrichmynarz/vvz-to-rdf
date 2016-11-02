@@ -12,6 +12,7 @@
     xmlns:f="http://opendata.cz/xslt/functions#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:gr="http://purl.org/goodrelations/v1#"
+    xmlns:isvz="http://linked.opendata.cz/ontology/isvz.cz/"
     xmlns:pc="http://purl.org/procurement/public-contracts#"
     xmlns:pccz="http://purl.org/procurement/public-contracts-czech#"
     xmlns:pproc="http://contsem.unizar.es/def/sector-publico/pproc#"
@@ -176,7 +177,7 @@
             <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat($lotId, '-', $partId, '-', generate-id()))"/>
             
             <!-- Evid. číslo na VVZ -->
-            <pc:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
+            <isvz:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
             
             <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
@@ -288,12 +289,12 @@
     
     <xsl:template match="HodnotaNejnizsiNabidky" mode="lot">
         <!-- Hodnota nejnižší nabídky -->
-        <pc:lowestBidPrice>
+        <isvz:lowestBidPrice>
             <schema:PriceSpecification>
                 <xsl:call-template name="price"/>
                 <xsl:apply-templates select="../*" mode="lowest-price"/>
             </schema:PriceSpecification>
-        </pc:lowestBidPrice>
+        </isvz:lowestBidPrice>
     </xsl:template>
     
     <xsl:template match="HodnotaNejnizsiNabidkySazbaDPH" mode="lowest-price">
@@ -330,12 +331,12 @@
     
     <xsl:template match="PuvodniOdhadovanaCelkovaHodnotaVZ" mode="lot">
         <!-- Původní odhadovaná celková hodnota části zakázky. -->
-        <pc:estimatedTotalPrice>
+        <isvz:estimatedTotalPrice>
             <schema:PriceSpecification>
                 <xsl:call-template name="price"/>
                 <xsl:apply-templates select="../*" mode="estimated-total-price"/>
             </schema:PriceSpecification>
-        </pc:estimatedTotalPrice>
+        </isvz:estimatedTotalPrice>
     </xsl:template>
     
     <xsl:template match="PuvodniOdhadovanaCelkovaHodnotaVZMena" mode="estimated-total-price">
@@ -425,13 +426,13 @@
     
     <xsl:template match="SubdodavkyHodnotaBezDPH" mode="lot">
         <!-- Hodnota zakázky, která bude provedena subdodavatelsky třetími stranami - Hodnota bez DPH -->
-        <pc:subcontractingPrice>
+        <isvz:subcontractingPrice>
             <schema:PriceSpecification>
                 <xsl:call-template name="price"/>
                 <schema:valueAddedTaxIncluded rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></schema:valueAddedTaxIncluded>
                 <xsl:apply-templates select="../*" mode="subcontracting-price"/>
             </schema:PriceSpecification>
-        </pc:subcontractingPrice>
+        </isvz:subcontractingPrice>
     </xsl:template>
     
     <xsl:template match="SubdodavkyMena" mode="subcontracting-price">
@@ -441,7 +442,7 @@
     
     <xsl:template match="SubdodavkyPomer" mode="lot">
         <!-- Hodnota zakázky, která bude provedena subdodavatelsky třetími stranami - Poměr -->
-        <pc:subcontractingRatio rdf:datatype="&pcdt;percentage"><xsl:value-of select="text()"/></pc:subcontractingRatio>
+        <isvz:subcontractingRatio rdf:datatype="&pcdt;percentage"><xsl:value-of select="text()"/></isvz:subcontractingRatio>
     </xsl:template>
     
     <xsl:template match="RocniCiMesicniHodnotaPocetRoku" mode="lot">
@@ -580,7 +581,7 @@
         <!-- Veřejný zadavatel zadává veřejnou zakázku pro jiné zadavatele (veřejné nebo sektorové)
              např. na základě uzavření smlouvy o centralizovaném zadávání nebo jiné obdobné smlouvy. -->
         <xsl:if test="text() = 'Ano'">
-            <pc:isOnBehalfOf rdf:datatype="&xsd;boolean"><xsl:value-of select="true()"/></pc:isOnBehalfOf>
+            <isvz:isOnBehalfOf rdf:datatype="&xsd;boolean"><xsl:value-of select="true()"/></isvz:isOnBehalfOf>
         </xsl:if>
     </xsl:template>
     
@@ -601,11 +602,11 @@
     <xsl:template match="KategorieSluzeb" mode="contract">
         <!-- Číslo kategorie služby podle přílohy II směrnice č. 2004/18/ES. -->
         <xsl:for-each select="tokenize(text(), ';')">
-            <pc:serviceCategory>
+            <isvz:serviceCategory>
                 <skos:Concept>
                     <skos:prefLabel xml:lang="cs"><xsl:value-of select="f:trim(.)"/></skos:prefLabel>
                 </skos:Concept>
-            </pc:serviceCategory>
+            </isvz:serviceCategory>
         </xsl:for-each>
     </xsl:template>
     
@@ -676,12 +677,12 @@
     
     <xsl:template match="NejnizsiNabidkaVzataVuvahu" mode="contract">
         <!-- Nejnižší uvažovaná nabídka -->
-        <pc:lowestConsideredBidPrice>
+        <isvz:lowestConsideredBidPrice>
             <schema:PriceSpecification>
                 <xsl:call-template name="price"/>
                 <xsl:apply-templates select="../*" mode="lowest-considered-price"/>
             </schema:PriceSpecification>
-        </pc:lowestConsideredBidPrice>
+        </isvz:lowestConsideredBidPrice>
     </xsl:template>
     
     <xsl:template match="NejnizsiNabidkaVzataVuvahuMena" mode="lowest-considered-price">
@@ -701,11 +702,11 @@
     
     <xsl:template match="NejvyssiNabidkaVzataVuvahu" mode="contract">
         <!-- Nejvyšší uvažovaná nabídka -->
-        <pc:highestConsideredBidPrice>
+        <isvz:highestConsideredBidPrice>
             <schema:PriceSpecification>
                 <xsl:call-template name="price"/>
             </schema:PriceSpecification>
-        </pc:highestConsideredBidPrice>
+        </isvz:highestConsideredBidPrice>
     </xsl:template>
     
     <xsl:template match="DruhRizeni" mode="contract">
@@ -719,11 +720,11 @@
     
     <xsl:template match="HlavniKriteriaProZadaniZakazky" mode="contract">
         <!-- Základní hodnotící kritérium pro zadání zakázky (nejnižší nabídková cena nebo ekonomická výhodnost nabídky) -->
-        <pc:mainCriterion>
+        <isvz:mainCriterion>
             <skos:Concept>
                 <skos:prefLabel xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></skos:prefLabel>
             </skos:Concept>
-        </pc:mainCriterion>
+        </isvz:mainCriterion>
     </xsl:template>
     
     <xsl:template match="*[starts-with(name(), 'Kriterium')]" mode="award-criteria-combination">
@@ -743,14 +744,14 @@
     <xsl:template match="BylaPouzitaElektronickaDrazba" mode="contract">
         <!-- Byla použita elektronická dražba jako prostředek pro hodnocení nabídek. -->
         <xsl:call-template name="booleanProperty">
-            <xsl:with-param name="property">pc:isElectronicAuction</xsl:with-param>
+            <xsl:with-param name="property">isvz:isElectronicAuction</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="ZakazkaSeVztahujeKprojektuFinZes" mode="contract">
         <!-- Veřejná zakázka zcela či zčásti financována z fondů Evropského společenství. -->
         <xsl:call-template name="booleanProperty">
-            <xsl:with-param name="property">pc:isFundedFromEUProject</xsl:with-param>
+            <xsl:with-param name="property">isvz:isFundedFromEUProject</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
@@ -765,7 +766,7 @@
     
     <xsl:template match="PlatnyFormular" mode="lot">
         <xsl:if test="text() = 'false'">
-            <pc:isValid rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></pc:isValid>
+            <isvz:isValid rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></isvz:isValid>
         </xsl:if>
     </xsl:template>
     
@@ -865,12 +866,12 @@
     </xsl:template>
     
     <xsl:template name="valueAddedTaxRate">
-        <pc:valueAddedTaxRate rdf:datatype="&pcdt;percentage">
+        <isvz:valueAddedTaxRate rdf:datatype="&pcdt;percentage">
             <xsl:choose>
                 <xsl:when test="text() = 'Bez DPH'">0</xsl:when>
                 <xsl:otherwise><xsl:value-of select="text()"/></xsl:otherwise>
             </xsl:choose>
-        </pc:valueAddedTaxRate>
+        </isvz:valueAddedTaxRate>
     </xsl:template>
     
     <xsl:template name="weightedCriterion">
