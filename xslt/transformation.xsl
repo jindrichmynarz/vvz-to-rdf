@@ -671,7 +671,7 @@
     <xsl:template match="NaVZseVztahujeGPA" mode="contract">
         <!-- Na zakázku se vztahuje Dohoda o veřejných zakázkách (GPA) -->
         <xsl:call-template name="booleanProperty">
-            <xsl:with-param name="property">pc:isGovernmentProcurementAgreement</xsl:with-param>
+            <xsl:with-param name="property">isvz:isGovernmentProcurementAgreement</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
