@@ -456,16 +456,16 @@
     </xsl:template>
     
     <xsl:template match="VerejnaZakazka">
+        <xsl:variable name="dateSubmitted" select="xsd:date(f:transformDate(DatumOdeslaniFormulareNaVVZ/text()))"/>
         <!-- Documentation: http://www.portal-vz.cz/cs/Informacni-systemy-a-elektronicke-vzdelavani/Information-System-on-Public-Contracts/Uverejnovaci-subsystem/Zmena-v-klasifikaci-CPV-kodu-pro-verejne-zakaz -->
-        <xsl:variable name="cpvSchemeYear">
-            <xsl:choose>
-                <xsl:when test="xsd:date(f:transformDate(DatumOdeslaniFormulareNaVVZ/text())) le xsd:date('2008-09-12')">2003</xsl:when>
-                <xsl:otherwise>2008</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+        <xsl:variable name="cpvSchemeYear" select="if ($dateSubmitted le xsd:date('2008-09-12')) then 2003 else 2008"/>
+        <!-- New public procurement forms (http://simap.ted.europa.eu/standard-forms-for-public-procurement) were transposed to the Czech legislation
+             by the law no. 134/2016 (http://www.zakonyprolidi.cz/cs/2016-134), in effect from October 1, 2016. -->
+        <xsl:variable name="formTypeSchemeYear" select="if ($dateSubmitted le xsd:date('2016-10-01')) then 2004 else 2014"/>
         <pc:Contract rdf:about="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}">
             <xsl:apply-templates mode="contract">
                 <xsl:with-param name="cpvSchemeYear" select="$cpvSchemeYear" tunnel="yes"/>
+                <xsl:with-param name="formTypeSchemeYear" select="$formTypeSchemeYear" tunnel="yes"/>
             </xsl:apply-templates>
             <xsl:if test="ZadavatelUredniNazev">
                 <pc:contractingAuthority>
@@ -495,12 +495,18 @@
     
     <xsl:template match="TypFormulare" mode="contract">
         <!-- Type formuláře (F01, F02, F03…F55) -->
-        <dcterms:type>
-            <skos:Concept rdf:about="{f:getInstanceUri('Concept', concat('form-type-', text()))}">
-                <skos:notation><xsl:value-of select="text()"/></skos:notation>
-                <skos:inScheme rdf:resource="{f:getInstanceUri('ConceptScheme', 'form-types')}"/>
-            </skos:Concept>
-        </dcterms:type>
+        <xsl:param name="formTypeSchemeYear" tunnel="yes"/>
+        <xsl:variable name="formTypeNumber">
+            <xsl:analyze-string select="text()" regex="^[FT](\d+)$">
+                <xsl:matching-substring>
+                    <xsl:value-of select="regex-group(1)"/>
+                </xsl:matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        <xsl:variable name="schemeLocalName" select="if (number($formTypeNumber) gt 25)
+                                                     then 'czech-public-procurement-forms'
+                                                     else concat('public-procurement-forms-', $formTypeSchemeYear)"/>
+        <dcterms:type rdf:resource="{concat('http://linked.opendata.cz/resource/code-list/', $schemeLocalName, '/', lower-case(text()))}"/>
     </xsl:template>
     
     <xsl:template match="VZdelenaNaCasti" mode="contract">
