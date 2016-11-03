@@ -5,7 +5,6 @@ set -e
 declare -a UPDATES=(
   # Remove data
   "delete_empty_lots.ru"
-  "remove_invalid.ru"
 
   # Clean literals
   "unquote_literals.ru"
