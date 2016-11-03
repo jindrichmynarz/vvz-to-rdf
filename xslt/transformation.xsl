@@ -170,7 +170,7 @@
         </rdf:RDF>
     </xsl:template>
     
-    <xsl:template match="CastiVerejneZakazky">
+    <xsl:template match="CastiVerejneZakazky[not(PlatnyFormular/text() = 'false')]">
         <pproc:Lot>
             <xsl:variable name="partId" select="if (CisloCastiZadaniVZ) then CisloCastiZadaniVZ/text() else generate-id()"/>
             <xsl:variable name="lotId" select="if (CisloFormulareNaVVZ) then CisloFormulareNaVVZ/text() else EvidencniCisloVZnaVVZ/text()"/>
@@ -312,7 +312,7 @@
         <xsl:call-template name="priceCurrency"/>
     </xsl:template>
     
-    <xsl:template match="OdhadovanaHodnotaVZbezDPH" mode="contract">
+    <xsl:template match="OdhadovanaHodnotaVZbezDPH" mode="notice">
         <!-- Předpokládaná hodnota VZ s využitím pravidel uvedených v § 13 ZVZ a u VZ na dodávky podle § 14 ZVZ,
              VZ na služby podle § 15 ZVZ nebo VZ na stavební práce podle § 16 ZVZ. Částka se uvádí bez DPH. -->
         <pc:estimatedPrice>
@@ -354,7 +354,7 @@
         <xsl:call-template name="valueAddedTaxRate"/>
     </xsl:template>
     
-    <xsl:template match="OdhadovanaHodnotaVZrozsahOd" mode="contract">
+    <xsl:template match="OdhadovanaHodnotaVZrozsahOd" mode="notice">
         <!-- Dolní mez předpokládané hodnoty veřejné zakázky bez DPH. Uvádí se pro VZ, kde je cena uvedena rozsahem. -->
         <pc:estimatedPrice>
             <schema:PriceSpecification>
@@ -399,7 +399,7 @@
         <xsl:call-template name="valueAddedTaxRate"/>
     </xsl:template>
     
-    <xsl:template match="CelkovaKonecnaHodnotaVZ" mode="contract">
+    <xsl:template match="CelkovaKonecnaHodnotaVZ" mode="notice">
         <!-- Celková konečná hodnota VZ, včetně všech zakázek, částí zakázek, obnovení a opcí. -->
         <pc:actualPrice>
             <schema:PriceSpecification>
@@ -463,28 +463,39 @@
              by the law no. 134/2016 (http://www.zakonyprolidi.cz/cs/2016-134), in effect from October 1, 2016. -->
         <xsl:variable name="formTypeSchemeYear" select="if ($dateSubmitted le xsd:date('2016-10-01')) then 2004 else 2014"/>
         <pc:Contract rdf:about="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}">
-            <xsl:apply-templates mode="contract">
-                <xsl:with-param name="cpvSchemeYear" select="$cpvSchemeYear" tunnel="yes"/>
-                <xsl:with-param name="formTypeSchemeYear" select="$formTypeSchemeYear" tunnel="yes"/>
-            </xsl:apply-templates>
-            <xsl:if test="ZadavatelUredniNazev">
-                <pc:contractingAuthority>
-                    <schema:Organization>
-                        <xsl:apply-templates mode="contracting-authority"/>
-                    </schema:Organization>
-                </pc:contractingAuthority>
-            </xsl:if>
-            <xsl:if test="*[starts-with(name(), 'Kriterium')]">
-                <pc:awardCriteriaCombination>
-                    <pc:AwardCriteriaCombination>
-                        <xsl:apply-templates mode="award-criteria-combination"/>
-                    </pc:AwardCriteriaCombination>
-                </pc:awardCriteriaCombination>
-            </xsl:if>
+            <isvz:notice>
+                <pproc:Notice>
+                    <xsl:apply-templates mode="notice">
+                        <xsl:with-param name="cpvSchemeYear" select="$cpvSchemeYear" tunnel="yes"/>
+                        <xsl:with-param name="formTypeSchemeYear" select="$formTypeSchemeYear" tunnel="yes"/>
+                    </xsl:apply-templates>
+                    <xsl:if test="ZadavatelUredniNazev">
+                        <pc:contractingAuthority>
+                            <schema:Organization>
+                                <xsl:variable name="icos" select="key('contracts', EvidencniCisloVZnaVVZ/text())/ZadavatelICO/text()"/>
+                                <xsl:if test="not(empty($icos))">
+                                    <xsl:variable name="ico" select="$icos[1]"/>
+                                    <xsl:if test="f:isValidIco($ico)">
+                                        <xsl:attribute name="rdf:about" select="concat('http://linked.opendata.cz/resource/business-entity/CZ', $ico)"/>
+                                    </xsl:if>
+                                </xsl:if>
+                                <xsl:apply-templates mode="contracting-authority"/>
+                            </schema:Organization>
+                        </pc:contractingAuthority>
+                    </xsl:if>
+                    <xsl:if test="*[starts-with(name(), 'Kriterium')]">
+                        <pc:awardCriteriaCombination>
+                            <pc:AwardCriteriaCombination>
+                                <xsl:apply-templates mode="award-criteria-combination"/>
+                            </pc:AwardCriteriaCombination>
+                        </pc:awardCriteriaCombination>
+                    </xsl:if>
+                </pproc:Notice>
+            </isvz:notice>
         </pc:Contract>
     </xsl:template>
     
-    <xsl:template match="DruhFormulare" mode="contract">
+    <xsl:template match="DruhFormulare" mode="notice">
         <!-- Druh formuláře (řádný/opravný) -->
         <xsl:choose>
             <xsl:when test="text() = 'Opravný'">
@@ -493,7 +504,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="TypFormulare" mode="contract">
+    <xsl:template match="TypFormulare" mode="notice">
         <!-- Type formuláře (F01, F02, F03…F55) -->
         <xsl:param name="formTypeSchemeYear" tunnel="yes"/>
         <xsl:variable name="formTypeNumber">
@@ -518,7 +529,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="VZdelenaNaCasti" mode="contract">
+    <xsl:template match="VZdelenaNaCasti" mode="notice">
         <!-- VZ dělená na části. Vyplňováno pouze v případě, že
              pro VZ existuje výsledkový formulář (počítáno podle
              počtu zadání ve výsledkovém formuláři). -->
@@ -539,7 +550,7 @@
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="LimitVZ" mode="contract">
+    <xsl:template match="LimitVZ" mode="notice">
         <!-- Limit VZ (nadlimitní/podlimitní) -->
         <pccz:limit>
             <xsl:attribute name="rdf:resource">
@@ -551,14 +562,14 @@
         </pccz:limit>
     </xsl:template>
     
-    <xsl:template match="DatumOdeslaniFormulareNaVVZ" mode="contract">
+    <xsl:template match="DatumOdeslaniFormulareNaVVZ" mode="notice">
         <!-- Datum odeslání formuláře provozovateli Věstníku VZ k uveřejnění. -->
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">dcterms:dateSubmitted</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="DatumUverejneni" mode="contract">
+    <xsl:template match="DatumUverejneni" mode="notice">
         <!-- Datum zveřejnění na Věstníku VZ -->
         <xsl:call-template name="dateProperty">
             <xsl:with-param name="property">dcterms:issued</xsl:with-param>
@@ -592,7 +603,7 @@
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="ZadavatelZadavaJmenemJinych" mode="contract">
+    <xsl:template match="ZadavatelZadavaJmenemJinych" mode="notice">
         <!-- Veřejný zadavatel zadává veřejnou zakázku pro jiné zadavatele (veřejné nebo sektorové)
              např. na základě uzavření smlouvy o centralizovaném zadávání nebo jiné obdobné smlouvy. -->
         <xsl:if test="text() = 'Ano'">
@@ -600,12 +611,12 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="NazevVZ" mode="contract">
+    <xsl:template match="NazevVZ" mode="notice">
         <!-- Název přidělený veřejné zakázce -->
         <dcterms:title xml:lang="cs"><xsl:value-of select="normalize-space(text())"/></dcterms:title>
     </xsl:template>
     
-    <xsl:template match="DruhVZ" mode="contract">
+    <xsl:template match="DruhVZ" mode="notice">
         <!-- Druh zakázky (dodávky, služby, stavební práce) -->
         <pc:kind>
             <skos:Concept>
@@ -614,7 +625,7 @@
         </pc:kind>
     </xsl:template>
     
-    <xsl:template match="KategorieSluzeb" mode="contract">
+    <xsl:template match="KategorieSluzeb" mode="notice">
         <!-- Číslo kategorie služby podle přílohy II směrnice č. 2004/18/ES. -->
         <xsl:for-each select="tokenize(text(), ';')">
             <isvz:serviceCategory>
@@ -625,7 +636,7 @@
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="HlavniMistoPlneni" mode="contract">
+    <xsl:template match="HlavniMistoPlneni" mode="notice">
         <!-- NUTS 3 hlavního místo plnění VZ. Při plnění veřejné zakázky mimo území EU se uvádí NUTS kód CZZZZ (Extra-Regio). -->
         <pc:location>
             <schema:Place>
@@ -644,12 +655,12 @@
         </pc:location>
     </xsl:template>
     
-    <xsl:template match="StrucnyPopisVZ" mode="contract">
+    <xsl:template match="StrucnyPopisVZ" mode="notice">
         <!-- Textový popis charakteristiky předmětu veřejné zakázky. -->
         <dcterms:description xml:lang="cs"><xsl:value-of select="text()"/></dcterms:description>
     </xsl:template>
     
-    <xsl:template match="CPVhlavni" mode="contract">
+    <xsl:template match="CPVhlavni" mode="notice">
         <!-- Charakteristika VZ pomocí Společného slovníku pro veřejné zakázky (CPV – Common Procurement Vocabulary),
              který nejlépe popisuje hlavní předmět veřejné zakázky. -->
         <pc:mainObject>
@@ -662,7 +673,7 @@
         </pc:mainObject>
     </xsl:template>
     
-    <xsl:template match="DruhyPredmetCPVhlavni | TretiPredmetCPVhlavni | CtvrtyPredmetCPVhlavni | PatyPredmetCPVhlavni" mode="contract">
+    <xsl:template match="DruhyPredmetCPVhlavni | TretiPredmetCPVhlavni | CtvrtyPredmetCPVhlavni | PatyPredmetCPVhlavni" mode="notice">
         <xsl:variable name="qualifierElementPrefix" select="replace(name(), 'hlavni$', 'doplnkovy')"/>
         <pc:additionalObject>
             <skos:Concept>
@@ -683,14 +694,14 @@
         </skos:related>
     </xsl:template>
     
-    <xsl:template match="NaVZseVztahujeGPA" mode="contract">
+    <xsl:template match="NaVZseVztahujeGPA" mode="notice">
         <!-- Na zakázku se vztahuje Dohoda o veřejných zakázkách (GPA) -->
         <xsl:call-template name="booleanProperty">
             <xsl:with-param name="property">isvz:isGovernmentProcurementAgreement</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="NejnizsiNabidkaVzataVuvahu" mode="contract">
+    <xsl:template match="NejnizsiNabidkaVzataVuvahu" mode="notice">
         <!-- Nejnižší uvažovaná nabídka -->
         <isvz:lowestConsideredBidPrice>
             <schema:PriceSpecification>
@@ -715,7 +726,7 @@
         <xsl:call-template name="valueAddedTaxRate"/>
     </xsl:template>
     
-    <xsl:template match="NejvyssiNabidkaVzataVuvahu" mode="contract">
+    <xsl:template match="NejvyssiNabidkaVzataVuvahu" mode="notice">
         <!-- Nejvyšší uvažovaná nabídka -->
         <isvz:highestConsideredBidPrice>
             <schema:PriceSpecification>
@@ -724,7 +735,7 @@
         </isvz:highestConsideredBidPrice>
     </xsl:template>
     
-    <xsl:template match="DruhRizeni" mode="contract">
+    <xsl:template match="DruhRizeni" mode="notice">
         <!-- Druh řízení dle ZVZ -->
         <pc:procedureType>
             <skos:Concept>
@@ -733,7 +744,7 @@
         </pc:procedureType>    
     </xsl:template>
     
-    <xsl:template match="HlavniKriteriaProZadaniZakazky" mode="contract">
+    <xsl:template match="HlavniKriteriaProZadaniZakazky" mode="notice">
         <!-- Základní hodnotící kritérium pro zadání zakázky (nejnižší nabídková cena nebo ekonomická výhodnost nabídky) -->
         <isvz:mainCriterion>
             <skos:Concept>
@@ -756,33 +767,27 @@
         <xsl:call-template name="criterionWeight"/>
     </xsl:template>
     
-    <xsl:template match="BylaPouzitaElektronickaDrazba" mode="contract">
+    <xsl:template match="BylaPouzitaElektronickaDrazba" mode="notice">
         <!-- Byla použita elektronická dražba jako prostředek pro hodnocení nabídek. -->
         <xsl:call-template name="booleanProperty">
             <xsl:with-param name="property">isvz:isElectronicAuction</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="ZakazkaSeVztahujeKprojektuFinZes" mode="contract">
+    <xsl:template match="ZakazkaSeVztahujeKprojektuFinZes" mode="notice">
         <!-- Veřejná zakázka zcela či zčásti financována z fondů Evropského společenství. -->
         <xsl:call-template name="booleanProperty">
             <xsl:with-param name="property">isvz:isFundedFromEUProject</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="ProjektyCiprogramy" mode="contract">
+    <xsl:template match="ProjektyCiprogramy" mode="notice">
         <!-- Název fondu/programu/projektu, ze kterého je veřejná zakázka financována. -->
         <pc:subsidy>
             <foaf:Project>
                 <foaf:name><xsl:value-of select="normalize-space(text())"/></foaf:name>
             </foaf:Project>
         </pc:subsidy>
-    </xsl:template>
-    
-    <xsl:template match="PlatnyFormular" mode="lot">
-        <xsl:if test="text() = 'false'">
-            <isvz:isValid rdf:datatype="&xsd;boolean"><xsl:value-of select="false()"/></isvz:isValid>
-        </xsl:if>
     </xsl:template>
     
     <!-- Catch-all empty template -->
@@ -844,7 +849,7 @@
             <xsl:choose>
                 <!-- Test if the object is a CPV code -->
                 <xsl:when test="matches($code, '^\d{8}$') or matches($code, '^[A-Z]{2}\d{2}$')">
-                    <xsl:attribute name="rdf:about" select="concat(if ($cpvSchemeYear = '2008') then $cpv2008Ns else $cpv2003Ns, $code)"/>
+                    <xsl:attribute name="rdf:about" select="concat(if ($cpvSchemeYear = 2008) then $cpv2008Ns else $cpv2003Ns, $code)"/>
                     <skos:notation><xsl:value-of select="$code"/></skos:notation>
                     <xsl:choose>
                         <xsl:when test="matches($code, '^\d{8}$')">
