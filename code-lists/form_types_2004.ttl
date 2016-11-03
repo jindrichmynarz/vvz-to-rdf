@@ -1,0 +1,161 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix pproc:   <http://contsem.unizar.es/def/sector-publico/pproc#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> a skos:ConceptScheme ;
+  rdfs:label "Standard forms for public procurement"@en,
+             "Jednotné formuláře pro veřejné zakázky"@cs ;
+  dcterms:source <http://simap.ted.europa.eu/standard-forms-for-public-procurement> ;
+  dcterms:isReplacedBy <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2014> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f01> a skos:Concept ;
+  skos:prefLabel "Prior information notice"@en,
+                 "Předběžné oznámení"@cs ;
+  skos:notation "F01" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_001_en.pdf>,
+               pproc:PriorInformationNotice ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f02> a skos:Concept ;
+  skos:prefLabel "Contract notice"@en,
+                 "Oznámení o zahájení zadávacího řízení"@cs ;
+  skos:notation "F02" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_002_en.pdf>,
+               pproc:ContractNotice ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f03> a skos:Concept ;
+  skos:prefLabel "Contract award notice"@en,
+                 "Oznámení o výsledku zadávacího řízení"@cs ;
+  skos:notation "F03" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_003_en.pdf>,
+               pproc:ContractAwardNotice ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f04> a skos:Concept ;
+  skos:prefLabel "Periodic indicative notice – utilities"@en,
+                 "Pravidelné předběžné oznámení – veřejné služby"@cs ;
+  skos:notation "F04" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_004_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f05> a skos:Concept ;
+  skos:prefLabel "Contract notice – utilities"@en,
+                 "Oznámení o zahájení zadávacího řízení – veřejné služby"@cs ; 
+  skos:notation "F05" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_005_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f06> a skos:Concept ;
+  skos:prefLabel "Contract award notice – utilities"@en,
+                 "Oznámení o výsledku zadávacího řízení – veřejné služby"@cs ;
+  skos:notation "F06" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_006_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f07> a skos:Concept ;
+  skos:prefLabel "Qualification system – utilities"@en,
+                 "Systém kvalifikace – veřejné služby"@cs ;
+  skos:notation "F07" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_007_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f08> a skos:Concept ;
+  skos:prefLabel "Notice on a buyer profile"@en,
+                 "Oznámení na profilu kupujícího"@cs ;
+  skos:notation "F08" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_008_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f09> a skos:Concept ;
+  skos:prefLabel "Simplified contract notice on a dynamic purchasing system"@en,
+                 "Zjednodušené oznámení o zakázce v rámci dynamického nákupního systému"@cs ;
+  skos:notation "F09" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_009_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f10> a skos:Concept ;
+  skos:prefLabel "Public works concession"@en,
+                 "Koncese na stavební práce"@cs ;
+  skos:notation "F10" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_010_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f11> a skos:Concept ;
+  skos:prefLabel "Contract notice - Contracts to be awarded by a concessionaire who is not a contracting authority"@en,
+                 "Oznámení o zahájení zadávacího řízení - Zakázka zadávaná koncesionářem, který není veřejným zadavatelem"@cs ;
+  skos:notation "F11" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_011_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f12> a skos:Concept ;
+  skos:prefLabel "Design contest notice"@en,
+                 "Oznámení o soutěži o návrh"@cs ;
+  skos:notation "F12" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_012_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f13> a skos:Concept ;
+  skos:prefLabel "Results of design contest"@en,
+                 "Výsledky soutěže o návrh"@cs ;
+  skos:notation "F13" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_013_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f14> a skos:Concept ;
+  skos:prefLabel "Notice for additional information, information on incomplete procedure or corrigendum"@en,
+                 "Oznámení dodatečných informací, informací o nedokončeném řízení nebo opravy"@cs ;
+  skos:notation "F14" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_014_en.pdf>,
+               pproc:AdditionalInformationNotice ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f15> a skos:Concept ;
+  skos:prefLabel "Voluntary ex ante transparency notice"@en,
+                 "Oznámení o dobrovolné průhlednosti ex ante"@cs ;
+  skos:notation "F15" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_015_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f16> a skos:Concept ;
+  skos:prefLabel "Prior information notice for contracts in the field of defence and security"@en,
+                 "Oznámení předběžných informací k zakázkám v oblasti obrany a bezpečnosti"@cs ;
+  skos:notation "F16" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_016_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f17> a skos:Concept ;
+  skos:prefLabel "Contract notice for contracts in the field of defence and security"@en,
+                 "Oznámení o zakázce v oblasti obrany a bezpečnosti"@cs ;
+  skos:notation "F17" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_017_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f18> a skos:Concept ;
+  skos:prefLabel "Contract award notice for contracts in the field of defence and security"@en,
+                 "Oznámení o zadání zakázky v oblasti obrany a bezpečnosti"@cs ;
+  skos:notation "F18" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_018_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/f19> a skos:Concept ;
+  skos:prefLabel "Subcontract notice"@en,
+                 "Oznámení o subdodávce"@cs ;
+  skos:notation "F19" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/sf_019_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/t1> a skos:Concept ;
+  skos:prefLabel "Prior information notice for public service contract"@en,
+                 "Oznámení předběžných informací pro veřejnou zakázku na služby"@cs ;
+  skos:notation "T1" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/t01_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
+
+<http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004/t2> a skos:Concept ;
+  skos:prefLabel "Information notice for award of public service contract"@en,
+                 "Oznámení informací o zadání veřejné zakázky na služby"@cs ;
+  skos:notation "T2" ;
+  rdfs:seeAlso <http://simap.ted.europa.eu/documents/10184/49059/t02_en.pdf> ;
+  skos:inScheme <http://linked.opendata.cz/resource/code-list/public-procurement-forms-2004> .
