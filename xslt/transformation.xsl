@@ -497,11 +497,9 @@
     
     <xsl:template match="DruhFormulare" mode="notice">
         <!-- Druh formuláře (řádný/opravný) -->
-        <xsl:choose>
-            <xsl:when test="text() = 'Opravný'">
-                <rdf:type rdf:resource="&pproc;CorrectionNotice"/>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:if test="text() = 'Opravný'">
+            <rdf:type rdf:resource="&pproc;CorrectionNotice"/>
+        </xsl:if>
     </xsl:template>
     
     <xsl:template match="TypFormulare" mode="notice">
