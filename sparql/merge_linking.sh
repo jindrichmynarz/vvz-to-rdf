@@ -13,6 +13,9 @@ declare -a UPDATES=(
   # Linking
   "map_cpv_2003_to_cpv_2008.ru"
   "link_eu_projects.ru"
+
+  # Cleaning
+  "delete_cpv_2003_concepts.ru"
 )
 
 for update in "${UPDATES[@]}"; do
