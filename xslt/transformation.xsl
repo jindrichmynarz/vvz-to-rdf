@@ -506,7 +506,16 @@
         <xsl:variable name="schemeLocalName" select="if (number($formTypeNumber) gt 25)
                                                      then 'czech-public-procurement-forms'
                                                      else concat('public-procurement-forms-', $formTypeSchemeYear)"/>
-        <dcterms:type rdf:resource="{concat('http://linked.opendata.cz/resource/code-list/', $schemeLocalName, '/', lower-case(text()))}"/>
+        <xsl:if test="$formTypeNumber">
+            <dcterms:type rdf:resource="{concat('http://linked.opendata.cz/resource/code-list/', $schemeLocalName, '/', lower-case(text()))}"/>
+        </xsl:if>
+        <xsl:choose>
+            <xsl:when test="text() = 'F01'"><rdf:type rdf:resource="&pproc;PriorInformationNotice"/></xsl:when>
+            <xsl:when test="text() = 'F02'"><rdf:type rdf:resource="&pproc;ContractNotice"/></xsl:when>
+            <xsl:when test="text() = 'F03'"><rdf:type rdf:resource="&pproc;ContractAwardNotice"/></xsl:when>
+            <xsl:when test="text() = 'F14'"><rdf:type rdf:resource="&pproc;AdditionalInformationNotice"/></xsl:when>
+            <xsl:when test="text() = 'F20'"><rdf:type rdf:resource="&pproc;CorrectionNotice"/></xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="VZdelenaNaCasti" mode="contract">
