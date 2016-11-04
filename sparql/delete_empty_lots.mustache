@@ -12,7 +12,7 @@ WHERE {
     WHERE {
       ?lot a pproc:Lot .
       FILTER NOT EXISTS {
-        ?lot !(rdf:type|isvz:isLotOf|isvz:isValid) [] .
+        ?lot !(rdf:type|isvz:isLotOf) [] .
       }
     }
     LIMIT {{limit}}
