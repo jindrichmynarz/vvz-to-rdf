@@ -223,7 +223,7 @@
         </adms:identifier>
     </xsl:template>
 
-    <xsl:template match="CisloFormulareNaVVZ" mode="lot">
+    <xsl:template match="CisloFormulareNaVVZ" mode="lot notice">
         <!-- Evidenční číslo formuláře -->
         <adms:identifier>
             <adms:Identifier rdf:about="{f:getInstanceUri('Identifier', text())}">
