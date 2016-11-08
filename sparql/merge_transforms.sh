@@ -71,6 +71,9 @@ declare -a UPDATES=(
   "blank_nodes_to_hash_iris_concepts_all.ru"
   "blank_nodes_to_hash_iris_organizations_all.ru"
 
+  # Reconcile code lists
+  "map_procedure_types.ru"
+
   # Resolve and merge notices
   "merge_contracts_with_single_notice.ru"
   "resolve_correction_notices.ru"
