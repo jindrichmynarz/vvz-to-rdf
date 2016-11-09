@@ -626,13 +626,11 @@
     
     <xsl:template match="KategorieSluzeb" mode="notice">
         <!-- Číslo kategorie služby podle přílohy II směrnice č. 2004/18/ES. -->
-        <xsl:for-each select="tokenize(text(), ';')">
-            <isvz:serviceCategory>
-                <skos:Concept>
-                    <skos:prefLabel xml:lang="cs"><xsl:value-of select="f:trim(.)"/></skos:prefLabel>
-                </skos:Concept>
-            </isvz:serviceCategory>
-        </xsl:for-each>
+        <isvz:serviceCategory>
+            <skos:Concept>
+                <skos:prefLabel xml:lang="cs"><xsl:value-of select="f:trim(.)"/></skos:prefLabel>
+            </skos:Concept>
+        </isvz:serviceCategory>
     </xsl:template>
     
     <xsl:template match="HlavniMistoPlneni" mode="notice">
