@@ -12,6 +12,7 @@ declare -a UPDATES=(
   "trim_trailing_slash_from_urls.ru"
   "prefer_https_urls.ru"
   "prefer_urls_with_protocol.ru"
+  "capitalize_award_criteria.ru"
 
   # Street address cleaning
   "expand_street_address_abbreviations_trida.ru"
