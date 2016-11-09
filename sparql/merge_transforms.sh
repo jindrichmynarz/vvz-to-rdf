@@ -79,6 +79,9 @@ declare -a UPDATES=(
   "resolve_correction_notices.ru"
   "resolve_updating_notices.ru"
   "resolve_notice_priorities_by_order.ru"
+  "merge_single_contract_contracting_authorities_with_ico.ru"
+  "merge_single_contract_contracting_authorities_without_ico.ru"
+
   "merge_notices_with_contracts.ru"
   "blank_nodes_to_hash_iris_notices.ru"
 )
