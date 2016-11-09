@@ -172,12 +172,13 @@
     
     <xsl:template match="CastiVerejneZakazky[not(PlatnyFormular/text() = 'false')]">
         <pproc:Lot>
+            <xsl:variable name="contractId" select="EvidencniCisloVZnaVVZ/text()"/>
             <xsl:variable name="partId" select="if (CisloCastiZadaniVZ) then CisloCastiZadaniVZ/text() else generate-id()"/>
-            <xsl:variable name="lotId" select="if (CisloFormulareNaVVZ) then CisloFormulareNaVVZ/text() else EvidencniCisloVZnaVVZ/text()"/>
-            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', concat($lotId, '-', $partId))"/>
+            <xsl:variable name="lotId" select="concat($contractId, (if (CisloFormulareNaVVZ) then concat('-', CisloFormulareNaVVZ/text()) else ''), '-', $partId)"/>
+            <xsl:attribute name="rdf:about" select="f:getInstanceUri('Lot', $lotId)"/>
             
             <!-- Evid. číslo na VVZ -->
-            <isvz:isLotOf rdf:resource="{f:getInstanceUri('Contract', EvidencniCisloVZnaVVZ/text())}"/>
+            <isvz:isLotOf rdf:resource="{f:getInstanceUri('Contract', $contractId)}"/>
             
             <xsl:apply-templates mode="lot"/>
             <xsl:if test="DodavatelNazev">
@@ -185,7 +186,7 @@
                     <pc:Tender>
                         <pc:bidder>
                             <schema:Organization>
-                                <xsl:variable name="icos" select="key('contracts', EvidencniCisloVZnaVVZ/text())/DodavatelICO/text()"/>
+                                <xsl:variable name="icos" select="key('contracts', $contractId)/DodavatelICO/text()"/>
                                 <xsl:if test="not(empty($icos))">
                                     <xsl:variable name="ico" select="$icos[1]"/>
                                     <xsl:if test="f:isValidIco($ico)">
