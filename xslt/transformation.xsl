@@ -755,6 +755,7 @@
         <xsl:variable name="number" select="replace(name(), 'Kriterium(\d+)', '$1')"/>
         <pc:awardCriterion>
             <pc:CriterionWeighting>
+                <isvz:order rdf:datatype="&xsd;integer"><xsl:value-of select="$number"/></isvz:order>
                 <xsl:call-template name="weightedCriterion"/>
                 <xsl:apply-templates select="../*[name() = concat('VahaKriteria', $number)]" mode="criterion"/>
             </pc:CriterionWeighting>
