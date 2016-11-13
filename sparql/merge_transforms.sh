@@ -89,6 +89,17 @@ declare -a UPDATES=(
 
   "merge_notices_with_contracts.ru"
   "blank_nodes_to_hash_iris_notices.ru"
+
+  # Delete orphans
+  "delete_orphaned_organizations.ru"
+  "delete_orphaned_identifiers.ru"
+  "delete_orphaned_places.ru"
+  "delete_orphaned_postal_addresses.ru"
+  "delete_orphaned_price_specifications.ru"
+  "delete_orphaned_projects.ru"
+  "delete_orphaned_award_criteria_combinations.ru"
+  "delete_orphaned_criterion_weightings.ru"
+  "delete_orphaned_concepts.ru"
 )
 
 for update in "${UPDATES[@]}"; do

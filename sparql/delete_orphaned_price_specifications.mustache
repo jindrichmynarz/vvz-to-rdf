@@ -1,0 +1,18 @@
+PREFIX schema: <http://schema.org/>
+
+DELETE {
+  ?priceSpecification ?p ?o .
+}
+WHERE {
+  {
+    SELECT ?priceSpecification
+    WHERE {
+      ?priceSpecification a schema:PriceSpecification .
+      FILTER NOT EXISTS {
+        [] ?inP ?priceSpecification .
+      }
+    }
+    LIMIT {{limit}}
+  }
+  ?priceSpecification ?p ?o .
+}

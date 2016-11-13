@@ -1,0 +1,18 @@
+PREFIX schema: <http://schema.org/>
+
+DELETE {
+  ?postalAddress ?p ?o .
+}
+WHERE {
+  {
+    SELECT ?postalAddress
+    WHERE {
+      ?postalAddress a schema:PostalAddress .
+      FILTER NOT EXISTS {
+        [] ?inP ?postalAddress .
+      }
+    }
+    LIMIT {{limit}}
+  }
+  ?postalAddress ?p ?o .
+}
