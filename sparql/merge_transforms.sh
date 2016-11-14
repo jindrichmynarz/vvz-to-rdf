@@ -90,6 +90,8 @@ declare -a UPDATES=(
   "merge_notices_with_contracts.ru"
   "blank_nodes_to_hash_iris_notices.ru"
 
+  "prefer_later_award_date.ru"
+
   # Delete orphans
   "delete_orphaned_organizations.ru"
   "delete_orphaned_identifiers.ru"
