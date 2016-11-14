@@ -12,6 +12,7 @@ declare -a UPDATES=(
   "trim_trailing_slash_from_urls.ru"
   "prefer_https_urls.ru"
   "prefer_urls_with_protocol.ru"
+  "replace_slashes_with_v.ru"
 
   # Clean award criteria
   "capitalize_award_criteria.ru"
