@@ -453,7 +453,7 @@
     
     <xsl:template match="RocniCiMesicniHodnotaPocetMesicu" mode="lot">
         <!-- Roční či měsíční hodnota - počet měsíců -->
-        <pc:duration rdf:datatype="&xsd;duration"><xsl:value-of select="concat('P', text(), 'M')"/></pc:duration>
+        <pc:duration><xsl:value-of select="concat('P', text(), 'M')"/></pc:duration>
     </xsl:template>
     
     <xsl:template match="VerejnaZakazka">
