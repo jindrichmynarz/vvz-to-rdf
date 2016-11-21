@@ -19,10 +19,11 @@ declare -a UPDATES=(
   "map_award_criteria.ru"
 
   # Street address cleaning
-  "expand_street_address_abbreviations_trida.ru"
-  "expand_street_address_abbreviations_namesti.ru"
-  "expand_street_address_abbreviations_sidliste.ru"
-  "expand_street_address_abbreviations_bratri.ru"
+  ## Do not use until <https://github.com/openlink/virtuoso-opensource/issues/415> is fixed:
+  # "expand_street_address_abbreviations_trida.ru"
+  # "expand_street_address_abbreviations_namesti.ru"
+  # "expand_street_address_abbreviations_sidliste.ru"
+  # "expand_street_address_abbreviations_bratri.ru"
   "street_address_trim_leading_ul.ru"
   "street_address_remove_ul.ru"
   "street_address_lowercase_words.ru"
