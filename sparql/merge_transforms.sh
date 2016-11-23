@@ -64,7 +64,7 @@ declare -a UPDATES=(
   "merge_criterion_weightings.ru"
   "blank_nodes_to_hash_iris_award_criteria_combinations.ru"
   "merge_award_criteria_combinations.ru"
-  "create_ico_based_iris.ru"
+  "create_ico_based_iris.ru" # Needs very small page sizes, such as 20.
   "blank_nodes_to_hash_iris_organizations.ru"
   "merge_organizations.ru"
   "group_organizations_by_name_and_postal_code.ru"
@@ -74,8 +74,8 @@ declare -a UPDATES=(
   "cast_single_lots_as_contracts.ru"
   "remove_organization_data_retrievable_from_ares.ru"
   "blank_nodes_to_hash_iris_postal_addresses_all.ru"
-  "blank_nodes_to_hash_iris_concepts_all.ru"
-  "blank_nodes_to_hash_iris_organizations_all.ru"
+  "blank_nodes_to_hash_iris_concepts_all.ru" # Needs very small page sizes, such as 5.
+  "blank_nodes_to_hash_iris_organizations_all.ru" # Needs very small page sizes, such as 5.
 
   # Reconcile code lists
   "map_procedure_types.ru"
