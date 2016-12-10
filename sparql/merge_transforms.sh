@@ -48,6 +48,7 @@ declare -a UPDATES=(
 
   # Add defaults
   "default_on_czk_currency.ru"
+  "default_on_czech_republic_as_country.ru"
 
   # Merging
   "blank_nodes_to_hash_iris_postal_addresses.ru"
