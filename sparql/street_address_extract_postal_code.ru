@@ -10,7 +10,7 @@ INSERT {
 WHERE {
   ?address a schema:PostalAddress ;
     schema:streetAddress ?_streetAddress .
-  FILTER REGEX(?_streetAddress, "\\s\\d{3}\\s?\\d{2}\\s")
-  BIND (REPLACE(?_streetAddress, "\\s\\d{3}\\s?\\d{2}", "") AS ?streetAddress)
-  BIND (REPLACE(?_streetAddress, "^.*\\s(\\d{3})\\s?(\\d{2})\\s.*$", "$1$2") AS ?postalCode)
+  FILTER REGEX(?_streetAddress, "\\d{3}\\s?\\d{2}")
+  BIND (REPLACE(?_streetAddress, "\\s*\\d{3}\\s?\\d{2}", "") AS ?streetAddress)
+  BIND (REPLACE(?_streetAddress, "^.*(\\d{3})\\s?(\\d{2}).*$", "$1$2") AS ?postalCode)
 }

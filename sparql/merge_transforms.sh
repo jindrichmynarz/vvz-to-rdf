@@ -18,16 +18,39 @@ declare -a UPDATES=(
   "capitalize_award_criteria.ru"
   "map_award_criteria.ru"
 
+  # Add defaults
+  "default_on_czk_currency.ru"
+  "default_on_czech_republic_as_country.ru"
+
   # Street address cleaning
   ## Do not use until <https://github.com/openlink/virtuoso-opensource/issues/415> is fixed:
   # "expand_street_address_abbreviations_trida.ru"
   # "expand_street_address_abbreviations_namesti.ru"
   # "expand_street_address_abbreviations_sidliste.ru"
   # "expand_street_address_abbreviations_bratri.ru"
+  "street_address_split.ru"
   "street_address_trim_leading_ul.ru"
   "street_address_remove_ul.ru"
   "street_address_lowercase_words.ru"
   "street_address_extract_postal_code.ru"
+  "address_description_extract_postal_code.ru"
+  "street_address_delete_trailing_comma.ru"
+  "street_address_delete_trailing_semicolon.ru"
+  "street_address_space_out_numbers.ru"
+  "street_address_delete_number_abbreviation_1.ru"
+  "street_address_delete_number_abbreviation_2.ru"
+  "parse_addresses_1.ru"
+  "parse_addresses_2.ru"
+  "parse_addresses_3.ru"
+  "parse_addresses_4.ru"
+  "delete_empty_street_address.ru"
+  "delete_empty_cislo_domovni.ru"
+  "delete_empty_cislo_orientacni.ru"
+  "delete_empty_cislo_orientacni_pismeno.ru"
+  "lowercase_orientational_number_letter.ru"
+  "delete_empty_postal_code.ru"
+  "delete_placeholder_address_locality.ru"
+  "street_address_trim_whitespace.ru"
 
   # Postal code cleaning
   "extract_postal_codes.ru"
@@ -45,10 +68,6 @@ declare -a UPDATES=(
   # Move properties
   "invert_is_lot_of.ru"
   "move_award_date_to_awarded_tender.ru"
-
-  # Add defaults
-  "default_on_czk_currency.ru"
-  "default_on_czech_republic_as_country.ru"
 
   # Merging
   "blank_nodes_to_hash_iris_postal_addresses.ru"
