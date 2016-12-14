@@ -17,6 +17,8 @@ WHERE {
           SELECT ?contract (SAMPLE(?_notice) AS ?notice)
           WHERE {
             ?contract isvz:notice ?_notice .
+            ?_notice ?p [] .
+            FILTER (?p NOT IN (dcterms:dateSubmitted, dcterms:issued, dcterms:type, rdf:type))
           }
           GROUP BY ?contract
           HAVING (COUNT(DISTINCT ?_notice) = 1)
@@ -24,7 +26,6 @@ WHERE {
         }
       }
       LIMIT {{limit}}
-      OFFSET {{offset}}
     }
   }
   ?notice ?p ?o .
