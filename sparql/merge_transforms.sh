@@ -115,6 +115,8 @@ declare -a UPDATES=(
   "remove_invalid_ico_from_organizations_with_valid_ico.ru"
 
   "prefer_later_award_date.ru"
+  "remove_transitively_inferable_procedure_types.ru"
+  "sample_procedure_type.ru"
 
   # Delete orphans
   "delete_orphaned_organizations.ru"
