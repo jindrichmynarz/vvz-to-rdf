@@ -186,7 +186,7 @@
                     <pc:Tender>
                         <pc:bidder>
                             <schema:Organization>
-                                <xsl:variable name="icos" select="key('contracts', $contractId)/DodavatelICO/text()"/>
+                                <xsl:variable name="icos" select="key('contracts', $contractId)[PlatnyFormular = 'true' and (DodavatelICO ne ZadavatelICO)]/DodavatelICO/text()"/>
                                 <xsl:if test="not(empty($icos))">
                                     <xsl:variable name="ico" select="$icos[1]"/>
                                     <xsl:if test="f:isValidIco($ico)">
@@ -473,7 +473,7 @@
                     <xsl:if test="ZadavatelUredniNazev">
                         <pc:contractingAuthority>
                             <schema:Organization>
-                                <xsl:variable name="icos" select="key('contracts', EvidencniCisloVZnaVVZ/text())/ZadavatelICO/text()"/>
+                                <xsl:variable name="icos" select="key('contracts', EvidencniCisloVZnaVVZ/text())[ZadavatelICO ne DodavatelICO]/ZadavatelICO/text()"/>
                                 <xsl:if test="not(empty($icos))">
                                     <xsl:variable name="ico" select="$icos[1]"/>
                                     <xsl:if test="f:isValidIco($ico)">
