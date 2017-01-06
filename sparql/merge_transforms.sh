@@ -51,6 +51,7 @@ declare -a UPDATES=(
   "delete_empty_postal_code.ru"
   "delete_placeholder_address_locality.ru"
   "street_address_trim_whitespace.ru"
+  "remove_street_address_duplicating_address_locality.ru"
 
   # Postal code cleaning
   "extract_postal_codes.ru"
