@@ -129,6 +129,9 @@ declare -a UPDATES=(
   "delete_orphaned_award_criteria_combinations.ru"
   "delete_orphaned_criterion_weightings.ru"
   "delete_orphaned_concepts.ru"
+
+  # Enrichment
+  "geocode_czech_republic.ru"
 )
 
 for update in "${UPDATES[@]}"; do
