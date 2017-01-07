@@ -12,8 +12,12 @@ WHERE {
   VALUES ?czechRepublic {
     "Česká republika"
     "Česká Republika"
+    "ČR"
+    "Celá Ceská republika"
     "CZ - Česká republika"
     "CZ"
+    "- celé území ČR"
+    "Celá ČR"
   }
   ?postalAddress a schema:PostalAddress ;
     schema:description ?czechRepublic .
