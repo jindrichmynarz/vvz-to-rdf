@@ -11,6 +11,7 @@ INSERT {
 WHERE {
   VALUES ?czechRepublic {
     "Česká republika"
+    "Česká Republika"
     "CZ - Česká republika"
     "CZ"
   }
