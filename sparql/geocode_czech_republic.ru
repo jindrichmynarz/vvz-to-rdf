@@ -21,4 +21,8 @@ WHERE {
   }
   ?postalAddress a schema:PostalAddress ;
     schema:description ?czechRepublic .
+  FILTER NOT EXISTS {
+    [] schema:address ?postalAddress ;
+      schema:geo [] .
+  }
 }
