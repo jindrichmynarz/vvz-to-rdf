@@ -133,6 +133,9 @@ declare -a UPDATES=(
 
   # Enrichment
   "geocode_czech_republic.ru"
+
+  # Normalization
+  "convert_price_ranges_to_averages.ru"
 )
 
 for update in "${UPDATES[@]}"; do
