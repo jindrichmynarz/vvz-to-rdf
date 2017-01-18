@@ -1,0 +1,14 @@
+PREFIX isvz:   <http://linked.opendata.cz/resource/dataset/isvz.cz>
+PREFIX schema: <http://schema.org/>
+
+WITH isvz:
+DELETE {
+  ?priceSpecification schema:price ?price .
+}
+INSERT {
+  ?priceSpecification schema:price {{winsorizedPrice}} .
+}
+WHERE {
+  ?priceSpecification schema:price ?price .
+  FILTER (?price > {{winsorizedPrice}})
+}

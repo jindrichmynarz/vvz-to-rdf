@@ -1,0 +1,16 @@
+PREFIX isvz:   <http://linked.opendata.cz/resource/dataset/isvz.cz>
+PREFIX schema: <http://schema.org/>
+
+SELECT (MIN(?price) AS ?winsorizedPrice)
+WHERE {
+  {
+    SELECT ?price 
+    WHERE {
+      GRAPH isvz: {
+        [] schema:price ?price .
+      }
+    }
+    ORDER BY DESC(?price)
+    LIMIT {{limit}}
+  }
+}

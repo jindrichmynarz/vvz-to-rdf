@@ -1,0 +1,9 @@
+PREFIX isvz:   <http://linked.opendata.cz/resource/dataset/isvz.cz>
+PREFIX schema: <http://schema.org/>
+
+SELECT (FLOOR(COUNT(?priceSpecification) * 0.005) AS ?limit)
+WHERE {
+  GRAPH isvz: {
+    ?priceSpecification a schema:PriceSpecification .
+  }
+}
