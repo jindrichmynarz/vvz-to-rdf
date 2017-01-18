@@ -1,0 +1,20 @@
+PREFIX schema: <http://schema.org/>
+
+INSERT {
+  ?place schema:address ?postalAddress .
+}
+WHERE {
+  {
+    SELECT ?postalAddress ?place
+    WHERE {
+      ?postalAddress schema:description ?description .
+      ?place schema:geo [] ;
+        schema:name ?name .
+      FILTER NOT EXISTS {
+        ?place schema:address ?postalAddress .
+      }
+      FILTER CONTAINS(LCASE(?description), LCASE(?name))
+    }
+    LIMIT {{limit}}
+  }
+}

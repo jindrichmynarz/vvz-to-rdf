@@ -1,3 +1,4 @@
+PREFIX ruian:  <http://ruian.linked.opendata.cz/ontology/>
 PREFIX schema: <http://schema.org/>
 
 WITH <http://linked.opendata.cz/resource/dataset/isvz.cz>
@@ -7,5 +8,6 @@ INSERT {
 WHERE {
   ?postalAddress schema:description ?description .
   ?place schema:geo [] ;
-    schema:name ?description .
+    ruian:nuts ?nuts .
+  FILTER CONTAINS(LCASE(?description), LCASE(?nuts))
 }
