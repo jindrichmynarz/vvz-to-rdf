@@ -102,6 +102,9 @@ declare -a UPDATES=(
   # Reconcile code lists
   "map_procedure_types.ru"
 
+  # Load vocabularies
+  "load_pproc.ru"
+
   # Resolve and merge notices
   "merge_contracts_with_single_notice.ru"
   "resolve_correction_notices.ru"
