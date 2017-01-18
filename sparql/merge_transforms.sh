@@ -137,6 +137,8 @@ declare -a UPDATES=(
 
   # Enrichment
   "geocode_czech_republic.ru"
+  "geocode_regions_by_name.ru"
+  "geocode_regions_by_nuts.ru"
 
   # Normalization
   "convert_price_ranges_to_averages.ru"
