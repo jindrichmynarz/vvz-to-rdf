@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<Silk>
+  <Prefixes>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix id="dcterms" namespace="http://purl.org/dc/terms/"/>
+    <Prefix id="gr" namespace="http://purl.org/goodrelations/v1#"/>
+    <Prefix id="ares" namespace="http://linked.opendata.cz/ontology/ares#"/>
+    <Prefix id="adms" namespace="http://www.w3.org/ns/adms#"/>
+    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
+    <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix id="schema" namespace="http://schema.org/"/>
+    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix id="rov" namespace="http://www.w3.org/ns/regorg#"/>
+  </Prefixes>
+  <DataSources>
+    <Dataset id="VVZ" type="sparqlEndpoint">
+      <Param name="pageSize" value="1000"/>
+      <Param name="clearGraphBeforeExecution" value="false"/>
+      <Param name="pauseTime" value="0"/>
+      <Param name="retryCount" value="3"/>
+      <Param name="endpointURI" value="http://localhost:8890/sparql"/>
+      <Param name="strategy" value="subQuery"/>
+      <Param name="retryPause" value="1000"/>
+      <Param name="graph" value="http://linked.opendata.cz/resource/dataset/isvz.cz"/>
+      <Param name="queryParameters" value=""/>
+      <Param name="login" value=""/>
+      <Param name="useOrderBy" value="true"/>
+      <Param name="entityList" value=""/>
+      <Param name="password" value=""/>
+    </Dataset>
+    <Dataset id="ARES-RZP" type="sparqlEndpoint">
+      <Param name="pageSize" value="1000"/>
+      <Param name="clearGraphBeforeExecution" value="false"/>
+      <Param name="pauseTime" value="0"/>
+      <Param name="retryCount" value="3"/>
+      <Param name="endpointURI" value="http://obeu.vse.cz:8890/sparql"/>
+      <Param name="strategy" value="subQuery"/>
+      <Param name="retryPause" value="1000"/>
+      <Param name="graph" value="http://linked.opendata.cz/resource/dataset/ares/rzp"/>
+      <Param name="queryParameters" value=""/>
+      <Param name="login" value=""/>
+      <Param name="useOrderBy" value="true"/>
+      <Param name="entityList" value=""/>
+      <Param name="password" value=""/>
+    </Dataset>
+  </DataSources>
+  <Interlinks>
+    <Interlink id="LinkInvalidIco">
+      <SourceDataset dataSource="VVZ" var="a" typeUri="http://schema.org/Organization">
+        <RestrictTo>
+          ?a &lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://purl.org/dc/terms/valid&gt; false .
+        </RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="ARES-RZP" var="b" typeUri="http://www.w3.org/ns/regorg#RegisteredOrganization">
+        <RestrictTo>
+          
+        </RestrictTo>
+      </TargetDataset>
+      <LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+        <Aggregate id="average1" required="false" weight="1" type="average">
+          <Compare id="levenshteinDistance1" required="true" weight="3" metric="levenshteinDistance" threshold="1.0" indexing="true">
+            <Input id="sourcePath1" path="/&lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://www.w3.org/2004/02/skos/core#notation&gt;"/>
+            <Input id="targetPath1" path="/&lt;http://www.w3.org/ns/adms#identifier&gt;/&lt;http://www.w3.org/2004/02/skos/core#notation&gt;"/>
+            <Param name="minChar" value="0"/>
+            <Param name="maxChar" value="9"/>
+          </Compare>
+          <Compare id="equality1" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
+            <Input id="sourcePath2" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
+            <Input id="targetPath2" path="/&lt;http://linked.opendata.cz/ontology/ares#zivnost&gt;/&lt;http://schema.org/hasPOS&gt;/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
+          </Compare>
+          <Compare id="equality2" required="false" weight="1" metric="equality" threshold="0.0" indexing="true">
+            <TransformInput id="lowerCase1" function="lowerCase">
+              <TransformInput id="alphaReduce" function="alphaReduce">
+                <Input id="sourcePath3" path="/&lt;http://schema.org/legalName&gt;"/>
+              </TransformInput>
+            </TransformInput>
+            <TransformInput id="lowerCase" function="lowerCase">
+              <TransformInput id="alphaReduce2" function="alphaReduce">
+                <Input id="targetPath" path="/&lt;http://purl.org/goodrelations/v1#legalName&gt;"/>
+              </TransformInput>
+            </TransformInput>
+          </Compare>
+        </Aggregate>
+        <Filter limit="1"/>
+      </LinkageRule>
+      <Outputs>
+        <Output id="invalid_ico_links"/>
+      </Outputs>
+    </Interlink>
+  </Interlinks>
+  <Transforms>
+          
+        </Transforms>
+  <Outputs>
+    <Dataset id="invalid_ico_links" type="file">
+      <Param name="file" value="InvalidICOLinks"/>
+      <Param name="format" value="N-Triples"/>
+      <Param name="graph" value=""/>
+    </Dataset>
+  </Outputs>
+</Silk>
