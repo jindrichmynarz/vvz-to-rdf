@@ -133,6 +133,7 @@ declare -a UPDATES=(
   "geocode_regions_by_nuts.ru"
 
   # Normalization
+  "convert_eur_to_czk.ru"
   "convert_price_ranges_to_averages.ru"
 )
 
