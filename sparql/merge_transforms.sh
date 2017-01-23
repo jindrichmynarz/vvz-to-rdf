@@ -114,6 +114,7 @@ declare -a UPDATES=(
   "prefer_later_award_date.ru"
   "remove_transitively_inferable_procedure_types.ru"
   "sample_procedure_type.ru"
+  "sample_actual_price.ru"
 
   # Delete orphans
   "delete_orphaned_organizations.ru"
