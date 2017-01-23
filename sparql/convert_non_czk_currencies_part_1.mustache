@@ -1,0 +1,23 @@
+PREFIX dcterms:        <http://purl.org/dc/terms/>
+PREFIX isvz:           <http://linked.opendata.cz/ontology/isvz.cz/>
+PREFIX schema:         <http://schema.org/>
+
+SELECT ?priceSpecification ?currency ?price ?date
+WHERE {
+  {
+    SELECT ?priceSpecification ?currency ?price (MIN(?_date) AS ?date)
+    WHERE {
+      GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+        ?priceSpecification schema:priceCurrency ?currency .
+        FILTER (?currency NOT IN ("CZK", "EUR"))
+        ?priceSpecification schema:price ?price .
+        [] ?p ?priceSpecification ;
+          isvz:notice/dcterms:dateSubmitted ?_date .
+      }
+    }
+    GROUP BY ?priceSpecification ?currency ?price
+    ORDER BY ?priceSpecification
+  }
+}
+LIMIT {{limit}}
+OFFSET {{offset}}

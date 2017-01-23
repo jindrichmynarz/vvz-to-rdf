@@ -134,6 +134,8 @@ declare -a UPDATES=(
 
   # Normalization
   "convert_eur_to_czk.ru"
+  "convert_non_czk_currencies_part_1.ru" # Placeholders, need to be executed via sparql-to-csv
+  "convert_non_czk_currencies_part_2.ru"
   "convert_price_ranges_to_averages.ru"
 )
 

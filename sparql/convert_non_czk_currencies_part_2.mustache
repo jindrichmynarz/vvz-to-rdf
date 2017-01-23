@@ -1,0 +1,31 @@
+PREFIX schema:         <http://schema.org/>
+PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
+PREFIX sdmx-measure:   <http://purl.org/linked-data/sdmx/2009/measure#>
+
+DELETE {
+  GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+    <{{priceSpecification}}> schema:priceCurrency "{{currency}}" ;
+      schema:price {{price}} .
+  }
+}
+INSERT {
+  GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+    <{{priceSpecification}}> schema:priceCurrency "CZK" ;
+      schema:price ?convertedPrice .
+  }
+}
+WHERE {
+  GRAPH <http://data.openbudgets.eu/resource/dataset/ecb-exchange-rates> {
+    ?obs1 sdmx-dimension:refPeriod ?date .
+    FILTER STRENDS(STR(?date), "{{date}}")
+    ?obs1 sdmx-dimension:currency ?currency .
+    FILTER STRENDS(STR(?currency), "{{currency}}")
+    ?obs1 sdmx-measure:obsValue ?eurToCurrencyRate .
+    FILTER (?eurToCurrencyRate != 0)
+
+    [] sdmx-dimension:refPeriod ?date ;
+      sdmx-dimension:currency <http://data.openbudgets.eu/codelist/currency/CZK> ;
+      sdmx-measure:obsValue ?eurToCzkRate .
+  }
+  BIND ({{price}} / ?eurToCurrencyRate * ?eurToCzkRate AS ?convertedPrice)
+}
