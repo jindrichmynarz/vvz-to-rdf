@@ -1,0 +1,37 @@
+PREFIX dimension: <http://linked.opendata.cz/ontology/zindex.cz/dimension/>
+PREFIX measure:   <http://linked.opendata.cz/ontology/zindex.cz/measure/>
+PREFIX qb:        <http://purl.org/linked-data/cube#>
+PREFIX skos:      <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd:       <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?dataset a qb:DataSet ;
+    qb:structure <http://linked.opendata.cz/ontology/zindex.cz/dsd> .
+}
+WHERE {
+  BIND ("http://linked.opendata.cz/resource/zindex.cz/" AS ?ns)
+  BIND (IRI(CONCAT(?ns, "dataset")) AS ?dataset)
+}
+LIMIT 1
+
+CONSTRUCT {
+  ?observation a qb:Observation ;
+    dimension:organization ?organization ;
+    dimension:rating ?rating ; 
+    measure:zIndex ?measure ;
+    qb:dataSet ?dataset .
+
+  ?rating a skos:Concept ;
+    skos:notation ?rating_id ;
+    skos:inScheme <http://linked.opendata.cz/ontology/zindex.cz/code-list/ratings> .
+
+  <http://linked.opendata.cz/ontology/zindex.cz/code-list/ratings> a skos:ConceptScheme .
+}
+WHERE {
+  BIND ("http://linked.opendata.cz/resource/zindex.cz/" AS ?ns)
+  BIND (IRI(CONCAT(?ns, "observation/", ?authority_id, "/", ?rating_id)) AS ?observation)
+  BIND (IRI(CONCAT(?ns, "dataset")) AS ?dataset)
+  BIND (IRI(CONCAT("http://linked.opendata.cz/resource/business-entity/", ?authority_id)) AS ?organization)
+  BIND (IRI(CONCAT("http://linked.opendata.cz/ontology/zindex.cz/code-list/ratings/", ?rating_id)) AS ?rating)
+  BIND (STRDT(?avg, xsd:decimal) AS ?measure)
+}

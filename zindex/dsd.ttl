@@ -1,0 +1,35 @@
+@prefix code-list:    <http://linked.opendata.cz/ontology/zindex.cz/code-list/> .
+@prefix dimension:    <http://linked.opendata.cz/ontology/zindex.cz/dimension/> .
+@prefix measure:      <http://linked.opendata.cz/ontology/zindex.cz/measure/> .
+@prefix org:          <http://www.w3.org/ns/org#> .
+@prefix qb:           <http://purl.org/linked-data/cube#> .
+@prefix rdfs:         <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdmx-concept: <http://purl.org/linked-data/sdmx/2009/concept#> .
+@prefix sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#> .
+@prefix xsd:          <http://www.w3.org/2001/XMLSchema#> .
+
+<http://linked.opendata.cz/ontology/zindex.cz/dsd> a qb:DataStructureDefinition ;
+  rdfs:label "zIndex data structure"@en ;
+  qb:component [ qb:dimension dimension:organization ],
+               [ qb:dimension dimension:rating ],
+               [ qb:measure measure:zIndex ] .
+
+# ----- Component properties -----
+
+dimension:organization a qb:DimensionProperty ;
+  rdfs:label "Organization"@en ;
+  qb:concept sdmx-concept:statUnit ;
+  rdfs:range org:Organization ;
+  rdfs:isDefinedBy <http://linked.opendata.cz/ontology/zindex.cz> .
+
+dimension:rating a qb:DimensionProperty ;
+  rdfs:label "Rating"@en ;
+  qb:codeList code-list:ratings ;
+  rdfs:isDefinedBy <http://linked.opendata.cz/ontology/zindex.cz> .
+
+measure:zIndex a qb:MeasureProperty ;
+  rdfs:label "zIndex"@en ;
+  qb:concept sdmx-concept:obsValue ;
+  rdfs:range xsd:decimal ;
+  rdfs:subPropertyOf sdmx-measure:obsValue ;
+  rdfs:isDefinedBy <http://linked.opendata.cz/ontology/zindex.cz> .
