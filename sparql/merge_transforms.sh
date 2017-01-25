@@ -68,7 +68,6 @@ declare -a UPDATES=(
 
   # Move properties
   "invert_is_lot_of.ru"
-  "move_award_date_to_awarded_tender.ru"
   "interchange_mixed_min_and_max_prices.ru"
 
   # Merging
