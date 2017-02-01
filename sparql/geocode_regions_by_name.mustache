@@ -1,3 +1,4 @@
+PREFIX ruian:  <http://ruian.linked.opendata.cz/ontology/>
 PREFIX schema: <http://schema.org/>
 
 INSERT {
@@ -7,13 +8,17 @@ WHERE {
   {
     SELECT ?postalAddress ?place
     WHERE {
-      ?postalAddress schema:description ?description .
-      ?place schema:geo [] ;
+      ?postalAddress schema:description ?name .
+      VALUES ?class {
+        ruian:Obec
+        ruian:Vusc
+      }
+      ?place a ?class ;
+        schema:geo [] ;
         schema:name ?name .
       FILTER NOT EXISTS {
         ?place schema:address ?postalAddress .
       }
-      FILTER CONTAINS(LCASE(?description), LCASE(?name))
     }
     LIMIT {{limit}}
   }
