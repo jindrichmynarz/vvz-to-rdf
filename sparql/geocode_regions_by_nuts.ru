@@ -7,7 +7,12 @@ INSERT {
 }
 WHERE {
   ?postalAddress schema:description ?description .
-  ?place schema:geo [] ;
+  VALUES ?class {
+    ruian:Obec
+    ruian:Nuts
+  }
+  ?place a ?class ;
+    schema:geo [] ;
     ruian:nuts ?nuts .
   FILTER CONTAINS(LCASE(?description), LCASE(?nuts))
 }
