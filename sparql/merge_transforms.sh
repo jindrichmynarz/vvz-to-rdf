@@ -70,12 +70,6 @@ declare -a UPDATES=(
   "invert_is_lot_of.ru"
   "interchange_mixed_min_and_max_prices.ru"
 
-  # Normalization
-  "convert_eur_to_czk.ru"
-  "convert_non_czk_currencies_part_1.ru" # Placeholders, need to be executed via sparql-to-csv
-  "convert_non_czk_currencies_part_2.ru"
-  "convert_price_ranges_to_averages.ru"
-
   # Merging
   "blank_nodes_to_hash_iris_postal_addresses.ru"
   "blank_nodes_to_hash_iris_places.ru"
@@ -94,6 +88,12 @@ declare -a UPDATES=(
   "blank_nodes_to_hash_iris_postal_addresses_all.ru"
   "blank_nodes_to_hash_iris_concepts_all.ru" # Needs very small page sizes, such as 5.
   "blank_nodes_to_hash_iris_organizations_all.ru" # Needs very small page sizes, such as 5.
+
+  # Normalization
+  "convert_eur_to_czk.ru"
+  "convert_non_czk_currencies_part_1.ru" # Placeholders, need to be executed via sparql-to-csv
+  "convert_non_czk_currencies_part_2.ru"
+  "convert_price_ranges_to_averages.ru"
 
   # Reconcile code lists
   "map_procedure_types.ru"
