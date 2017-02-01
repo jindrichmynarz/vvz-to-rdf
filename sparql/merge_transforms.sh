@@ -103,6 +103,7 @@ declare -a UPDATES=(
 
   # Enrichment
   "geocode_czech_republic.ru"
+  # NOTE: Before running this, run pipelines/czech_regions_centroids.jsonld.
   "geocode_regions_by_name.ru"
   "geocode_regions_by_nuts.ru"
 
