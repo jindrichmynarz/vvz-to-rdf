@@ -1,0 +1,30 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+DELETE {
+  ?bnode ?outP ?outO .
+  ?inS ?inP ?bnode .
+}
+INSERT {
+  ?iri ?outP ?outO .
+  ?inS ?inP ?iri .
+}
+WHERE {
+  {
+    SELECT ?bnode ?iri
+    WHERE {
+      {
+        SELECT DISTINCT ?bnode
+        WHERE {
+          ?bnode a skos:Concept .
+          FILTER isBlank(?bnode)
+        }
+        LIMIT {{limit}}
+      }
+      BIND (IRI(CONCAT("http://linked.opendata.cz/resource/concept/", STRUUID())) AS ?iri)
+    }
+  }
+  ?bnode ?outP ?outO .
+  OPTIONAL {
+    ?inS ?inP ?bnode .
+  }
+}
