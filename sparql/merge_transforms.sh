@@ -70,6 +70,12 @@ declare -a UPDATES=(
   "invert_is_lot_of.ru"
   "interchange_mixed_min_and_max_prices.ru"
 
+  # Normalization
+  "convert_eur_to_czk.ru"
+  "convert_non_czk_currencies_part_1.ru" # Placeholders, need to be executed via sparql-to-csv
+  "convert_non_czk_currencies_part_2.ru"
+  "convert_price_ranges_to_averages.ru"
+
   # Merging
   "blank_nodes_to_hash_iris_postal_addresses.ru"
   "blank_nodes_to_hash_iris_places.ru"
@@ -94,6 +100,11 @@ declare -a UPDATES=(
 
   # Load vocabularies
   "load_pproc.ru"
+
+  # Enrichment
+  "geocode_czech_republic.ru"
+  "geocode_regions_by_name.ru"
+  "geocode_regions_by_nuts.ru"
 
   # Resolve and merge notices
   "merge_contracts_with_single_notice.ru"
@@ -125,17 +136,6 @@ declare -a UPDATES=(
   "delete_orphaned_award_criteria_combinations.ru"
   "delete_orphaned_criterion_weightings.ru"
   "delete_orphaned_concepts.ru"
-
-  # Enrichment
-  "geocode_czech_republic.ru"
-  "geocode_regions_by_name.ru"
-  "geocode_regions_by_nuts.ru"
-
-  # Normalization
-  "convert_eur_to_czk.ru"
-  "convert_non_czk_currencies_part_1.ru" # Placeholders, need to be executed via sparql-to-csv
-  "convert_non_czk_currencies_part_2.ru"
-  "convert_price_ranges_to_averages.ru"
 )
 
 for update in "${UPDATES[@]}"; do
