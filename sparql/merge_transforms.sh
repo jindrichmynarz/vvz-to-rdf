@@ -121,6 +121,7 @@ declare -a UPDATES=(
   "blank_nodes_to_hash_iris_notices.ru"
   "merge_awarded_bidders_with_the_same_name.ru"
   "remove_invalid_ico_from_organizations_with_valid_ico.ru"
+  "remove_notice_class_from_contracts.ru"
 
   "prefer_later_award_date.ru"
   "remove_transitively_inferable_procedure_types.ru"
