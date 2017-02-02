@@ -1,3 +1,4 @@
+PREFIX isvz:  <http://linked.opendata.cz/ontology/isvz.cz/>
 PREFIX pproc: <http://contsem.unizar.es/def/sector-publico/pproc#>
 
 DELETE {
@@ -20,7 +21,7 @@ WHERE {
           {
             SELECT ?bnode
             WHERE {
-              ?bnode a pproc:Notice .
+              [] isvz:notice ?bnode . 
               FILTER isBlank(?bnode)
             }
             LIMIT {{limit}}

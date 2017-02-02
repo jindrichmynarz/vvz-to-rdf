@@ -1,3 +1,4 @@
+PREFIX isvz:  <http://linked.opendata.cz/ontology/isvz.cz/>
 PREFIX pproc: <http://contsem.unizar.es/def/sector-publico/pproc#>
 
 DELETE {
@@ -17,7 +18,7 @@ WHERE {
                (SHA1(CONCAT(GROUP_CONCAT(STR(?p); separator = ""),
                             GROUP_CONCAT(STR(?o); separator = ""))) AS ?hash)
         WHERE {
-          ?bnode a pproc:Notice .
+          [] isvz:notice ?bnode .
           FILTER isBlank(?bnode)
           ?bnode ?p ?o .
         }
