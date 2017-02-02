@@ -117,7 +117,7 @@ declare -a UPDATES=(
   "drop_conflicting_boolean_properties.ru"
 
   "merge_notices_with_contracts.ru"
-  "move_non_notice_types.ru"
+  "move_non_notice_types.ru" # This needs to be done without the default graph.
   "blank_nodes_to_hash_iris_notices.ru"
   "merge_awarded_bidders_with_the_same_name.ru"
   "remove_invalid_ico_from_organizations_with_valid_ico.ru"
