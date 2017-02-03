@@ -16,6 +16,16 @@ declare -a UPDATES=(
 
   # Cleaning
   "delete_cpv_2003_concepts.ru"
+
+  # Resolve schema:Organization links
+  # Iterate resolving links with clearing them.
+  "resolve_same_as_links.ru"
+  "clear_linkset_graph.ru"
+
+  # Remove remnants of merged organizations
+  "remove_invalid_ico_from_organizations_with_valid_ico.ru"
+  "remove_organization_data_retrievable_from_ares.ru"
+  "merge_ic.ru"
 )
 
 for update in "${UPDATES[@]}"; do
