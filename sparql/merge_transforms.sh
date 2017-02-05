@@ -8,7 +8,6 @@ declare -a UPDATES=(
 
   # Clean literals
   "unquote_literals.ru"
-  "canonicalize_organization_names.ru"
   "trim_trailing_slash_from_urls.ru"
   "prefer_https_urls.ru"
   "prefer_urls_with_protocol.ru"
