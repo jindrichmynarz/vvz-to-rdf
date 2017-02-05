@@ -47,14 +47,14 @@
         <Filter limit="1"/>
       </LinkageRule>
       <Outputs>
-        <Output id="invalid_ico_links"/>
+        <Output id="InvalidICLinks"/>
       </Outputs>
     </Interlink>
   </Interlinks>
   <Outputs>
-    <Dataset id="invalid_ico_links" type="file">
-      <Param name="file" value="InvalidICOLinks"/>
-      <Param name="format" value="N-Triples"/>
+    <Dataset id="InvalidICLinks" type="file">
+      <Param name="file" value="invalid_ic_links.nt"/>
+      <Param name="format" value="N-TRIPLE"/>
     </Dataset>
   </Outputs>
 </Silk>

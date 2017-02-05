@@ -39,7 +39,7 @@
       <Param name="endpointURI" value="http://obeu.vse.cz:8890/sparql"/>
       <Param name="strategy" value="subQuery"/>
       <Param name="retryPause" value="1000"/>
-      <Param name="graph" value="http://linked.opendata.cz/resource/dataset/ares/or"/>
+      <Param name="graph" value="http://linked.opendata.cz/resource/dataset/ares/rzp"/>
       <Param name="queryParameters" value=""/>
       <Param name="login" value=""/>
       <Param name="useOrderBy" value="true"/>
@@ -48,54 +48,55 @@
     </Dataset>
   </DataSources>
   <Interlinks>
-    <Interlink id="LinkNoIco">
+    <Interlink id="LinkOnlyName">
       <SourceDataset dataSource="VVZ" var="a" typeUri="http://schema.org/Organization">
         <RestrictTo>
-          FILTER (!STRSTARTS(STR(?a), "http://linked.opendata.cz/resource/business-entity/CZ"))
+          FILTER NOT EXISTS {
+   ?a &lt;http://www.w3.org/ns/regorg#registration&gt; [] .
+} .
         </RestrictTo>
       </SourceDataset>
       <TargetDataset dataSource="ARES-OR" var="b" typeUri="http://www.w3.org/ns/regorg#RegisteredOrganization">
         <RestrictTo>
+          
         </RestrictTo>
       </TargetDataset>
       <LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
-        <Aggregate id="average1" required="false" weight="1" type="average">
-          <Compare id="equality2" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
-            <Input id="sourcePath1" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
-            <Input id="targetPath1" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
-          </Compare>
-          <Compare id="jaroWinkler1" required="true" weight="4" metric="jaroWinkler" threshold="0.05" indexing="true">
-            <TransformInput id="removeStopwords" function="removeStopwords">
-              <TransformInput id="alphaReduce1" function="alphaReduce">
-                <TransformInput id="lowerCase1" function="lowerCase">
-                  <Input id="sourcePath2" path="/&lt;http://schema.org/legalName&gt;"/>
+        <Compare id="equality1" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
+          <TransformInput id="lowerCase1" function="lowerCase">
+            <TransformInput id="alphaReduce1" function="alphaReduce">
+              <TransformInput id="removeEmptyValues" function="removeEmptyValues">
+                <TransformInput id="removeStopwords" function="removeStopwords">
+                  <Input id="sourcePath1" path="/&lt;http://schema.org/legalName&gt;"/>
+                  <Param name="stopwordList" value="non_unique_legal_names.txt"/>
+                  <Param name="separator" value="\|"/>
                 </TransformInput>
               </TransformInput>
-              <Param name="stopwordList" value="organization_names_stop_words.txt"/>
-              <Param name="separator" value="\s+"/>
             </TransformInput>
-            <TransformInput id="removeStopwords2" function="removeStopwords">
-              <TransformInput id="alphaReduce2" function="alphaReduce">
-                <TransformInput id="lowerCase2" function="lowerCase">
-                  <Input id="targetPath2" path="/&lt;http://purl.org/goodrelations/v1#legalName&gt;"/>
+          </TransformInput>
+          <TransformInput id="lowerCase" function="lowerCase">
+            <TransformInput id="alphaReduce2" function="alphaReduce">
+              <TransformInput id="removeEmptyValues2" function="removeEmptyValues">
+                <TransformInput id="removeStopwords2" function="removeStopwords">
+                  <Input id="targetPath1" path="/&lt;http://purl.org/goodrelations/v1#legalName&gt;"/>
+                  <Param name="stopwordList" value="non_unique_legal_names.txt"/>
+                  <Param name="separator" value="\|"/>
                 </TransformInput>
               </TransformInput>
-              <Param name="stopwordList" value="organization_names_stop_words.txt"/>
-              <Param name="separator" value="\s+"/>
             </TransformInput>
-          </Compare>
-        </Aggregate>
+          </TransformInput>
+        </Compare>
         <Filter limit="1"/>
       </LinkageRule>
       <Outputs>
-        <Output id="no_ico_links"/>
+        <Output id="LinksOnlyName"/>
       </Outputs>
     </Interlink>
   </Interlinks>
   <Transforms/>
   <Outputs>
-    <Dataset id="no_ico_links" type="file">
-      <Param name="file" value="NoICOLinks"/>
+    <Dataset id="LinksOnlyName" type="file">
+      <Param name="file" value="links_only_name.nt"/>
       <Param name="format" value="N-Triples"/>
       <Param name="graph" value=""/>
     </Dataset>
