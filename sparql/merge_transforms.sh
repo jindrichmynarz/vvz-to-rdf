@@ -97,9 +97,10 @@ declare -a UPDATES=(
   # Reconcile code lists
   "map_procedure_types.ru"
 
-  # Load vocabularies
+  # Load vocabularies and code lists
   "load_pproc.ru"
   "load_service_categories.ru"
+  "load_procedure_kinds.ru"
 
   # Enrichment
   "geocode_czech_republic.ru"
