@@ -99,6 +99,7 @@ declare -a UPDATES=(
 
   # Load vocabularies
   "load_pproc.ru"
+  "load_service_categories.ru"
 
   # Enrichment
   "geocode_czech_republic.ru"
