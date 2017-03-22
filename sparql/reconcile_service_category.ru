@@ -3,17 +3,37 @@ PREFIX scheme: <http://linked.opendata.cz/resource/concept-scheme/eur-lex.europa
 PREFIX skos:   <http://www.w3.org/2004/02/skos/core#>
 
 DELETE {
-  ?_serviceCategory ?outP ?outO .
-  ?inS ?inP ?_serviceCategory .
+  GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+    ?_serviceCategory ?outP ?outO .
+    ?inS ?inP ?_serviceCategory .
+  }
 }
 INSERT {
-  ?inS ?inP ?serviceCategory .
+  GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+    ?inS ?inP ?serviceCategory .
+  }
 }
 WHERE {
-  ?contract isvz:serviceCategory ?_serviceCategory .
-  ?_serviceCategory skos:prefLabel ?label .
-  ?serviceCategory skos:inScheme scheme: ;
-    skos:prefLabel ?label .
-  ?_serviceCategory ?outP ?outO .
-  ?inS ?inP ?_serviceCategory .
+  {
+    SELECT ?_serviceCategory ?label ?serviceCategory
+    WHERE {
+      {
+        SELECT DISTINCT ?_serviceCategory ?label
+        WHERE {
+          GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+            [] isvz:serviceCategory ?_serviceCategory .
+            ?_serviceCategory skos:prefLabel ?label .
+          }
+        }
+      }
+      GRAPH scheme: {
+        ?serviceCategory skos:inScheme scheme: ;
+          skos:prefLabel ?label .
+      }
+    }
+  }
+  GRAPH <http://linked.opendata.cz/resource/dataset/isvz.cz> {
+    ?_serviceCategory ?outP ?outO .
+    ?inS ?inP ?_serviceCategory .
+  }
 }
