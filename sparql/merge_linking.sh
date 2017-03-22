@@ -9,6 +9,7 @@ declare -a UPDATES=(
   "reconcile_contracting_authority_activities.ru"
   "reconcile_procedure_types.ru"
   "reconcile_service_category.ru"
+  "reconcile_service_category_via_manual_mapping.ru"
 
   # Linking
   "map_cpv_2003_to_cpv_2008.ru"
