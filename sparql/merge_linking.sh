@@ -13,6 +13,8 @@ declare -a UPDATES=(
 
   # Linking
   "map_cpv_2003_to_cpv_2008.ru"
+  "unmapped_cpv_casted_as_cpv_2003.ru"
+  "blank_nodes_to_uuid_iris_concepts_all.ru" # Re-run blank nodes to IRIs for CPV 2003 proxy concepts
   "link_eu_projects.ru"
 
   # Cleaning
