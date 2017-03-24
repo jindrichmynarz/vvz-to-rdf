@@ -109,7 +109,7 @@ declare -a UPDATES=(
   "geocode_regions_by_nuts.ru"
 
   # Resolve and merge notices
-  "merge_contracts_with_single_notice.ru"
+  "merge_contracts_with_single_notice.ru" # ZDES
   "resolve_correction_notices.ru"
   "resolve_updating_notices.ru"
   "resolve_notice_priorities_by_order.ru"
@@ -128,6 +128,7 @@ declare -a UPDATES=(
   "remove_transitively_inferable_procedure_types.ru"
   "sample_procedure_type.ru"
   "sample_actual_price.ru"
+  "merge_tenders.ru"
 
   # Delete orphans
   "delete_orphaned_organizations.ru"
