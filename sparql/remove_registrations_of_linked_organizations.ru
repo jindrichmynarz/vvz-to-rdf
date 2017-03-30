@@ -1,3 +1,6 @@
+# The purpose of this SPARQL Update operation is to remove superfluous registrations
+# of the organizations already linked to ARES.
+
 PREFIX rov:    <http://www.w3.org/ns/regorg#>
 PREFIX schema: <http://schema.org/>
 
