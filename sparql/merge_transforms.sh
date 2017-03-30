@@ -102,6 +102,7 @@ declare -a UPDATES=(
   "load_service_categories.ru"
   "load_contract_kinds.ru"
   "load_authority_kinds.ru"
+  "load_contracting_authority_activities.ru"
 
   # Enrichment
   "geocode_czech_republic.ru"
