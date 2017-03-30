@@ -101,6 +101,7 @@ declare -a UPDATES=(
   "load_pproc.ru"
   "load_service_categories.ru"
   "load_contract_kinds.ru"
+  "load_authority_kinds.ru"
 
   # Enrichment
   "geocode_czech_republic.ru"
@@ -109,7 +110,7 @@ declare -a UPDATES=(
   "geocode_regions_by_nuts.ru"
 
   # Resolve and merge notices
-  "merge_contracts_with_single_notice.ru" # ZDES
+  "merge_contracts_with_single_notice.ru"
   "resolve_correction_notices.ru"
   "resolve_updating_notices.ru"
   "resolve_notice_priorities_by_order.ru"
