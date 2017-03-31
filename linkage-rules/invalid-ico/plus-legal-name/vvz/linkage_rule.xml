@@ -1,10 +1,7 @@
 <?xml version="1.0"?>
 <Silk>
   <Prefixes>
-    <Prefix id="dcterms" namespace="http://purl.org/dc/terms/"/>
     <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
-    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
     <Prefix id="rov" namespace="http://www.w3.org/ns/regorg#"/>
     <Prefix id="schema" namespace="http://schema.org/"/>
     <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
