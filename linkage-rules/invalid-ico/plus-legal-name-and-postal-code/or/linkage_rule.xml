@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <Silk>
   <Prefixes>
-    <Prefix id="gr" namespace="http://purl.org/goodrelations/v1#"/>
-    <Prefix id="ares" namespace="http://linked.opendata.cz/ontology/ares#"/>
-    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
-    <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
-    <Prefix id="schema" namespace="http://schema.org/"/>
-    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Prefix id="rov" namespace="http://www.w3.org/ns/regorg#"/>
     <Prefix id="adms" namespace="http://www.w3.org/ns/adms#"/>
+    <Prefix id="gr" namespace="http://purl.org/goodrelations/v1#"/>
+    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
+    <Prefix id="rov" namespace="http://www.w3.org/ns/regorg#"/>
+    <Prefix id="schema" namespace="http://schema.org/"/>
+    <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
   </Prefixes>
   <DataSources>
     <Dataset id="VVZ" type="sparqlEndpoint">
