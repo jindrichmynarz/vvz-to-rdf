@@ -32,7 +32,7 @@
       </SourceDataset>
       <TargetDataset dataSource="VVZ" var="b" typeUri="http://schema.org/Organization">
         <RestrictTo>
-          ?a &lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://www.w3.org/2004/02/skos/core#inScheme&gt;
+          ?b &lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://www.w3.org/2004/02/skos/core#inScheme&gt;
           &lt;http://linked.opendata.cz/resource/concept-scheme/CZ-ICO&gt; .
         </RestrictTo>
       </TargetDataset>

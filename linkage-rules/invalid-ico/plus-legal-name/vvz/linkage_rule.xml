@@ -38,20 +38,20 @@
       <LinkageRule linkType="owl:sameAs">
         <Aggregate id="average1" required="false" weight="1" type="average">
           <Compare id="levenshteinDistance1" required="true" weight="3" metric="levenshteinDistance" threshold="1.0" indexing="true">
-            <Input id="sourcePath1" path="/rov:registration/skos:notation"/>
-            <Input id="targetPath1" path="/rov:registration/skos:notation"/>
+            <Input id="sourcePath1" path="?a/rov:registration/skos:notation"/>
+            <Input id="targetPath1" path="?b/rov:registration/skos:notation"/>
             <Param name="minChar" value="0"/>
             <Param name="maxChar" value="9"/>
           </Compare>
           <Compare id="jaroWinkler" required="true" weight="1" metric="jaroWinkler" threshold="0.2" indexing="true">
             <TransformInput id="alphaReduce1" function="alphaReduce">
               <TransformInput id="lowerCase1" function="lowerCase">
-                <Input id="sourcePath2" path="schema:legalName"/>
+                <Input id="sourcePath2" path="?a/schema:legalName"/>
               </TransformInput>
             </TransformInput>
             <TransformInput id="alphaReduce2" function="alphaReduce">
               <TransformInput id="lowerCase" function="lowerCase">
-                <Input id="targetPath2" path="schema:legalName"/>
+                <Input id="targetPath2" path="?b/schema:legalName"/>
               </TransformInput>
             </TransformInput>
           </Compare>

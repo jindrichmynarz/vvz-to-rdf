@@ -54,24 +54,24 @@
       <LinkageRule linkType="owl:sameAs">
         <Aggregate id="average1" required="false" weight="1" type="average">
           <Compare id="levenshteinDistance1" required="true" weight="3" metric="levenshteinDistance" threshold="1.0" indexing="true">
-            <Input id="sourcePath1" path="/rov:registration/skos:notation"/>
-            <Input id="targetPath1" path="/adms:identifier/skos:notation"/>
+            <Input id="sourcePath1" path="?a/rov:registration/skos:notation"/>
+            <Input id="targetPath1" path="?b/adms:identifier/skos:notation"/>
             <Param name="minChar" value="0"/>
             <Param name="maxChar" value="9"/>
           </Compare>
           <Compare id="equality1" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
-            <Input id="sourcePath2" path="/schema:address/schema:postalCode"/>
-            <Input id="targetPath2" path="/ares:zivnost/schema:hasPOS/schema:address/schema:postalCode"/>
+            <Input id="sourcePath2" path="?a/schema:address/schema:postalCode"/>
+            <Input id="targetPath2" path="?b/ares:zivnost/schema:hasPOS/schema:address/schema:postalCode"/>
           </Compare>
           <Compare id="jaroWinkler1" required="true" weight="1" metric="jaroWinkler" threshold="0.2" indexing="true">
             <TransformInput id="lowerCase1" function="lowerCase">
               <TransformInput id="alphaReduce" function="alphaReduce">
-                <Input id="sourcePath3" path="/schema:legalName"/>
+                <Input id="sourcePath3" path="?a/schema:legalName"/>
               </TransformInput>
             </TransformInput>
             <TransformInput id="lowerCase" function="lowerCase">
               <TransformInput id="alphaReduce2" function="alphaReduce">
-                <Input id="targetPath" path="/gr:legalName"/>
+                <Input id="targetPath" path="?b/gr:legalName"/>
               </TransformInput>
             </TransformInput>
           </Compare>
