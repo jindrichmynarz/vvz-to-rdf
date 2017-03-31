@@ -30,12 +30,12 @@
     <Interlink id="LinkInvalidIco">
       <SourceDataset dataSource="VVZ" var="a" typeUri="http://schema.org/Organization">
         <RestrictTo>
-          ?a rov:registration [ dcterms:valid false ] .
+          ?a &lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://purl.org/dc/terms/valid&gt; false .
         </RestrictTo>
       </SourceDataset>
       <TargetDataset dataSource="VVZ" var="b" typeUri="http://schema.org/Organization">
         <RestrictTo>
-          ?b rov:registration [ skos:inScheme &lt;http://linked.opendata.cz/resource/concept-scheme/CZ-ICO&gt; ] .
+          ?b &lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://www.w3.org/2004/02/skos/core#inScheme&gt; &lt;http://linked.opendata.cz/resource/concept-scheme/CZ-ICO&gt; .
         </RestrictTo>
       </TargetDataset>
       <LinkageRule linkType="owl:sameAs">
