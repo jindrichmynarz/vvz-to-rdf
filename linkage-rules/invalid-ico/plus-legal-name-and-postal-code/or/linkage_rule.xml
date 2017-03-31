@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <Silk>
   <Prefixes>
-    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix id="dcterms" namespace="http://purl.org/dc/terms/"/>
     <Prefix id="gr" namespace="http://purl.org/goodrelations/v1#"/>
     <Prefix id="ares" namespace="http://linked.opendata.cz/ontology/ares#"/>
     <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
@@ -18,7 +16,7 @@
       <Param name="clearGraphBeforeExecution" value="false"/>
       <Param name="pauseTime" value="0"/>
       <Param name="retryCount" value="3"/>
-      <Param name="endpointURI" value="http://localhost:8890/sparql"/>
+      <Param name="endpointURI" value="http://lod2-dev.vse.cz:8890/sparql"/>
       <Param name="strategy" value="subQuery"/>
       <Param name="retryPause" value="1000"/>
       <Param name="graph" value="http://linked.opendata.cz/resource/dataset/isvz.cz"/>
@@ -52,31 +50,29 @@
         </RestrictTo>
       </SourceDataset>
       <TargetDataset dataSource="ARES-OR" var="b" typeUri="http://www.w3.org/ns/regorg#RegisteredOrganization">
-        <RestrictTo>
-          
-        </RestrictTo>
+        <RestrictTo/>
       </TargetDataset>
-      <LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+      <LinkageRule linkType="owl:sameAs">
         <Aggregate id="average1" required="false" weight="1" type="average">
           <Compare id="levenshteinDistance1" required="true" weight="3" metric="levenshteinDistance" threshold="1.0" indexing="true">
-            <Input id="sourcePath1" path="/&lt;http://www.w3.org/ns/regorg#registration&gt;/&lt;http://www.w3.org/2004/02/skos/core#notation&gt;"/>
-            <Input id="targetPath1" path="/&lt;http://www.w3.org/ns/adms#identifier&gt;/&lt;http://www.w3.org/2004/02/skos/core#notation&gt;"/>
+            <Input id="sourcePath1" path="/rov:registration/skos:notation"/>
+            <Input id="targetPath1" path="/adms:identifier/skos:notation"/>
             <Param name="minChar" value="0"/>
             <Param name="maxChar" value="9"/>
           </Compare>
           <Compare id="equality1" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
-            <Input id="sourcePath2" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
-            <Input id="targetPath2" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
+            <Input id="sourcePath2" path="/schema:address/schema:postalCode"/>
+            <Input id="targetPath2" path="/schema:address/schema:postalCode"/>
           </Compare>
           <Compare id="jaroWinkler1" required="true" weight="1" metric="jaroWinkler" threshold="0.2" indexing="true">
             <TransformInput id="lowerCase1" function="lowerCase">
               <TransformInput id="alphaReduce" function="alphaReduce">
-                <Input id="sourcePath3" path="/&lt;http://schema.org/legalName&gt;"/>
+                <Input id="sourcePath3" path="/schema:legalName"/>
               </TransformInput>
             </TransformInput>
             <TransformInput id="lowerCase" function="lowerCase">
               <TransformInput id="alphaReduce2" function="alphaReduce">
-                <Input id="targetPath" path="/&lt;http://purl.org/goodrelations/v1#legalName&gt;"/>
+                <Input id="targetPath" path="/gr:legalName"/>
               </TransformInput>
             </TransformInput>
           </Compare>
@@ -88,12 +84,9 @@
       </Outputs>
     </Interlink>
   </Interlinks>
-  <Transforms>
-          
-        </Transforms>
   <Outputs>
     <Dataset id="invalid_ico_links" type="file">
-      <Param name="file" value="InvalidICOLinks"/>
+      <Param name="file" value="invalid_ico_plus_legal_name_and_postal_code_or.nt"/>
       <Param name="format" value="N-Triples"/>
       <Param name="graph" value=""/>
     </Dataset>
