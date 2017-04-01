@@ -86,7 +86,6 @@
     <Dataset id="invalid_ico_links" type="file">
       <Param name="file" value="invalid_ico_plus_legal_name_and_postal_code_or.nt"/>
       <Param name="format" value="N-Triples"/>
-      <Param name="graph" value=""/>
     </Dataset>
   </Outputs>
 </Silk>
