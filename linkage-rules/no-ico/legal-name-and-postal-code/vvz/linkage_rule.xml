@@ -1,13 +1,8 @@
 <?xml version="1.0"?>
 <Silk>
   <Prefixes>
-    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix id="dcterms" namespace="http://purl.org/dc/terms/"/>
     <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
-    <Prefix id="skos" namespace="http://www.w3.org/2004/02/skos/core#"/>
     <Prefix id="schema" namespace="http://schema.org/"/>
-    <Prefix id="rdfs" namespace="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Prefix id="rov" namespace="http://www.w3.org/ns/regorg#"/>
   </Prefixes>
   <DataSources>
     <Dataset id="VVZ" type="sparqlEndpoint">
@@ -15,7 +10,7 @@
       <Param name="clearGraphBeforeExecution" value="false"/>
       <Param name="pauseTime" value="0"/>
       <Param name="retryCount" value="3"/>
-      <Param name="endpointURI" value="http://localhost:8890/sparql"/>
+      <Param name="endpointURI" value="http://lod2-dev.vse.cz:8890/sparql"/>
       <Param name="strategy" value="subQuery"/>
       <Param name="retryPause" value="1000"/>
       <Param name="graph" value="http://linked.opendata.cz/resource/dataset/isvz.cz"/>
@@ -41,48 +36,47 @@
           &lt;http://linked.opendata.cz/resource/concept-scheme/CZ-ICO&gt; .
         </RestrictTo>
       </TargetDataset>
-      <LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+      <LinkageRule linkType="owl:sameAs">
         <Aggregate id="average1" required="false" weight="1" type="average">
-          <Compare id="equality" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
-            <Input id="sourcePath1" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
-            <Input id="targetPath1" path="/&lt;http://schema.org/address&gt;/&lt;http://schema.org/postalCode&gt;"/>
+          <Compare id="equality" required="true" weight="1" metric="equality"
+                   threshold="0.0" indexing="true">
+            <Input id="sourcePath1" path="?a/schema:address/schema:postalCode"/>
+            <Input id="targetPath1" path="?b/schema:address/schema:postalCode"/>
           </Compare>
-          <Compare id="equality1" required="true" weight="1" metric="equality" threshold="0.0" indexing="true">
+          <Compare id="equality1" required="true" weight="1" metric="equality"
+                   threshold="0.0" indexing="true">
             <TransformInput id="removeStopwords1" function="removeStopwords">
               <TransformInput id="alphaReduce1" function="alphaReduce">
                 <TransformInput id="lowerCase1" function="lowerCase">
-                  <Input id="sourcePath2" path="/&lt;http://schema.org/legalName&gt;"/>
+                  <Input id="sourcePath2" path="?a/schema:legalName"/>
                 </TransformInput>
               </TransformInput>
-              <Param name="stopwordList" value="organization_names_stop_words.txt"/>
+              <Param name="stopwordList" value="../../../organization_names_stop_words.txt"/>
               <Param name="separator" value="\s+"/>
             </TransformInput>
             <TransformInput id="removeStopwords2" function="removeStopwords">
               <TransformInput id="alphaReduce2" function="alphaReduce">
                 <TransformInput id="lowerCase2" function="lowerCase">
-                  <Input id="targetPath2" path="/&lt;http://schema.org/legalName&gt;"/>
+                  <Input id="targetPath2" path="?b/schema:legalName"/>
                 </TransformInput>
               </TransformInput>
-              <Param name="stopwordList" value="organization_names_stop_words.txt"/>
+              <Param name="stopwordList" value="../../../organization_names_stop_words.txt"/>
               <Param name="separator" value="\s+"/>
             </TransformInput>
           </Compare>
         </Aggregate>
-        <Filter/>
+        <Filter limit="1"/>
       </LinkageRule>
       <Outputs>
         <Output id="no_ico_links"/>
       </Outputs>
     </Interlink>
   </Interlinks>
-  <Transforms>
-          
-        </Transforms>
+  <Transforms/>
   <Outputs>
     <Dataset id="no_ico_links" type="file">
-      <Param name="file" value="NoICOLinks"/>
+      <Param name="file" value="no_ico_legal_name_plus_postal_code_vvz.nt"/>
       <Param name="format" value="N-Triples"/>
-      <Param name="graph" value=""/>
     </Dataset>
   </Outputs>
 </Silk>
