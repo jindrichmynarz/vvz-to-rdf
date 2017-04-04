@@ -45,7 +45,7 @@
           FILTER (!STRSTARTS(STR(?a), "http://linked.opendata.cz/resource/business-entity/CZ"))
         </RestrictTo>
       </SourceDataset>
-      <TargetDataset dataSource="ARES-OR" var="b" typeUri="http://www.w3.org/ns/regorg#RegisteredOrganization">
+      <TargetDataset dataSource="ARES-RZP" var="b" typeUri="http://www.w3.org/ns/regorg#RegisteredOrganization">
         <RestrictTo/>
       </TargetDataset>
       <LinkageRule linkType="owl:sameAs">
