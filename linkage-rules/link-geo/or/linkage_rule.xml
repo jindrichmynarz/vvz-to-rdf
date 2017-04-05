@@ -40,15 +40,13 @@
     <Interlink id="LinkGeo">
       <SourceDataset dataSource="VVZ" var="a" typeUri="http://schema.org/Organization">
         <RestrictTo>
-          FILTER NOT EXISTS {
-   ?a &lt;http://www.w3.org/ns/regorg#registration&gt; [] .
-} .
-?a &lt;http://www.w3.org/2003/01/geo/wgs84_pos#geometry&gt; [] .
+          FILTER (!STRSTARTS(STR(?a), "http://linked.opendata.cz/resource/business-entity/CZ"))
+          ?a &lt;http://schema.org/address&gt;/^&lt;http://schema.org/address&gt;/&lt;http://schema.org/geo&gt; [] .
         </RestrictTo>
       </SourceDataset>
       <TargetDataset dataSource="ARES-OR" var="b" typeUri="http://www.w3.org/ns/regorg#RegisteredOrganization">
         <RestrictTo>
-          ?a &lt;http://www.w3.org/2003/01/geo/wgs84_pos#geometry&gt; [] .
+          ?b &lt;http://www.w3.org/2003/01/geo/wgs84_pos#geometry&gt; [] .
         </RestrictTo>
       </TargetDataset>
       <LinkageRule linkType="owl:sameAs">
