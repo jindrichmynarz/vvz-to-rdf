@@ -1,7 +1,10 @@
+{{!
+@param int limit
+}}
+
 PREFIX geo:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX schema: <http://schema.org/>
 
-WITH <http://linked.opendata.cz/resource/dataset/isvz.cz>
 INSERT {
   ?organization geo:geometry ?point .
 }
@@ -15,6 +18,7 @@ WHERE {
         ?organization geo:geometry [] .
       }
     }
+    LIMIT {{limit}} 
   }
   ?geo schema:latitude ?latitude ;
     schema:longitude ?longitude .
