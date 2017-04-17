@@ -85,9 +85,11 @@ declare -a UPDATES=(
   "cast_single_lots_as_contracts.ru"
   "remove_organization_data_retrievable_from_ares.ru"
   "remove_registrations_of_linked_organizations.ru"
-  "blank_nodes_to_uuid_iris_postal_addresses_all.ru" # Needs very small page sizes, such as 20.
-  "blank_nodes_to_uuid_iris_concepts_all.ru" # Needs very small page sizes, such as 20.
-  "blank_nodes_to_uuid_iris_organizations_all.ru" # Needs very small page sizes, such as 20.
+  # Don't use STRUUID() in Virtuoso. It generates the same UUID.
+  # See <https://github.com/openlink/virtuoso-opensource/issues/515>.
+  # "blank_nodes_to_uuid_iris_postal_addresses_all.ru" # Needs very small page sizes, such as 20.
+  # "blank_nodes_to_uuid_iris_concepts_all.ru" # Needs very small page sizes, such as 20.
+  # "blank_nodes_to_uuid_iris_organizations_all.ru" # Needs very small page sizes, such as 20.
 
   # Normalization
   "convert_eur_to_czk.ru"

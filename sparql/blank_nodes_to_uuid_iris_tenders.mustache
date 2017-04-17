@@ -20,7 +20,7 @@ WHERE {
         }
         LIMIT {{limit}}
       }
-      BIND (IRI(CONCAT("http://linked.opendata.cz/resource/tender/", STRUUID())) AS ?iri)
+      BIND (IRI(CONCAT("http://linked.opendata.cz/resource/tender/", SHA256(STR(?bnode)))) AS ?iri)
     }
   }
   ?bnode ?outP ?outO .
